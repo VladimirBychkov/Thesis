@@ -1,0 +1,7 @@
+NOvA is doing nu_e dissapearance and nu_mu appearance measurements, a lot of cross section measurements at near detector!
+
+Need to add Standard Model explanation to history or theory chapter. Maybe beter for its own short chapter.
+
+Add more on neutrino dissapearance experiments, discovery of oscillations, shortage of solar neutrino etc.
+
+How significant metter effects are for NOvA experiment (Susan's thesis)
