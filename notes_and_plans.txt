@@ -1,6 +1,8 @@
 NOvA is doing nu_e dissapearance and nu_mu appearance measurements, a lot of cross section measurements at near detector!
 
-Need to add Standard Model explanation to history or theory chapter. Maybe beter for its own short chapter.
+Need to add Standard Model explanation to history or theory chapter. Maybe beter for its own short chapter. References to
+Higgs discovery - ATLAS and CMS. (http://www.sciencedirect.com/science/article/pii/S037026931200857X   
+http://www.sciencedirect.com/science/article/pii/S0370269312008581)
 
 Add more on neutrino dissapearance experiments, discovery of oscillations, shortage of solar neutrino etc.
 
