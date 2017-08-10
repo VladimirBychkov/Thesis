@@ -86,3 +86,82 @@ angle relative to NuMI beam. (Right)~Neutrino oscillation probabilities as a fun
 P(\nu_\mu \rightarrow \nu_\mu)$ - blue line, $P(\nu_\mu \rightarrow \nu_e)$ - black line and 
 $P(\nu_\mu \rightarrow \nu_\tau)$ - red line.} \label{Spec}
 \end{figure}
+
+\section{NOvA Near and Far Detectors}
+The NOvA experiment utilizes two detectors for measuring muon neutrino disappearance probability 
+$P(\nu_\mu \rightarrow \nu_\mu)$ and electron neutrino appearance probability $P(\nu_\mu \rightarrow \nu_e)$. 
+In order to decrease systematic uncertainties, such as beam uncertainty and uncertainties due to variation
+in detector efficiency, two detectors are build with exactly the same material and 
+similar geometry. The Near Detector is placed 1 km from the NuMI source at Fermilab, while the 
+Far Detector sits 810~km away on the surface and 14.6 mrad off beam axis in Ash River, Minnesota. 
+The Near Detector weighs 330 metric ton and is 105 m underground, while the Far Detector mass is 
+14,000 ton and has shielding equivalent to 3 m of rock which reduces cosmic ray background.
+\begin{figure}
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=0.79\linewidth]{figures/PVC_cell_original.jpg}
+  \caption{A NOvA cell}
+  \label{cell}
+\end{subfigure}%
+\begin{subfigure}{.8\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/2detectors.pdf}
+  \caption{Scale and structureof the NOvA detectors}
+  \label{2detectors}
+\end{subfigure}
+\caption{Structure of cell and the NOvA detectors}
+\label{cell_detectors}
+\end{figure}
+
+\subsection{From cells to planes and blocks}
+Each detector is made of cells which are made from polyvinyl chloride (PVC) doped with titanium 
+dioxide to increase light reflectivity. The cross section of cells has rectangular shape with sizes
+approximately equal to 4 cm and 6 cm. The length of the cells is varies between the detectors and 
+equals to 4 m for the Near Detector and 15 m for the Far Detector. 32 cells are bound together along
+6 cm side to make a module and the set of modules produces plane. The number of modules in a plane
+depends on a detector - 3 and 12 modules per plane for the Near and Far Detector respectively. Planes
+are glued together in a such way that adjacent planes alternating between horizontal and vertical
+allignment. The scetch of the detectors structure can be seen in \p{2detectors}. Furthemore, 32 planes 
+make up a block and 28 blocks complete the full Far Detector while for the Near Detector block consists
+of 24 planes and 3 blocks make the active part of the detector. In addition, so called muon catcher
+block goes upstream and serves for stopping muons which are produced in $\nu_\mu$ CC interactions. 
+Muon catcher, which helps to contain more muons as the relative size of the Near Detector is not big, 
+consists of 22 active planes together with 10 steel 10 cm thick planes between every 2 active ones. The size
+of the muon catcher in XY plane is smaller the the active part of the Near Detector since horizontal
+planes have only 2 modules while vertical planes have 3 modules. The presents of the steel leads to
+extra muon energy absorbtion which makes muon tracks shorter.
+
+Planes configuration allows to reconstruct three-dimensional tracks of the particles; vertical cells 
+provide X measurements, horizontal cells give Y measurements, and planes positions provides Z measurements. 
+Z-axis is directed along the beam, X-axis points to the west and Y-axis points upward. This choice of
+axes gives NOvA detectors a Cartesian right handed coordinate system. 
+
+\subsection{Signal path part I: ligth production}
+In order to detect particles resulted in neutrino interactions in the detectors these particles 
+should leave footprints. In NOvA experiment cells are filled with a liquid scintillator composed 
+of mineral oil doped with pseudocumene~\footnote{1,2,3-Trimethylbenzene}. In every cell, one wavelength 
+shifting fiber runs from one end of the cell to the opposite end, then back to the other end where 
+it connects to an avalanche photodiode (APD) as can be seen in \p{cell}. Photons are created by charged 
+particle moving through the scintillator. These reflected by the cell walls and have a high chance 
+to be captured by the wavelength shifting fiber. Inside the fiber photons after absorbtion and
+reemission increse its wavelength resulting in propogation without escaping due to total inner
+reflection. 
+
+Photons which reach APD get converted into photoelectrons through the process called avalanche 
+breakdown, and produces currents which are detectable by commercial electronics. All 32 fiber from
+the module are connected to one APD. And the last step before signals might be processed with the 
+help of conventional computers is to digitize the APD output signal. The digitization happens in
+front end board (FEB). Short APD signals are stretched in time in the Application Specific 
+Integrated Circuit (ASIC) with the help of CR-RC circuit. After, the signal is passed to ADC - 
+analog to digital converter - where continuous signal is translated to discrete one with 4096 
+distinct values. Every channel is read out every 500 ns and 125 ns for the Far and Near Detector 
+respectively. Only the 4 last ADCs - value of the digitization sample - are stored as a hit and 
+the hit is written when the difference
+\be
+ADC_i - ADC_{i-3}
+\ee
+is greater than a threshold. These 4 values are then passed to the Data Concentration Module (DCM). 
+Later, those 4 values are used to fit the signal shape and to determine signal amplitude, which 
+is proportional to amount of energy charged particle deposited in a particular cell.
+
+\subsection{Signal path part II: data acquisition}
