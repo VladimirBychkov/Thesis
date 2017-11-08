@@ -7,3 +7,5 @@ http://www.sciencedirect.com/science/article/pii/S0370269312008581)
 Add more on neutrino dissapearance experiments, discovery of oscillations, shortage of solar neutrino etc.
 
 How significant metter effects are for NOvA experiment (Susan's thesis)
+
+Picture from Susan's thesis of FEB->DCM (in DAQ section)

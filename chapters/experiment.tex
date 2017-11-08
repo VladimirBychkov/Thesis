@@ -136,7 +136,7 @@ provide X measurements, horizontal cells give Y measurements, and planes positio
 Z-axis is directed along the beam, X-axis points to the west and Y-axis points upward. This choice of
 axes gives NOvA detectors a Cartesian right handed coordinate system. 
 
-\subsection{Signal path part I: ligth production}
+\subsection{Signal path part I: ligth production and digitization}
 In order to detect particles resulted in neutrino interactions in the detectors these particles 
 should leave footprints. In NOvA experiment cells are filled with a liquid scintillator composed 
 of mineral oil doped with pseudocumene~\footnote{1,2,3-Trimethylbenzene}. In every cell, one wavelength 
@@ -165,3 +165,47 @@ Later, those 4 values are used to fit the signal shape and to determine signal a
 is proportional to amount of energy charged particle deposited in a particular cell.
 
 \subsection{Signal path part II: data acquisition}
+Every DCM is a custom built computer and collecting data from 64 FEBs. When infromation from FEBs 
+is time sorted and arrange in 5 ms chunk of data stream, the data is sent to a buffer node where it 
+stored until a trigger decision is made if the data needs to be saved to the disks. 200 buffer nodes 
+are arranged in a circular ring buffer and every node has up to a minute to run a trigger software 
+until a new piece of data comes from a DCM. NOvA trigger software which issues trigger decisions relies
+on external triggers as well as data-drivien triggers based on recieved data. Neutrino oscillation
+analysis uses data which is recorded due to external trigger desicions, this so-called NuMI trigger 
+is issued by acceleration complex at Fermilab. The trigger records 550 $\mu s$ window of data centered 
+around the 10 $\mu s$ NuMI beam spill. There are several more triggers such as cosmic trigger, which 
+triggers at the rate of 10 Hz to store FD cosmic data for callibration and background estimation, or 
+supernova trigger, which ideally should record up to 20 minutes of data in the event of supernova burst.
+
+Recorded data is stored at the FD and ND cites. However, there are no enough disk space at the cites and
+eventually all the data is transferred to Fermilab where it is processed further for the physics analysis.
+
+\subsection{Neutrino Interaction in NOvA}
+The majority of neutrinos at the NOvA detectors are in the few GeV energy region and all the charged 
+products of neutrino interaction with a nucleus are clearly visible and as long as their momenta are 
+sufficiently separated in an angular space. As can been seen in \p{} muons, electrons, and charged 
+hadrons leave a distinct traces in NOvA. Particles primary lose their energy through an ionization 
+process by disrupting electrons of atoms which happen to be close to particles trajectories. Being 
+much havier than an electron and immune to a strong interaction muon can travel a long distance inside 
+the detectors which make it a relatively easy task to determine a high energy muon. Light electron interacts
+with detector material via pair production and forms electromagnetic shower, where energy is depossed in 
+a rather conical shaped region as opposed to a long muon track. Hadrons such as protons and pions in 
+addition to ionization also lose energy by interacting strongly with nuclei along their trajectory. 
+
+Despite these differences it is a complicated problem to distinguish a charged current (CC) interaction with 
+muon or electron been produced from a neutral current (NC) one where no visible lepton is produced.
+NC processes can output charged or neutral pions together with other hadrons. Charged pions
+leave tracks which could be confused with low energy muons, although occasional hard scatters of the 
+nuclei help with identification. Neutral pions leave electromagnetic showers after they decay into two
+photons and these showers might be confused with showers created by electrons in CC neutrino interaction.
+Thus, sophisticated algorithms need to be developed to measure parameters of neutrino mixing matrix where 
+determination of exact neutrino flavor is a crucial task.
+
+In addition, since NOvA Fad Detector sits on the ground it constantly being bombarded by muons and other
+particles created by interactions of cosmic rays - high energy protons - with air molecules in upper atmosphere. 
+These muons contribute to a background for the main analysis but they could be relatively easy to get rid off
+because of their activity at the top and/or at the sides of the detector. However, they are much harder to deal
+with since cosmic muons a primarily background in a uncontained sample which this thesis are partially about.
+
+\subsection{NOvA Event Display}
+
