@@ -6,3 +6,38 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In order to predict spectra at the near and the far detectors to compare predictions with
+actual data one need to simulate neutrino interactions in the detectors relying on
+known physics models and theories of how particles are produced, how they travel and interact
+with detector material. The simulation process in the NOvA starts with protons hiting
+NuMI target and finishes with APD readouts and analog to digital converters. Side simulation
+packages or custom NOvA software are used in every step, output information on every step is
+used as input data for the following step
+\begin{itemize}
+\item Beam simulations. FLUGG simulation package which is the combination of FLUKA and GEANT4 packages.
+Geometries of the target hall and detectors are encoded with the help of GEANT4, while proton
+interactions and downstream particle decays are simulated with FLUKA.
+\item Neutrino interactions. Neutrino flux degenrated in the previous step is an input for
+the GENIE package, which performs simulation of neutrino interactions with nucleus inside the
+detectors. GENIE produces a list of particles leaving the nucleus.
+\item Propagation of particles through detectors. List of the particles and detailed detectors geometry are
+used by GEANT4 to simulate particles propagation through the detectors. Amount of energy deposited
+by the particles in every cell is the input for the last step.
+\item Electronic signal. Deposited energy in the cell is converted to a light by the scintillator
+which travels through the fiber to an APD and analog to digital converter. This step is
+simulated by NOvA custom software.
+\end{itemize}
+All these 4 parts will be briefly discussed in the current chapter.
+
+\section{Beam Simulation}
+Beam simulation provides NOvA experiment with neutrino flux prediction at both detectors. 
+This simulation is done by FLUKA and GEANT4 through the FLUGG interface. Detailed geometry of
+the target hall, target itself, collimator, two focusing horns and decay pipe is described by
+GEANT4 format files and simuation is done by FLUKA. The FLUKA package simulates 120 GeV protons
+which hit the target and give rise to hadronic showes, secondary particles focused by the horns 
+and enter decay pipe where they further decay and some of them produce neutrinos. All the proton 
+interaction information whose dauther particles produce neutrino is saved providing a way to 
+study beam uncertanties related to particle production models. 
+
+The simulation outputs files which describe neutrino flux in terms of neutrino parent particles, 
+flavour, energy and direction of motion.
