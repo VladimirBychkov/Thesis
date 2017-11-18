@@ -41,3 +41,21 @@ study beam uncertanties related to particle production models.
 
 The simulation outputs files which describe neutrino flux in terms of neutrino parent particles, 
 flavour, energy and direction of motion.
+
+\section{Simulation of Neutrino Interactions}
+In order to simulate neutrino interactions in the near and far detector the GENIE simulation 
+package is used. The package is developed by the experimental physics community and serves as a 
+primary neutrino Monte Carlo generator for neutrino experiments due to its ability to simulate neutrino
+interactions on almost any target and in wide energy region which spans from MeV to PeV. As mentioned 
+above GENIE gets a result of neutrino flux simulation from a previous step and convolute it with
+neutrino interaction cross sections.
+
+The interesting feature of the neutrino energy spectrum in NOvA experiment is that it overlaps 
+with energy regions of several neutrino interaction models. All these models are implemented in GENIE
+simulation package. Quasi-Elastic scattering (QE), deep-inelastic scattering (DIS), baryon resonance 
+production (RES) as well as meson exchange current (MEC) which dominates in 2 particle - 2 hole (2p-2h) 
+effect\cite{MEC}. The physics behind the models is complicated, however on the qualitative level QE interaction 
+means scattering off a single nucleon, MEC interaction means scattering off a pair of nucleons, RES process
+results in excitation of the whole nucleus and DIS interaction of neutrino with a nucleus can lead to a 
+complete disintegration of the nucleus\footnote{This happens when energy transferred to a nucleus is 
+sufficiently large}.
