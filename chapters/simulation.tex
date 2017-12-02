@@ -14,18 +14,18 @@ NuMI target and finishes with APD readouts and analog to digital converters. Sid
 packages or custom NOvA software are used in every step, output information on every step is
 used as input data for the following step
 \begin{itemize}
-\item Beam simulations. FLUGG simulation package which is the combination of FLUKA and GEANT4 packages.
-Geometries of the target hall and detectors are encoded with the help of GEANT4, while proton
-interactions and downstream particle decays are simulated with FLUKA.
+\item Beam simulations. FLUGG simulation package which is the combination of FLUKA \cite{FLUKA} 
+and GEANT4 \cite{GEANT4} packages. Geometries of the target hall and detectors are encoded with 
+the help of GEANT4, while proton interactions and downstream particle decays are simulated with FLUKA.
 \item Neutrino interactions. Neutrino flux degenrated in the previous step is an input for
-the GENIE package, which performs simulation of neutrino interactions with nucleus inside the
+the GENIE \cite{GENIE} package, which performs simulation of neutrino interactions with nucleus inside the
 detectors. GENIE produces a list of particles leaving the nucleus.
 \item Propagation of particles through detectors. List of the particles and detailed detectors geometry are
 used by GEANT4 to simulate particles propagation through the detectors. Amount of energy deposited
 by the particles in every cell is the input for the last step.
 \item Electronic signal. Deposited energy in the cell is converted to a light by the scintillator
 which travels through the fiber to an APD and analog to digital converter. This step is
-simulated by NOvA custom software.
+simulated by NOvA custom software \cite{NovaSim}.
 \end{itemize}
 All these 4 parts will be briefly discussed in the current chapter.
 
@@ -54,8 +54,65 @@ The interesting feature of the neutrino energy spectrum in NOvA experiment is th
 with energy regions of several neutrino interaction models. All these models are implemented in GENIE
 simulation package. Quasi-Elastic scattering (QE), deep-inelastic scattering (DIS), baryon resonance 
 production (RES) as well as meson exchange current (MEC) which dominates in 2 particle - 2 hole (2p-2h) 
-effect\cite{MEC}. The physics behind the models is complicated, however on the qualitative level QE interaction 
+effect. The physics behind the models is complicated, however on the qualitative level QE interaction 
 means scattering off a single nucleon, MEC interaction means scattering off a pair of nucleons, RES process
 results in excitation of the whole nucleus and DIS interaction of neutrino with a nucleus can lead to a 
 complete disintegration of the nucleus\footnote{This happens when energy transferred to a nucleus is 
 sufficiently large}.
+
+\begin{figure}[t!]
+\begin{subfigure}[t]{.5\textwidth}
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/nu_channels.pdf}
+  \caption{Neutrino cross section energy dependence for QE, RES and DIS intercations overlapped with 
+	NOvA energy region used for the oscillation analysis.}
+  \label{fig:NovaEReg}
+\end{subfigure}%
+~
+\begin{subfigure}[t]{.5\textwidth}
+  \centering
+  \includegraphics[width=1.1\linewidth]{figures/mec_xsec.pdf}
+  \caption{Neutrino cross section energy dependence used in GENIE neutrino generator.}
+  \label{fig:mecXsec}
+\end{subfigure}
+\label{fig:simPlots}
+\end{figure}
+
+On the left hand side of \ref{fig:NovaEReg} one can see a typical energy regions of QE, RES and DIS neutrino 
+interactions overlaped with NOvA energy domain. These three types of neutrino scattering are implemented 
+in GENIE based on the Llewellyn-Smith model \cite{QE}, Rein-Sehgal model \cite{RES} and effective leading 
+order model with Bodek and Yang modifications \cite{DIS} for QE, RES and DIS respectively. MEC process, 
+which is included in GENIE as semi-empirical model, is described in \cite{MEC}.
+
+\section{Particles propagation}
+After GENIE is done with its part of simulation, or in other words, the list of particles which leave 
+the nucleus with their energies, momenta and initial positions is ready, now one needs to propagate them
+through the detector material and simulate the energy deposition, interaction and decay. NOvA experiment
+uses GEANT4 \cite{GEANT4} simulation package for this step. Besides the list of particles, GEANT4 takes
+another input namely geometry of the detector and its surrounding. Detailed information about blocks 
+positions, cell structure and materials they made of, scintillator composition, conrete and steel support
+structure around the detectors is encoded in special geometry files.
+
+The way GEANT4 propagates particles is done in the following manner. For each particle at each step of the 
+trajectory it is decided with appropriate probability what particle should do next - move forward and deposit 
+some energy, interact and scatter of particles which constitute detector components or decay. As particle
+propagates further it loosing its kinetic energy and as soon as particle's kinetic energy is less than 100 eV
+propagation stops. GEANT4 saves these trajectory steps as a list of particle positions, energy and momenta 
+for the next step of simulation chain. 
+
+Before the final detector response could be simulated it is necessary to determine how much light was produced
+in the scintillator and what fraction of it was collected by the wave-shifting fiber and transported to the 
+readout electronics. As a matter of fact, amount of light produced by the scintillator is not linearly 
+proportional to amount of deposited energy due to a finite number of scintillaotr centres along the particle
+trajectory in the cell. The effect is know as Birks supression \cite{birks}. If $\frac{dL}{dx}$ is light 
+output per unit length and $\frac{dE}{dx}$ is amount of deposited energy then Birks law reads
+\be
+\frac{dL}{dx} = L_0 \frac{\frac{dE}{dx}}{1 + k_B\frac{dE}{dx}}, 
+\ee
+where $L_0$ and $k_B$ are constants which depend on scintillator. However, more carefull aproach to the problem
+of particle propagation through scintillator was carried out by Chou \cite{chou} and additional correction was
+introduced to the Birks law. NOvA experiment utilizes this correction - 
+\be
+\frac{dL}{dx} = L_0 \frac{\frac{dE}{dx}}{1 + k_B\frac{dE}{dx} + k_C\Big(\frac{dE}{dx}\Big)^2}.
+\ee
+Parameters $k_B$ and $k_C$ are tuned using muon and protons tracks in the Near Detector.
