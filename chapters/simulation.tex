@@ -75,6 +75,7 @@ sufficiently large}.
   \caption{Neutrino cross section energy dependence used in GENIE neutrino generator.}
   \label{fig:mecXsec}
 \end{subfigure}
+\caption{Neutrino cross sections.}
 \label{fig:simPlots}
 \end{figure}
 
@@ -116,3 +117,77 @@ introduced to the Birks law. NOvA experiment utilizes this correction -
 \frac{dL}{dx} = L_0 \frac{\frac{dE}{dx}}{1 + k_B\frac{dE}{dx} + k_C\Big(\frac{dE}{dx}\Big)^2}.
 \ee
 Parameters $k_B$ and $k_C$ are tuned using muon and protons tracks in the Near Detector.
+
+\section{Light propagation and signal to store}
+The last step in simulation is done with custom NOvA software and could be split into two parts - light 
+propagation to the readout electronic and signal forming by that electronic. While on practice cells could 
+be different from each other (horizontal cells are not exactly horizontal because of their length - cells could be
+slightly bent, escpecially in the far detector. Not exact horizontality also leads to small bubbles of air are
+being trapped inside the cells) it is assumed in simulation that all the cells are exactly the same.
+
+\subsection{Light propagation}
+Assumption that all cells are equivalent and usage of ray-tracing model allow to find a template to determine how 
+many photons were trapped by the wave-shifting fiber. Following characteristics of detector components were 
+measured in bench experiments 
+\begin{itemize}
+\item characteristic scintillator emission time - 9 ns
+\item scintillator index of refraction - 1.46
+\item reflectivity of the cell walls - 87.7\%
+\item capture length of photon capture probability\footnote{Probability to capture a photon $P \sim e^{x/L}$, where
+$x$ is distance between the point where the photon was produced and the fiber, $L$ is capture length.} - 30.66 cm
+\end{itemize}
+The resulting template is shown on \ref{fig:Coll_rate}. Knowing how many and where photons were emitted and using
+the template number of trapped photons could be determined. To simulate what fraction of photons reaches the APD
+half of photons are sent in opposite directions around the fiber. There are some fraction on photons which is 
+absorbed or get out of fiber and in order to account for that simulation uses attenuation curve which was 
+measured in bench tests. Before the last phase of simulation starts number of photoelctron created in the APD
+is determined by taking into account APD's quantum efficiency and additional Poisson smearing.
+\begin{figure}
+\includegraphics[width=1.0\textwidth]{figures/Coll_rate.png}
+\centering
+\caption{The collection rate of scintillator photons by a wavelength shifting fiber loop relative to the position 
+	and time where and when the energy was deposited.} \label{fig:Coll_rate}
+\end{figure}
+\begin{figure}[t!]
+\begin{subfigure}[t]{0.9\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/AttenuationND.png}
+  \caption{Near Detector}
+  \label{fig:attND}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.9\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/AttenuationFD.png}
+  \caption{Far Detector}
+  \label{fig:attFD}
+\end{subfigure}
+\caption{Attenuation curves for the near and the far detectors. Data points are detectors response to cosmic ray
+	muons while simulation curves are results of bench experiments.}
+\label{fig:att}
+\end{figure}
+
+\subsection{Electronics}
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-20pt}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{figures/digit_scheme.png}
+  \end{center}
+\vspace{1mm}
+\caption{Schematics of digitization}
+\end{wrapfigure}
+Photo-electron signal in the APD created in the previous step have to be digitazed to finalize the simulation
+of the cell hit. As APD impulse is too short, first it is stretched in the Application Specific Integrated 
+Circuit (ASIC) by CR-RC circuit. The response of the ASIC to a charged impulse has the following form
+\be
+f(t) \sim e^{-\frac{t-t_0}{F}} - e^{-\frac{t-t_0}{R}},
+\ee
+where $t_0$ is the time when pulse was created by APD, F and R are the fall time and rise time of the CR-RC 
+circuit. And as was mention in chapter \ref{experiment_chapter} the signal value is split into 4096 possible
+values and only 4 last ADCs - value of the digitization sample - is stored when the difference $ADC_i - ADC_{i-3}$
+is greater then a treshold. 
+At this point simulation files have the same structure\footnote{Of course plus additional information about type 
+of neutrino information, resulting particles' momenta and energies etc.} as files with detectors gathered data.
+The next step in NOvA analysis is to reconstruct high level information about recorded or simulated events
+with the help of reconstruction algorithms which are the same for the real data and simulation.
