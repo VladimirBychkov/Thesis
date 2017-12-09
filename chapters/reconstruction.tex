@@ -6,3 +6,50 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In order to perform neutrino oscillation analysis one need to select neutrino events 
+and carefully measure its energies. For this task data from the detectors have to be 
+reconstructed and $\nu_\mu$ charge current (CC) interactions should be identified. The following
+points briefly summarize the reconstruction chain 
+\begin{itemize}
+\item Slicing. The full 550$\mu s$ readout window contains hits which are associated with
+neutrino interaction, cosmis rays activity and noise. The hits need to be separated into
+different groups which ideally correspond to different physical processes.
+\item Tracking. Group of hits ("slice") from a previous step processed by tracking algorithm
+in order to detrmine 3-dimensional trajectories of particles.
+\item Calibration. Before energy of the event could be estimated signal from every hit is needed 
+to be converted into energy units.
+\item Muon identification and Background rejection. $\nu_\mu$ CC interaction produce a muon and, 
+thus finding a muon track in a slice indicates that the slice contains information about neutrino.
+\item Energy estimation. Templates are used to map muon track length to true muon energy and visible 
+hadronic energy\footnote{Total energy of all hits in the slice which do not belong muon track} to true 
+hadronic energy in order to determine neutrino total energy.  
+\end{itemize}
+Analysis done in this thesis is based on two different neutrino samples - contained and uncontained -
+which were selected and processed by different algorithms. Muon identification and energy estimation
+algorithms for the contained sample are explaned in this chapter, algorithms which were used for 
+uncontained sample are explained in separate chapters.
+
+\section{Slicing}
+As can be seen on the figure \ref{fig:EVD_full} data recorded for one NuMI spill contains
+multple uncorrelated activities. Even though the length of NuMI spill is 10$\mu s$ in the middle
+of 550$\mu s$ readout window slicer algorithm is applied to all the hits in the window to protect 
+against small possible drift of NuMI spills as well as to make slices for cosmic rays for background
+estimation.
+
+The task of the slicer is to group hits, which casually related to each other, in slices. The slicer 
+is based on DBSCAN algorithm, one of the most common clustering algorithms,and checks evey pair of hits 
+to determine how far are they from each other in space and time. The distance function is not exactly 
+spice-time interval but rather modified 
+\be
+d = \Big(\frac{\Delta t - \frac{\Delta r}{c}}{T_{res}}\Big)^2 + \Big(\frac{\Delta z}{D_z}\Big) + 
+\Big(\frac{\Delta v}{D_v}\Big),
+\ee 
+where $c$ is the speed of light, $\Delta t$ and $\Delta r$ are time and space difference between two 
+hits respectively, $T_{res}$ is the timing resolution, $\Delta z$ is the distance between the hits
+along the z direction, $\Delta v$ is the distance between hits in x or y direction. As soon as the 
+function returns value which is lower than predefined treshold, two hits are put together in one slice.
+The first term prefers hits which lie close to a light cone, in other words it is assumed that all
+the particles move with the speed of light\footnote{Or energy of the particles is much large than their 
+masses.} The second and the third terms penalize hits which are far from each other in space. These
+terms help to remove noise hits as their randomly distributed in space and time, and thefore, they 
+could be far from the main activity.
