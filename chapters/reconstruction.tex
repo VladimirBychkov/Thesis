@@ -37,9 +37,9 @@ against small possible drift of NuMI spills as well as to make slices for cosmic
 estimation.
 
 The task of the slicer is to group hits, which casually related to each other, in slices. The slicer 
-is based on DBSCAN algorithm, one of the most common clustering algorithms,and checks evey pair of hits 
-to determine how far are they from each other in space and time. The distance function is not exactly 
-spice-time interval but rather modified 
+is based on DBSCAN algorithm \cite{DBSCAN}, one of the most common clustering algorithms, and checks 
+evey pair of hits to determine how far are they from each other in space and time. The distance 
+function is not exactly spice-time interval but rather modified 
 \be
 d = \Big(\frac{\Delta t - \frac{\Delta r}{c}}{T_{res}}\Big)^2 + \Big(\frac{\Delta z}{D_z}\Big) + 
 \Big(\frac{\Delta v}{D_v}\Big),
@@ -51,5 +51,47 @@ function returns value which is lower than predefined treshold, two hits are put
 The first term prefers hits which lie close to a light cone, in other words it is assumed that all
 the particles move with the speed of light\footnote{Or energy of the particles is much large than their 
 masses.} The second and the third terms penalize hits which are far from each other in space. These
-terms help to remove noise hits as their randomly distributed in space and time, and thefore, they 
-could be far from the main activity.
+terms help to remove noise hits as they are randomly distributed in space and time, and thefore, they 
+could be far from the main activity. After all corellated activities have been found and slices are 
+created the rest of the hits are put into one additional noise slice.
+
+NOvA slicing algorithms does a good work in separating different neutrino activities in the near detector
+and separating cosmic activities from neutrino one in teh far detector. However, hits which were produced
+by Michele electrons\footnote{Electron produced in muon decay often called after Louis Michele who
+contributed significantly to the physics of charged leptons decay.} or photons follow neutrons capture are
+usually not included in the corresponding slice.
+\begin{figure}[t]
+\includegraphics[width=1.0\textwidth]{figures/Evd_Slicing_FD.pdf}
+\centering
+\caption{Trigger window in the far detector data. Hits are colored by the time they were recorded.} 
+\label{fig:EVD_full}
+\end{figure}
+
+\section{Tracking}
+As all the activities are separated into corresponding slices the next step in reconstruction chain is 
+to find sets of hits which are attributed to the different particles produced in the neutrino interaction 
+or cosmic activity. The latter activity usually produced by one particle, while the former one has 
+multiple particles. 
+
+NOvA tracking algorithm is based on Kalman filtering \cite{Kalman} and its implementation could be found 
+in \cite{Nick}. In short, algorithm is run on two views (X and Y) separately and merge 2D tracks into
+3D ones. To construct a 2D track two hits with separation smaller than three planes are choosen as track 
+seeds at most downstream location\footnote{Downstream in a sence of incoming neutrino from Fermilab}. 
+Algorithm is working upstream and added hits are fit with piecewise linear segments. To add hit or not 
+is decided on the basis of how much is the $\chi^2$ is changed for the hit; if less than eight units 
+then hit is added. Fitting track with linear segments naturally helps to follow particles trajectory 
+with multiple scatterings. Track is considered to be reconstructed if algorithm travels more than 3 planes
+and no hits are added. Algorithm is run repetitively until no more tracks could be reconstructed. Majority 
+of the particles produced by neutrino interactions are travels dowstream and thus the longest track is 
+reconstructed first.
+
+After all 2D tracks are found in both views they need to be merged into 3D tracks. Tracks merging is based
+on score function which uses proximity of X- and Y-view tracks start and end points in Z-direction and 
+extent of overlap. For each track in X view with Z coordinates $(z_{x1}, z_{x2})$ and track in Y view with
+Z coordinates $(z_{y1}, z_{y2})$
+\be
+\text{score} = \frac{|z_{x1}-z_{y1}| + |z_{x2}-z_{y2}|}{\min(z_{x2},z_{y2}) - \max(z_{x1},z_{y1})}.
+\ee
+Pair of 2D tracks with the lowest score are corresponded two one particle and they merged into one 3D track.
+Merging process continues until there are no 2D tracks to merge, unmatched 2D tracks are also recorded
+for possible analysis later.
