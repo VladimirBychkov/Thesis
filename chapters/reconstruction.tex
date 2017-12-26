@@ -95,3 +95,46 @@ Z coordinates $(z_{y1}, z_{y2})$
 Pair of 2D tracks with the lowest score are corresponded two one particle and they merged into one 3D track.
 Merging process continues until there are no 2D tracks to merge, unmatched 2D tracks are also recorded
 for possible analysis later.
+
+\section{Calibration}
+To convert cell hit arbitrary electronic units (ADC) into meaningful energy units (GeV) a calibration 
+process should be carried out. Calibration consists of two parts - attenuation and absolute energy calibration. 
+Both parts would be briefly explained in this section.
+
+\subsection{Attenuation correction}
+After ADC signal was produced it has to be decided by what factor signal should be multiplied since hit at
+the far end of the cell will result in a smaller signal as compared to a signal from a hit in the middle. 
+For the obvious reasons hits produced by beam neutrino are no appropriate for the calibration. However,
+the abundance of cosmic rays with well understood properties helps with the procedure. Among all reconstructed 
+cosmic tracks those are choosen which start and end on detector edges, this criterion is needed to make sure
+that tracks are not stopped inside the detector. Additional requirement is that tracks should cross more than
+ten planes, thus allowing an accurate estimation of muon path in every cell it crosses. Finally, only those 
+hits on tracks are used for callibration which satisfy tri-cell criterion - a hit for callibration should
+have both adjacent cells to be hit \ref{fig:tri-cell}. This conditions lead to a good estimation of muon
+trajectory and hence path length within each cell\footnote{Only for cells which satisfies tri-cell criterion.}.
+
+The ADC signal is scaled to PE value - estimation for maximal value of electronic signal based on 4 recorded 
+ADCs, see chapter \ref{simulation_chapter} for more details. After that for each reference hit, the path length 
+and position within the cell ($W$) is estimated and 2D histogram - ratio of PE and path length versus position 
+within the cell - is made. Mean ration of PE and path length as function of $W$ is fit by the sum of two exponents
+which represent signal trip in two direction along the wave shifting fiber.
+\be
+y(W) = C + A\Big(e^{\frac{W}{X}} + e^{-\frac{L+W}{X}}\Big),
+\ee
+where $A$ and $C$ are fit parameters, $X$ is the fiber attenuation length and $L$ is length of the fiber. For
+information about additional effects close to cell ends see \cite{calib_technote}.
+\begin{figure}[t]
+\includegraphics[width=1.0\textwidth]{figures/tri-cell.pdf}
+\centering
+\caption{Tri-cell creterion.}
+{The cell hit is used in calibration only if adjacent cells in the same view are also hit.}
+\label{fig:tri-cell}
+\end{figure}
+
+For analysis part $W$ of every hit is estimated and PE value of the hit is divided by fit at this posotion to 
+get a corrected PE value of the hit. Since attenuation curve determines cell responce to cosmic ray muons, thus 
+corrected PE value of the hit shows the relative signal to the cosmic muons. At this point, attenuation is taken
+into account but units of corrected PE signal is still arbitrary and absolute energy calibration is still needed. 
+
+\subsection{Absolute energy calibration}
+As in the previous step cosmic muons is used at this step too.
