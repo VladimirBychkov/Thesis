@@ -110,8 +110,16 @@ cosmic tracks those are choosen which start and end on detector edges, this crit
 that tracks are not stopped inside the detector. Additional requirement is that tracks should cross more than
 ten planes, thus allowing an accurate estimation of muon path in every cell it crosses. Finally, only those 
 hits on tracks are used for callibration which satisfy tri-cell criterion - a hit for callibration should
-have both adjacent cells to be hit \ref{fig:tri-cell}. This conditions lead to a good estimation of muon
-trajectory and hence path length within each cell\footnote{Only for cells which satisfies tri-cell criterion.}.
+have both adjacent cells to be hit, see figure \ref{fig:tri-cell}. This conditions lead to a good estimation 
+of muon trajectory and hence path length within each cell\footnote{Only for cells which satisfies tri-cell 
+criterion.}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/tri-cell.png}
+\caption{Tri-cell creterion.}
+{The cell hit is used in calibration only if adjacent cells in the same view are also hit.}
+\label{fig:tri-cell}
+\end{figure}
 
 The ADC signal is scaled to PE value - estimation for maximal value of electronic signal based on 4 recorded 
 ADCs, see chapter \ref{simulation_chapter} for more details. After that for each reference hit, the path length 
@@ -122,13 +130,26 @@ which represent signal trip in two direction along the wave shifting fiber.
 y(W) = C + A\Big(e^{\frac{W}{X}} + e^{-\frac{L+W}{X}}\Big),
 \ee
 where $A$ and $C$ are fit parameters, $X$ is the fiber attenuation length and $L$ is length of the fiber. For
-information about additional effects close to cell ends see \cite{calib_technote}.
-\begin{figure}[t]
-\includegraphics[width=1.0\textwidth]{figures/tri-cell.pdf}
-\centering
-\caption{Tri-cell creterion.}
-{The cell hit is used in calibration only if adjacent cells in the same view are also hit.}
-\label{fig:tri-cell}
+information about additional effects close to cell ends see \cite{calib_technote}. Figure \ref{fig:att_fit} shows 
+examples of the fit for far and near detectors.
+\begin{figure}[t!]
+\begin{subfigure}[t]{0.9\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/nd_atten_fit.png}
+  \caption{Near Detector}
+  \label{fig:att_fit_nd}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.9\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fd_atten_fit.png}
+  \caption{Far Detector}
+  \label{fig:att_fitt_fd}
+\end{subfigure}
+\caption{Attenuation fits}
+{Examples of attenuation fits in Near (top) and Far (bottom) detectors.}
+\label{fig:att_fit}
 \end{figure}
 
 For analysis part $W$ of every hit is estimated and PE value of the hit is divided by fit at this posotion to 
@@ -144,10 +165,10 @@ unit length ($\frac{dE}{dx}$) has a well understood minimum near the track end. 
 span several meters from the end of the track for different materials and region from 1 meter to 2 meters from
 the end of the track is used in NOvA absolute energy calibration procedure \ref{fig:dEdx_vs_length}.
 \begin{figure}[t]
-\includegraphics[width=1.0\textwidth]{figures/dEdx_vs_length.pdf}
+\includegraphics[width=1.0\textwidth]{figures/dEdx_vs_length.png}
 \centering
 \caption{Muon $\frac{dE}{dx}$ per unit length in NOvA.}
 {Already calibrated $\frac{dE}{dx}$ is shown as a function of distance to the end of the track.}
-\label{fig:tri-cell}
+\label{fig:dEdx_vs_length}
 \end{figure}
 
