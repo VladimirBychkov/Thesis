@@ -137,4 +137,17 @@ corrected PE value of the hit shows the relative signal to the cosmic muons. At 
 into account but units of corrected PE signal is still arbitrary and absolute energy calibration is still needed. 
 
 \subsection{Absolute energy calibration}
-As in the previous step cosmic muons is used at this step too.
+As in the previous step cosmic muons is used at this step too, but rather using middle part of cosmic muon tracks
+here is used an end of the track. Thus, tracks which are used for calibration should stop inside the detector. 
+The reason for using tracks end is that according to Bethe-Block formula \cite{rpf} muon energy deposition per 
+unit length ($\frac{dE}{dx}$) has a well understood minimum near the track end. The minimum deposition is typically
+span several meters from the end of the track for different materials and region from 1 meter to 2 meters from
+the end of the track is used in NOvA absolute energy calibration procedure \ref{fig:dEdx_vs_length}.
+\begin{figure}[t]
+\includegraphics[width=1.0\textwidth]{figures/dEdx_vs_length.pdf}
+\centering
+\caption{Muon $\frac{dE}{dx}$ per unit length in NOvA.}
+{Already calibrated $\frac{dE}{dx}$ is shown as a function of distance to the end of the track.}
+\label{fig:tri-cell}
+\end{figure}
+
