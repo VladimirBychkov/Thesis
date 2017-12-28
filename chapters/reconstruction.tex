@@ -176,7 +176,7 @@ the end of the track is used in NOvA absolute energy calibration procedure \ref{
 Neutrino disappearance analysis is heavily relies on correct identification of muon among the byproducts of 
 neutrino interaction with detector material. Existence of the muon in the event suggests $\nu_\mu$ CC interaction
 and event is passed downstream for further analysis. Currently, NOvA utilizes two fundamentally different 
-algorithms to identify muons - k-Nearest Neighbor (kNN) algorithm and convolutional neural net. Extensive 
+algorithms to identify muons - k-Nearest Neighbor (kNN) algorithm and convolutional neural network. Extensive 
 analysis showed that usage of two algorithms gives better results than any of them separately.
 
 \subsection{ReMID}
@@ -199,3 +199,25 @@ information see chapter 6 of \cite{Nick}. The last feature is a ratio of number 
 free of hadronic shower contamination and total number of planes in the track. 
 
 \subsection{CVN}
+CVN stands for Convolutional Visual Network. Up until recently convolutional neural networks were used in industry
+only, this type of networks is extremely successful in computer vision tasks such as nubmers recognition on bank 
+checks or autonomous driving. It was natural to use this approach in NOvA since detector output looks like nothing
+else than a picture. Implementation of CVN in NOvA is described in \cite{CVN}.
+
+In its core CVN is a regular neural network but with tenth of hidden layers and tenth of millions of weights. 
+On the higher level though, CVN learns features itself and a human is no longer required to for this work.
+An input to CVN is two pictures 100 by 80 pixels around neutrino activity in X and Y views. Similar to ReMID, labels 
+for the training pictures are taken from the simulation. However, the biggest difference is that while ReMID checks
+one track at a time and does the muon/non-muon classification for track, CVN analyzes the whole activity in the 
+slice and does the classification in multiple classes - muon/electron/tay neutrino, CC/RES/DIS/MEC interaction, 
+NC interaction and cosmic rays.
+
+Deep convolutional neural network requires tremendous amount of training samples to prevent an overfitting togther 
+with regularization  techniques such as dropout layers and weight decay. In order to increase available 
+training dataset some pictures are randomly changed. Firstly, Gaussian noise is added to all pixels with a standard 
+deviation of 1$\%$, this also reduces reliance on the simulated intensity in each pixel. Secondly, some pictures 
+are reflected in the direction perpendicular to neutrino beam. The example of pictures which are fed into CVN can
+be seen in figure \ref{fig:cvn_examples}.
+
+\section{Energy Estimation}
+
