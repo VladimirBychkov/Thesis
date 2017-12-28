@@ -172,3 +172,30 @@ the end of the track is used in NOvA absolute energy calibration procedure \ref{
 \label{fig:dEdx_vs_length}
 \end{figure}
 
+\section{Muon Identification}
+Neutrino disappearance analysis is heavily relies on correct identification of muon among the byproducts of 
+neutrino interaction with detector material. Existence of the muon in the event suggests $\nu_\mu$ CC interaction
+and event is passed downstream for further analysis. Currently, NOvA utilizes two fundamentally different 
+algorithms to identify muons - k-Nearest Neighbor (kNN) algorithm and convolutional neural net. Extensive 
+analysis showed that usage of two algorithms gives better results than any of them separately.
+
+\subsection{ReMID}
+ReMID stands for Reconstructed Muon Identification. This algorithm extracts four features from a reconstructed
+track and uses them as input to clasification kNN algorithm in order to determine if this particulary track could
+be attributed to a muon particle or not. kNN stores training examples in the 4-dimensional (number of dimensions
+is equal to number of features extracted from the track) space with additional label specifying the class examples
+belong to - muon or non-muon. These training examples were taken from NOvA simulation. Four features from the 
+test track are represent a point in this 4-dimensional space and in order to determine the probability the point 
+corresponds to a muon track kNN finds its $k$ nearest neighbors\footnote{Regular $L^2$ metric in $R^4$ is used;
+$||\vec{r}_1 - \vec{r}_2||^2 = (x_1-x_2)^2 + (y_1-y_2)^2 + (z_1-z_2)^2 + (w_1-w_2)^2$} and calculates the 
+fraction of muon nieghbors. This fraction is output of kNN algorithm. Number $k$ is adjustable hyperparameter 
+and was choosen to be equal 80 in NOvA. 
+
+Four features which exctracted from the track are track length, $\frac{dE}{dx}$ log-likelihood, scattering 
+log-likelihood and non-hadronic plane fraction. $\frac{dE}{dx}$ and scattering log-likelihood are determined with 
+the help of probability distributions that shows particle probability to deposit some energy and scatter by some 
+angle at some distance from the end of the track, and these distributions are derived from simulation, for more 
+information see chapter 6 of \cite{Nick}. The last feature is a ratio of number of planes in the track which are 
+free of hadronic shower contamination and total number of planes in the track. 
+
+\subsection{CVN}
