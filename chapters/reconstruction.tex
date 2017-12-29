@@ -217,7 +217,65 @@ with regularization  techniques such as dropout layers and weight decay. In orde
 training dataset some pictures are randomly changed. Firstly, Gaussian noise is added to all pixels with a standard 
 deviation of 1$\%$, this also reduces reliance on the simulated intensity in each pixel. Secondly, some pictures 
 are reflected in the direction perpendicular to neutrino beam. The example of pictures which are fed into CVN can
-be seen in figure \ref{fig:cvn_examples}.
+be seen in Figure \ref{fig:cvn_example}.
+\begin{figure}[h]
+\includegraphics[width=0.9\textwidth]{figures/cvn_example.pdf}
+\centering
+\caption{CVN Pixel Map.}
+{Example of the figure which is fed into convolutional neural net for training. The window of $100\times80$ 
+pixels is chosen around the true $\nu_\mu$ CC interaction activity in a such way that reconstructed vertex is 
+approximately put in the left middle part of the picture.}
+\label{fig:cvn_example}
+\end{figure}
+
+As stated above, CVN classifies events in multiple classes i.e. CVN output is n-dimensional vector of unit length
+where components reperesent probability that the current event belongs to a particular class. Any muon neutrinos
+are used in the current analysis, thus to select an event sum of outputs in muon/CC, muon/RES, muon/DIS and 
+muon/MEC classes should be bigger than some treshold.
 
 \section{Energy Estimation}
+The last but not the least step in the reconstruction chain is the energy estimation. The probability that a 
+flavor of neutrino with a given energy will oscillate to other flavors depends on neutrino energy, thus the more 
+precisely energy would be measured the more precise measurements of $\theta_{23}$ and $\Delta m_{32}^2$ one 
+would get. Simple approach like sum of all the calibrated  energy and additional accounting for dead 
+material\footnote{Dead material consists of any detector parts which are not producing light i.e., plastic, air 
+bubble, glue and possible gaps between planes.} is not as good as the following one. In NOvA, energy estimation 
+process is divided into two similar parts; energy estimation of the most muon like track and the rest of the 
+activity, since muon part of the event is well understood while the hadronic part is not so well.
+\be
+E_\nu = E_\mu + E_{had}.
+\lb{Enu}
+\ee 
+The first part in the formula corresponds to muon track energy. To make a muon energy estimator a 2D histogram of 
+muon true versus muon track length was produced based on simulated events with ReMID output bigger than zero and
+CVN output bigger than 0.6 \cite{energy_technote}. The fit is a simple piecewise linear spline with three or 
+four segments and example of the fit function could be seen in Figure \ref{fig:mue_fit}.
+\begin{figure}[t]
+\includegraphics[width=1.0\textwidth]{figures/muon_e_estimator.png}
+\centering
+\caption{Muon Energy Estimator.}
+{Muon track energy is measured based on muon track length. The fit is a piecewise linear spline, vertical dashed
+lines represent joint points and red line is a fit. Stiches, offsets and slopes are free parameters of the fit.}
+\label{fig:mue_fit}
+\end{figure}
 
+The second term in \ref{Enu} is hadronic energy and it is estimated differently. Calibrated energy of all hits 
+which are not on muon track is summed together with additional hadronic energy which overlaps with muon track. 
+The algorithm which determines how much energy overlaps with muon track is described in \cite{Kanika}. Hadronic
+energy is hard to model correctly, thus instead of true hadronic energy the fit uses true neutrino energy minus
+reconstructed muon energy. This approach accounts for dead material automatically. Similar to muon case, the fit 
+is piecewise linear spline with three or four segments, see Figure \ref{fig:hade_fit}. The optimization is done
+in the way to minimize total neutrino energy resolution rather then resolution of muon and hadronic energies 
+separately. 
+
+Detectors conditions are chnging with time and to improve overall analysis different energy estimators were used
+for the different periods of data taking - runs.
+\begin{figure}[t]
+\includegraphics[width=1.0\textwidth]{figures/had_e_estimator.png}
+\centering
+\caption{Hadronic Energy Estimator.}
+{Hadronic energy measured based on visible calibrated energy. The fit is a piecewise linear spline, vertical 
+dashed lines represent joint points and red line is a fit. Stiches, offsets and slopes are free parameters of the
+fit.}
+\label{fig:hade_fit}
+\end{figure}
