@@ -209,7 +209,7 @@ On the higher level though, CVN learns features itself and a human is no longer 
 An input to CVN is two pictures 100 by 80 pixels around neutrino activity in X and Y views. Similar to ReMID, labels 
 for the training pictures are taken from the simulation. However, the biggest difference is that while ReMID checks
 one track at a time and does the muon/non-muon classification for track, CVN analyzes the whole activity in the 
-slice and does the classification in multiple classes - muon/electron/tay neutrino, CC/RES/DIS/MEC interaction, 
+slice and does the classification in multiple classes - muon/electron/tay neutrino, QE/RES/DIS/MEC interaction, 
 NC interaction and cosmic rays.
 
 Deep convolutional neural network requires tremendous amount of training samples to prevent an overfitting togther 
@@ -230,7 +230,7 @@ approximately put in the left middle part of the picture.}
 
 As stated above, CVN classifies events in multiple classes i.e. CVN output is n-dimensional vector of unit length
 where components reperesent probability that the current event belongs to a particular class. Any muon neutrinos
-are used in the current analysis, thus to select an event sum of outputs in muon/CC, muon/RES, muon/DIS and 
+are used in the current analysis, thus to select an event sum of outputs in muon/QE, muon/RES, muon/DIS and 
 muon/MEC classes should be bigger than some treshold.
 
 \section{Energy Estimation}
