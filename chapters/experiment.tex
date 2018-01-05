@@ -6,11 +6,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The neutrinos studied by NOvA begin at Fermi National Accelerator Laboratory (Fermilab) 
-in Illinois.  An intense muon (anti-)neutrino beam is created at Fermilab by the Neutrino 
+in Illinois. An intense muon (anti-)neutrino beam is created at Fermilab by the Neutrino 
 at the Main Injector (NuMI) source. NOvA, which stands for NuMI Off-Axis $\nu_e$ Appearance, 
 is a long baseline experiment which is designed to determine the neutrino mass hierarchy, 
-the octant of $\theta_{23}$, and to measure the CP violating phase $\delta_{CP}$ by measuring 
-electron (anti-)neutrino appearance probability and muon (anti-)neutrino disappearance. It 
+the octant of $\theta_{23}$, and to measure the CP violating phase $\delta_{CP}$. It 
 consists of the Near Detector (ND), which is located at Fermilab and measures total flux of 
 neutrino, and the Far Detector (FD), which is located near Ash River, Minnesota and measures 
 flux of muon and electron neutrinos. The structures of the NuMI source and the Near and 
@@ -52,14 +51,16 @@ to better understand beam properties, but they do not play any role in the NOvA 
 \vspace{-30pt}
 \end{wrapfigure}
 
-After the neutrinos leave the decay pipe they begin their journey to the near and far detectors. 
-There are a few reasons why the NO$\nu$A detectors are placed 14.6 mrad off-axis of the NuMI beam. 
-As can be seen on the picture on the right, the first minimum of muon neutrino survival 
-probability and first maximum of electron neutrino appearance probability are around 400 km/GeV 
-but on-axis neutrino spectrum (black line on left picture \ref{fig:Spec}) does not allow to observe 
-first maximum of $P(\nu_\mu \rightarrow \nu_e)$ for a baseline $~1000$ km. The solution is 
-simple: pions and kaons decay isotropically in their rest frame but after Lorentz boost to 
-laboratory frame flux and neutrino energy at the far detector (for small off-axis angles $\theta$) 
+After the neutrinos leave the decay pipe they begin their journey to the near and far detectors.
+The NO$\nu$A detectors are placed 14.6 mrad off-axis of the NuMI beam for several reasons. As can
+be seen on the picture on the right of figure \ref{fig:Spec}, the first minimum of the muon neutrino survival
+probability and first maximum of the electron neutrino appearance probability occur near 400 km/GeV,
+while the on-axis neutrino spectrum, shown in black on the top of figure \ref{fig:Spec}, requires a
+baseline of $\sim$800 km for the first extremum of $P(\nu_\mu \rightarrow \nu_e)$\footnote{First extremum
+of $P(\nu_\mu \rightarrow \nu_e)$ at the distance 800 km occurs for the neutrino with energy around 2 GeV.}. 
+In order to get $\nu_e$ signal in the Far detector energy of neutrinos has to be decreased. The solution is 
+simple: pions and kaons decay isotropically in their rest frame, but, after a Lorentz boost to
+the laboratory frame, the neutrino flux and energy at the far detector (for small off-axis angles $\theta$)
 can be expressed in the following form
 \be
 F = \Big(\frac{2\gamma}{1+\gamma^2\theta^2}\Big)^2\frac{A}{4\pi d}
@@ -69,14 +70,15 @@ E_\nu = \frac{0.43E_\pi}{1+\gamma^2\theta^2},
 \ee
 where $\gamma = \frac{E_\pi}{m_\pi}$, $A$ is the size of the detector front area and $d$ is 
 the distance to the detector. For kaons numerical factor $0.43$ should be changed to $0.96$. 
-Knowing the pion and kaon energy spectrum at the NuMI source, one can predict the neutrino energy 
-spectrum at the far detector for different off-axis angles $\theta$. As shown on left side of 
-\autoref{fig:Spec}, the neutrino energy distribution gets narrower and shifts toward smaller energies. 
-At 14.6 mrad the neutrino flux is still moderate and peaked near 2 GeV, which allows NOvA 
-to study the region of maximal $P(\nu_\mu \rightarrow \nu_e)$ at 810 km. Moreover, the narrow 
-peak decreases the chance that NC events from more energetic neutrinos could be misidentified 
-as CC events in the energy region of interest. In general, the off-axis detector placement 
-significantly improves the sensitivity of the probability measurement.
+Knowing the pion and kaon energy spectrum at the NuMI source, the neutrino energy spectrum at
+the far detector for different off-axis angles $\theta$ can be predicted. As shown on the bottom of
+figure \ref{fig:Spec}, as $\theta$ increases the neutrino energy distribution gets narrower and shifts
+toward lower energies. At 14.6 mrad the neutrino flux is still appreciable and peaks near 2 GeV.
+Based on this configuration, the NOvA Far Detector is situated 810 km from the source to measure
+the maximum of $P(\nu_\mu \rightarrow \nu_e)$. At this distance, the narrow peak decreases the
+probability that neutral current (NC) events from more energetic neutrinos are misidentified
+as CC events in the energy region of interest. In general, the off-axis detector placement
+significantly improves the sensitivity of the $P(\nu_\mu \rightarrow \nu_e)$ probability measurement.
 \begin{figure}
 \includegraphics[width=0.9\textwidth]{figures/FD_NOvA_OffAxis_Spectra.pdf}\\%
 \includegraphics[width=0.9\textwidth]{figures/EnuVSEpi_NOvA.pdf}
@@ -88,7 +90,7 @@ $P(\nu_\mu \rightarrow \nu_\tau)$ - red line.} \label{fig:Spec}
 \end{figure}
 
 \section{NOvA Near and Far Detectors}
-The NOvA experiment utilizes two detectors for measuring muon neutrino disappearance probability 
+The NOvA experiment uses two detectors for measuring muon neutrino disappearance probability 
 $P(\nu_\mu \rightarrow \nu_\mu)$ and electron neutrino appearance probability $P(\nu_\mu \rightarrow \nu_e)$. 
 In order to decrease systematic uncertainties, such as beam uncertainty and uncertainties due to variation
 in detector efficiency, two detectors are build with exactly the same material and 
@@ -113,7 +115,7 @@ The Near Detector weighs 330 metric ton and is 105 m underground, while the Far 
 \label{fig:cell_detectors}
 \end{figure}
 
-\subsection{From cells to planes and blocks}
+\subsection{Internal construction}
 Each detector is made of cells which are made from polyvinyl chloride (PVC) doped with titanium 
 dioxide to increase light reflectivity. The cross section of cells has rectangular shape with sizes
 approximately equal to 4 cm and 6 cm. The length of the cells is varies between the detectors and 
@@ -125,18 +127,17 @@ allignment. The scetch of the detectors structure can be seen in \ref{fig:2detec
 make up a block and 28 blocks complete the full Far Detector while for the Near Detector block consists
 of 24 planes and 3 blocks make the active part of the detector. In addition, so called muon catcher
 block goes upstream and serves for stopping muons which are produced in $\nu_\mu$ CC interactions. 
-Muon catcher, which helps to contain more muons as the relative size of the Near Detector is not big, 
-consists of 22 active planes together with 10 steel 10 cm thick planes between every 2 active ones. The size
-of the muon catcher in XY plane is smaller the the active part of the Near Detector since horizontal
-planes have only 2 modules while vertical planes have 3 modules. The presents of the steel leads to
-extra muon energy absorbtion which makes muon tracks shorter.
+The muon catcher, which helps to contain more muons as the relative size of the Near Detector is not big,
+consists of 22 active planes, with ten steel planes of 10 cm thickness interspersed between pairs of active 
+planes. The size of the muon catcher in the XY plane is smaller the the active part of the Near Detector, but the
+steel absorbs additional particle energy, and results in shorter muon tracks.
 
-Planes configuration allows to reconstruct three-dimensional tracks of the particles; vertical cells 
-provide X measurements, horizontal cells give Y measurements, and planes positions provides Z measurements. 
-Z-axis is directed along the beam, X-axis points to the west and Y-axis points upward. This choice of
-axes gives NOvA detectors a Cartesian right handed coordinate system. 
+Using the planes configuration, three-dimensional particle tracks are reconstructed: vertical planes
+provide X measurements, horizontal planes provide Y measurements, and the Z measurements are extracted from
+the plane positions. The Z-axis is directed along the beam, the X-axis points to the west and the Y-axis points
+upward. This choice of axes results in a Cartesian right handed coordinate system.
 
-\subsection{Signal path part I: ligth production and digitization}
+\subsection{Ligth production and digitization}
 In order to detect particles resulted in neutrino interactions in the detectors these particles 
 should leave footprints. In NOvA experiment cells are filled with a liquid scintillator composed 
 of mineral oil doped with pseudocumene~\footnote{1,2,3-Trimethylbenzene}. In every cell, one wavelength 
@@ -147,16 +148,15 @@ to be captured by the wavelength shifting fiber. Inside the fiber photons after 
 reemission increse its wavelength resulting in propogation without escaping due to total inner
 reflection. 
 
-Photons which reach APD get converted into photoelectrons through the process called avalanche 
-breakdown, and produces currents which are detectable by commercial electronics. All 32 fiber from
-the module are connected to one APD. And the last step before signals might be processed with the 
+Photons that reach each APD are converted into a current of photoelectrons through the avalanche breakdown 
+process. All 32 fiber of each module are connected to one APD. And the last step before signals might be 
+processed with the 
 help of conventional computers is to digitize the APD output signal. The digitization happens in
 front end board (FEB). Short APD signals are stretched in time in the Application Specific 
 Integrated Circuit (ASIC) with the help of CR-RC circuit. After, the signal is passed to ADC - 
-analog to digital converter - where continuous signal is translated to discrete one with 4096 
-distinct values. Every channel is read out every 500 ns and 125 ns for the Far and Near Detector 
-respectively. Only the 4 last ADCs - value of the digitization sample - are stored as a hit and 
-the hit is written when the difference
+analog to digital converter - where continuous signal is converted to discrete, 12-bit signal
+that is read out every 500 ns or 125 ns at the Far and Near Detector, respectively. Only the 4 last ADCs - 
+value of the digitization sample - are stored as a hit and the hit is written when the difference
 \be
 ADC_i - ADC_{i-3}
 \ee
@@ -164,10 +164,10 @@ is greater than a threshold. These 4 values are then passed to the Data Concentr
 Later, those 4 values are used to fit the signal shape and to determine signal amplitude, which 
 is proportional to amount of energy charged particle deposited in a particular cell.
 
-\subsection{Signal path part II: data acquisition}
-Every DCM is a custom built computer and collecting data from 64 FEBs. When infromation from FEBs 
-is time sorted and arrange in 5 ms chunk of data stream, the data is sent to a buffer node where it 
-stored until a trigger decision is made if the data needs to be saved to the disks. 200 buffer nodes 
+\subsection{Data acquisition}
+Every DCM is a custom built computer and collecting data from 64 FEBs. Data from the FEBs
+is sorted in time and arranged into 5 ms data blocks, then the data is sent to a buffer node where it 
+stored until a trigger decision is made to save the data permanently to the disks. 200 buffer nodes 
 are arranged in a circular ring buffer and every node has up to a minute to run a trigger software 
 until a new piece of data comes from a DCM. NOvA trigger software which issues trigger decisions relies
 on external triggers as well as data-drivien triggers based on recieved data. Neutrino oscillation
@@ -177,8 +177,8 @@ around the 10 $\mu s$ NuMI beam spill. There are several more triggers such as c
 triggers at the rate of 10 Hz to store FD cosmic data for callibration and background estimation, or 
 supernova trigger, which ideally should record up to 20 minutes of data in the event of supernova burst.
 
-Recorded data is stored at the FD and ND cites. However, there are no enough disk space at the cites and
-eventually all the data is transferred to Fermilab where it is processed further for the physics analysis.
+The data selected by the triggers is stored temporarily at the FD and ND sites, and eventually transferred
+to Fermilab where it is processed for further analysis.
 
 \subsection{Neutrino Interactions in NOvA}
 \begin{figure}
@@ -191,23 +191,24 @@ The bottom part shows neutrino NC interaction with $\pi^0$ among the resulting p
 an electromagnetic shower by decaying into two photons. NC type events form a primarily background in $\nu_e$
 disapperance analysis.} \label{fig:Topologies}
 \end{figure}
-The majority of neutrinos at the NOvA detectors are in the few GeV energy region and all the charged 
-products of neutrino interaction with a nucleus are clearly visible and as long as their momenta are 
-sufficiently separated in an angular space. As can been seen in \ref{fig:Topologies} muons, electrons, 
-and charged hadrons leave a distinct traces in NOvA. Particles primary lose their energy through an ionization 
+The majority of neutrinos impinging on the NOvA detectors carry a few GeV energy, and all the charged
+products of a neutrino-nucleon interaction are clearly visible and as long as their trajectories are
+sufficiently separated. As illustrated in figure \ref{fig:Topologies} muons, electrons, 
+and charged hadrons produce a distinct signatures in NOvA. Particles primary lose their energy through an 
+ionization 
 process by disrupting electrons of atoms which happen to be close to particles trajectories. Being 
 much havier than an electron and immune to a strong interaction muon can travel a long distance inside 
-the detectors which make it a relatively easy task to determine a high energy muon. Light electron interacts
-with detector material via pair production and forms electromagnetic shower, where energy is depossed in 
-a rather conical shaped region as opposed to a long muon track. Hadrons such as protons and pions in 
-addition to ionization also lose energy by interacting strongly with nuclei along their trajectory. 
+the detectors which make it a relatively easy task to determine a high energy muon. Electrons interact
+with detector material electromagnetically, and quickly shower energy in a small conical region as opposed to a 
+long muon track. Hadrons such as protons and pions lose energy through ionization and strong interactions 
+with nucleons along their trajectories, and tend to travel much shorter distances than muons.
 
-Despite these differences it is a complicated problem to distinguish a charged current (CC) interaction with 
-muon or electron been produced from a neutral current (NC) one where no visible lepton is produced.
-NC processes can output charged or neutral pions together with other hadrons. Charged pions
+Despite these differences it is a complicated problem to distinguish a charged current (CC) interaction with
+a muon or electron being produced from a neutral current (NC) interaction where no visible lepton is produced.
+NC processes can produce charged or neutral pions with other hadrons.. Charged pions
 leave tracks which could be confused with low energy muons, although occasional hard scatters of the 
-nuclei help with identification. Neutral pions leave electromagnetic showers after they decay into two
-photons and these showers might be confused with showers created by electrons in CC neutrino interaction.
+nuclei help with identification. Neutral pions decay into two photons and produce electromagnetic
+showers, and these showers can be mistaken with showers from electrons in CC interactions.
 Thus, sophisticated algorithms need to be developed to measure parameters of neutrino mixing matrix where 
 determination of exact neutrino flavor is a crucial task.
 
