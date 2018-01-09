@@ -6,39 +6,39 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In order to perform neutrino oscillation analysis one need to select neutrino events 
-and carefully measure its energies. For this task data from the detectors have to be 
-reconstructed and $\nu_\mu$ charge current (CC) interactions should be identified. The following
-points briefly summarize the reconstruction chain 
+To measure $\theta_{23}$ and $\Delta m_{32}^2$, neutrino-nucleon interaction events must be identified, and the
+resulting lepton and hadron energies and trajectories must be measured. To do this, data from the
+detectors is reconstructed into particles, and $\nu_\mu$ CC interactions are identified. The
+reconstruction process chain is summarized as follows:
 \begin{itemize}
 \item Slicing. The full 550$\mu s$ readout window contains hits which are associated with
 neutrino interaction, cosmis rays activity and noise. The hits need to be separated into
 different groups which ideally correspond to different physical processes.
-\item Tracking. Group of hits ("slice") from a previous step processed by tracking algorithm
-in order to detrmine 3-dimensional trajectories of particles.
-\item Calibration. Before energy of the event could be estimated signal from every hit is needed 
-to be converted into energy units.
-\item Muon identification and Background rejection. $\nu_\mu$ CC interaction produce a muon and, 
-thus finding a muon track in a slice indicates that the slice contains information about neutrino.
+\item Tracking.  Each slice is processed by a tracking algorithm to detrmine 3-dimensional particle
+trajectories.
+\item Calibration. Each channel in every slice is calibrated to convert the magnitude of each
+measured signal into a channel energy.
+\item Muon identification and Background rejection. Slices that contain a muon track are identified
+as pertinent to the $\nu_\mu$ CC interaction.
 \item Energy estimation. Templates are used to map muon track length to true muon energy and visible 
 hadronic energy\footnote{Total energy of all hits in the slice which do not belong muon track} to true 
 hadronic energy in order to determine neutrino total energy.  
 \end{itemize}
-Analysis done in this thesis is based on two different neutrino samples - contained and uncontained -
-which were selected and processed by different algorithms. Muon identification and energy estimation
-algorithms for the contained sample are explaned in this chapter, algorithms which were used for 
-uncontained sample are explained in separate chapters.
+The analysis done here is based on two different data samples - contained and uncontained muons -
+that were selected and processed by different reconstruction algorithms. Muon identification and energy
+estimation algorithms used in the contained sample are explaned here, and algorithms used in the uncontained
+sample are explained later.
 
 \section{Slicing}
 As can be seen on the figure \ref{fig:EVD_full} data recorded for one NuMI spill contains
 multple uncorrelated activities. Even though the length of NuMI spill is 10$\mu s$ in the middle
-of 550$\mu s$ readout window slicer algorithm is applied to all the hits in the window to protect 
+of 550$\mu s$ readout window, the slicer algorithm is applied to all the hits in the window to protect 
 against small possible drift of NuMI spills as well as to make slices for cosmic rays for background
 estimation.
 
 The task of the slicer is to group hits, which casually related to each other, in slices. The slicer 
 is based on DBSCAN algorithm \cite{DBSCAN}, one of the most common clustering algorithms, and checks 
-evey pair of hits to determine how far are they from each other in space and time. The distance 
+every pair of hits to determine how far are they from each other in space and time. The distance 
 function is not exactly spice-time interval but rather modified 
 \be
 d = \Big(\frac{\Delta t - \frac{\Delta r}{c}}{T_{res}}\Big)^2 + \Big(\frac{\Delta z}{D_z}\Big) + 
@@ -52,11 +52,11 @@ The first term prefers hits which lie close to a light cone, in other words it i
 the particles move with the speed of light\footnote{Or energy of the particles is much large than their 
 masses.} The second and the third terms penalize hits which are far from each other in space. These
 terms help to remove noise hits as they are randomly distributed in space and time, and thefore, they 
-could be far from the main activity. After all corellated activities have been found and slices are 
-created the rest of the hits are put into one additional noise slice.
+could be far from the main activity. After all corellated activities have been accounting for, and 
+slices are created, the remaining hits are put into one additional noise slice.
 
-NOvA slicing algorithms does a good work in separating different neutrino activities in the near detector
-and separating cosmic activities from neutrino one in teh far detector. However, hits which were produced
+NOvA slicing algorithms does efficiently separates different neutrino activities in the near detector
+and distinguishes cosmic rays from neutrino interactions in the far detector. However, hits which were produced
 by Michele electrons\footnote{Electron produced in muon decay often called after Louis Michele who
 contributed significantly to the physics of charged leptons decay.} or photons follow neutrons capture are
 usually not included in the corresponding slice.
@@ -70,8 +70,8 @@ usually not included in the corresponding slice.
 \section{Tracking}
 As all the activities are separated into corresponding slices the next step in reconstruction chain is 
 to find sets of hits which are attributed to the different particles produced in the neutrino interaction 
-or cosmic activity. The latter activity usually produced by one particle, while the former one has 
-multiple particles. 
+or cosmic activity. Cosmic ray activity is usually consistent with only one particle, while neutrino 
+interaction measurements are usually consistent with multiple particles.
 
 NOvA tracking algorithm is based on Kalman filtering \cite{Kalman} and its implementation could be found 
 in \cite{Nick}. In short, algorithm is run on two views (X and Y) separately and merge 2D tracks into
@@ -80,20 +80,20 @@ seeds at most downstream location\footnote{Downstream in a sence of incoming neu
 Algorithm is working upstream and added hits are fit with piecewise linear segments. To add hit or not 
 is decided on the basis of how much is the $\chi^2$ is changed for the hit; if less than eight units 
 then hit is added. Fitting track with linear segments naturally helps to follow particles trajectory 
-with multiple scatterings. Track is considered to be reconstructed if algorithm travels more than 3 planes
-and no hits are added. Algorithm is run repetitively until no more tracks could be reconstructed. Majority 
-of the particles produced by neutrino interactions are travels dowstream and thus the longest track is 
-reconstructed first.
+with multiple scatterings. A track is considered to be reconstructed if algorithm travels more than 3 planes
+and no hits are added, and the algorithm is run repetitively until no more tracks are reconstructed. 
+The majority of the particles produced by neutrino interactions travel dowstream, and thus the longest 
+track, often the muon, is reconstructed first.
 
-After all 2D tracks are found in both views they need to be merged into 3D tracks. Tracks merging is based
-on score function which uses proximity of X- and Y-view tracks start and end points in Z-direction and 
-extent of overlap. For each track in X view with Z coordinates $(z_{x1}, z_{x2})$ and track in Y view with
+After all 2D tracks are found in both views they need to be merged into 3D tracks. Tracks are merged based on
+a geometric algorithm that considers the degree of overlap of disparate tracks, and the distances between
+their start and end points. For each track in X view with Z coordinates $(z_{x1}, z_{x2})$ and track in Y view with
 Z coordinates $(z_{y1}, z_{y2})$
 \be
 \text{score} = \frac{|z_{x1}-z_{y1}| + |z_{x2}-z_{y2}|}{\min(z_{x2},z_{y2}) - \max(z_{x1},z_{y1})}.
 \ee
-Pair of 2D tracks with the lowest score are corresponded two one particle and they merged into one 3D track.
-Merging process continues until there are no 2D tracks to merge, unmatched 2D tracks are also recorded
+The pair of 2D tracks with the lowest score are merged into one 3D track, and identified as one particle.
+The merging process continues until there are no 2D tracks to merge, unmatched 2D tracks are also recorded
 for possible analysis later.
 
 \section{Calibration}
@@ -175,14 +175,13 @@ the end of the track is used in NOvA absolute energy calibration procedure \ref{
 \section{Muon Identification}
 Neutrino disappearance analysis is heavily relies on correct identification of muon among the byproducts of 
 neutrino interaction with detector material. Existence of the muon in the event suggests $\nu_\mu$ CC interaction
-and event is passed downstream for further analysis. Currently, NOvA utilizes two fundamentally different 
-algorithms to identify muons - k-Nearest Neighbor (kNN) algorithm and convolutional neural network. Extensive 
-analysis showed that usage of two algorithms gives better results than any of them separately.
+and event is passed downstream for further analysis. Currently, NOvA uses two different algorithms to identify 
+muons: the k-Nearest Neighbor (kNN) clustering algorithm, and a convolutional neural network. Extensive analysis 
+has shown that using both algorithms gives better results than either of them individually.
 
 \subsection{ReMID}
-ReMID stands for Reconstructed Muon Identification. This algorithm extracts four features from a reconstructed
-track and uses them as input to clasification kNN algorithm in order to determine if this particulary track could
-be attributed to a muon particle or not. kNN stores training examples in the 4-dimensional (number of dimensions
+The Reconstructed Muon Identification (ReMID) algorithm uses four characteristics of a each reconstructed track
+to identify muons. kNN stores training examples in the 4-dimensional (number of dimensions
 is equal to number of features extracted from the track) space with additional label specifying the class examples
 belong to - muon or non-muon. These training examples were taken from NOvA simulation. Four features from the 
 test track are represent a point in this 4-dimensional space and in order to determine the probability the point 
@@ -199,12 +198,11 @@ information see chapter 6 of \cite{Nick}. The last feature is a ratio of number 
 free of hadronic shower contamination and total number of planes in the track. 
 
 \subsection{CVN}
-CVN stands for Convolutional Visual Network. Up until recently convolutional neural networks were used in industry
-only, this type of networks is extremely successful in computer vision tasks such as nubmers recognition on bank 
-checks or autonomous driving. It was natural to use this approach in NOvA since detector output looks like nothing
-else than a picture. Implementation of CVN in NOvA is described in \cite{CVN}.
+Convolutional Visual Networks (CVNs) are neutral networks that excel in image classification, and are used in
+NOvA to identify muons. The full implementation of the CVN is described in \cite{CVN}, and the key points are
+described here.
 
-In its core CVN is a regular neural network but with tenth of hidden layers and tenth of millions of weights. 
+In its core CVN is a regular neural network but with tens of hidden layers and tens of millions of weights. 
 On the higher level though, CVN learns features itself and a human is no longer required to for this work.
 An input to CVN is two pictures 100 by 80 pixels around neutrino activity in X and Y views. Similar to ReMID, labels 
 for the training pictures are taken from the simulation. However, the biggest difference is that while ReMID checks
@@ -212,12 +210,12 @@ one track at a time and does the muon/non-muon classification for track, CVN ana
 slice and does the classification in multiple classes - muon/electron/tay neutrino, QE/RES/DIS/MEC interaction, 
 NC interaction and cosmic rays.
 
-Deep convolutional neural network requires tremendous amount of training samples to prevent an overfitting togther 
-with regularization  techniques such as dropout layers and weight decay. In order to increase available 
-training dataset some pictures are randomly changed. Firstly, Gaussian noise is added to all pixels with a standard 
-deviation of 1$\%$, this also reduces reliance on the simulated intensity in each pixel. Secondly, some pictures 
-are reflected in the direction perpendicular to neutrino beam. The example of pictures which are fed into CVN can
-be seen in Figure \ref{fig:cvn_example}.
+A deep convolutional neural network requires tremendous amount of training samples to prevent an overfitting togther 
+with regularization techniques such as dropout layers and weight decay. In order to increase available 
+training dataset some pictures are randomly changed. First, Gaussian noise is added to all pixels with a standard 
+deviation of 1$\%$, this also reduces reliance on the simulated intensity in each pixel. Then, some pictures 
+are reflected in the direction perpendicular to neutrino beam. An example of pictures that are fed into CVN are
+shown in Figure \ref{fig:cvn_example}.
 \begin{figure}[h]
 \includegraphics[width=0.9\textwidth]{figures/cvn_example.pdf}
 \centering
@@ -229,15 +227,15 @@ approximately put in the left middle part of the picture.}
 \end{figure}
 
 As stated above, CVN classifies events in multiple classes i.e. CVN output is n-dimensional vector of unit length
-where components reperesent probability that the current event belongs to a particular class. Any muon neutrinos
+where components reperesent probability that the current event belongs to a particular class. Only muon neutrinos
 are used in the current analysis, thus to select an event sum of outputs in muon/QE, muon/RES, muon/DIS and 
 muon/MEC classes should be bigger than some treshold.
 
 \section{Energy Estimation}
-The last but not the least step in the reconstruction chain is the energy estimation. The probability that a 
-flavor of neutrino with a given energy will oscillate to other flavors depends on neutrino energy, thus the more 
-precisely energy would be measured the more precise measurements of $\theta_{23}$ and $\Delta m_{32}^2$ one 
-would get. Simple approach like sum of all the calibrated  energy and additional accounting for dead 
+The final step in the reconstruction chain is estimating the total neutrino energy. The probability that one
+flavor of neutrino with a given energy will oscillate to other flavors depends on its energy, thus more
+precise measurements of energy would yield better measurements of $\theta_{23}$ and $\Delta m_{32}^2$.
+Simple approach like sum of all the calibrated energy and additional accounting for dead 
 material\footnote{Dead material consists of any detector parts which are not producing light i.e., plastic, air 
 bubble, glue and possible gaps between planes.} is not as good as the following one. In NOvA, energy estimation 
 process is divided into two similar parts; energy estimation of the most muon like track and the rest of the 
@@ -246,10 +244,10 @@ activity, since muon part of the event is well understood while the hadronic par
 E_\nu = E_\mu + E_{had}.
 \lb{Enu}
 \ee 
-The first part in the formula corresponds to muon track energy. To make a muon energy estimator a 2D histogram of 
-muon true versus muon track length was produced based on simulated events with ReMID output bigger than zero and
-CVN output bigger than 0.6 \cite{energy_technote}. The fit is a simple piecewise linear spline with three or 
-four segments and example of the fit function could be seen in Figure \ref{fig:mue_fit}.
+The muon energy, $E_{\mu}$, is estimated using a 2D histogram that shows the true muon energy versus track length.
+This histogram was populated using muons produced in simulated neutrino interactions that were reconstructed with
+a ReMID output above zero, and a CVN output above 0.6 \cite{energy_technote}. The fit is a piecewise linear spline
+with multiple segments; an example of this function is shown in Figure \ref{fig:mue_fit}.
 \begin{figure}[t]
 \includegraphics[width=1.0\textwidth]{figures/muon_e_estimator.png}
 \centering
@@ -259,17 +257,16 @@ lines represent joint points and red line is a fit. Stiches, offsets and slopes 
 \label{fig:mue_fit}
 \end{figure}
 
-The second term in \ref{Enu} is hadronic energy and it is estimated differently. Calibrated energy of all hits 
+The second term in \ref{Enu} is the hadronic energy, and is estimated differently. Calibrated energy of all hits 
 which are not on muon track is summed together with additional hadronic energy which overlaps with muon track. 
-The algorithm which determines how much energy overlaps with muon track is described in \cite{Kanika}. Hadronic
-energy is hard to model correctly, thus instead of true hadronic energy the fit uses true neutrino energy minus
+The algorithm that determines how much energy overlaps with muon track is described in \cite{Kanika}. The hadronic
+energy is challenging to model correctly, so instead of true hadronic energy the fit uses true neutrino energy minus
 reconstructed muon energy. This approach accounts for dead material automatically. Similar to muon case, the fit 
-is piecewise linear spline with three or four segments, see Figure \ref{fig:hade_fit}. The optimization is done
-in the way to minimize total neutrino energy resolution rather then resolution of muon and hadronic energies 
-separately. 
+is piecewise linear spline with up to four segments, as shown in figure \ref{fig:hade_fit}. The optimization is done
+to minimize the total neutrino energy resolution rather then resolution of muon and hadronic energies separately. 
 
-Detectors conditions are chnging with time and to improve overall analysis different energy estimators were used
-for the different periods of data taking - runs.
+The detectors operating conditions change with time, so to improve the analysis different energy estimators were used
+during different data taking periods.
 \begin{figure}[t]
 \includegraphics[width=1.0\textwidth]{figures/had_e_estimator.png}
 \centering
