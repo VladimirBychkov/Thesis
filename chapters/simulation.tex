@@ -14,50 +14,48 @@ NuMI target and finishes with APD readouts and analog to digital converters. Sid
 packages or custom NOvA software are used in every step, output information on every step is
 used as input data for the following step
 \begin{itemize}
-\item Beam simulations. FLUGG simulation package which is the combination of FLUKA \cite{FLUKA} 
-and GEANT4 \cite{GEANT4} packages. Geometries of the target hall and detectors are encoded with 
-the help of GEANT4, while proton interactions and downstream particle decays are simulated with FLUKA.
-\item Neutrino interactions. Neutrino flux degenrated in the previous step is an input for
-the GENIE \cite{GENIE} package, which performs simulation of neutrino interactions with nucleus inside the
-detectors. GENIE produces a list of particles leaving the nucleus.
-\item Propagation of particles through detectors. List of the particles and detailed detectors geometry are
-used by GEANT4 to simulate particles propagation through the detectors. Amount of energy deposited
-by the particles in every cell is the input for the last step.
-\item Electronic signal. Deposited energy in the cell is converted to a light by the scintillator
-which travels through the fiber to an APD and analog to digital converter. This step is
+\item Beam simulations. The FLUGG simulation package combines FLUKA \cite{FLUKA} with GEANT4 \cite{GEANT4}.
+Geometries of the target hall and detectors are encoded in GEANT4, and the proton interactions
+and downstream particle decays are simulated with FLUKA.
+\item Neutrino interactions. The neutrino flux degenrated in the previous step is input to
+the GENIE \cite{GENIE} package, which simulates neutrino-nucleus interactions inside the
+detectors. In each event GENIE produces a list of particles leaving the nucleus.
+\item Particle propagation. Particles produced by GENIE are propagated through the detector,
+and their interactions with the detector materials and decays are simulated by GEANT4. Amount of
+energy deposited in every cell is passed to the last step.
+\item Electronic signal. Deposited energy in the cell is converted to a light by the scintillator;
+then light travels through the fiber to an APD and analog to digital converter. This step is
 simulated by NOvA custom software \cite{NovaSim}.
 \end{itemize}
-All these 4 parts will be briefly discussed in the current chapter.
+All of these parts are briefly discussed here.
 
 \section{Beam Simulation}
-Beam simulation provides NOvA experiment with neutrino flux prediction at both detectors. 
-This simulation is done by FLUKA and GEANT4 through the FLUGG interface. Detailed geometry of
-the target hall, target itself, collimator, two focusing horns and decay pipe is described by
-GEANT4 format files and simuation is done by FLUKA. The FLUKA package simulates 120 GeV protons
-which hit the target and give rise to hadronic showes, secondary particles focused by the horns 
-and enter decay pipe where they further decay and some of them produce neutrinos. All the proton 
-interaction information whose dauther particles produce neutrino is saved providing a way to 
-study beam uncertanties related to particle production models. 
+The beam simulation estimates the neutrino flux into both detectors, and is accomplished using FLUKA and
+GEANT4 via the FLUGG interface. A detailed geometry of the target hall and target, the collimator, two
+focusing horns and the decay pipe is implemented in GEANT4, and the particle simulation is handled by
+FLUKA. The FLUKA package simulates 120 GeV protons which hit the target, which yield hadronic 
+showers of secondary particles that are directed by the horns into the decay pipe where they decay to 
+neutrinos. All the proton interaction information whose daughter particles produce 
+neutrino is saved providing a way to study beam uncertanties related to particle production models. 
 
 The simulation outputs files which describe neutrino flux in terms of neutrino parent particles, 
 flavour, energy and direction of motion.
 
 \section{Simulation of Neutrino Interactions}
-In order to simulate neutrino interactions in the near and far detector the GENIE simulation 
-package is used. The package is developed by the experimental physics community and serves as a 
-primary neutrino Monte Carlo generator for neutrino experiments due to its ability to simulate neutrino
-interactions on almost any target and in wide energy region which spans from MeV to PeV. As mentioned 
-above GENIE gets a result of neutrino flux simulation from a previous step and convolute it with
-neutrino interaction cross sections.
+The neutrino interactions between ND and FD materials is simulated using GENIE. GENIE is developed
+by the experimental physics community, and is widely used as a neutrino Monte Carlo simulator for experiments due
+to its flexibility to simulate different target materials, and the accuracy of its results over a large
+range of neutrino energies which spans from MeV to PeV. As mentioned above GENIE gets a result of neutrino 
+flux simulation from a previous step and convolute it with neutrino interaction cross sections.
 
-The interesting feature of the neutrino energy spectrum in NOvA experiment is that it overlaps 
-with energy regions of several neutrino interaction models. All these models are implemented in GENIE
-simulation package. Quasi-Elastic scattering (QE), deep-inelastic scattering (DIS), baryon resonance 
+The neutrino energy spectrum expected in NOvA measurements overlaps
+with the energy regions of several neutrino interaction models, all of which are implemented in GENIE.
+These models include Quasi-Elastic scattering (QE), deep-inelastic scattering (DIS), baryon resonance
 production (RES) as well as meson exchange current (MEC) which dominates in 2 particle - 2 hole (2p-2h) 
-effect. The physics behind the models is complicated, however on the qualitative level QE interaction 
-means scattering off a single nucleon, MEC interaction means scattering off a pair of nucleons, RES process
-results in excitation of the whole nucleus and DIS interaction of neutrino with a nucleus can lead to a 
-complete disintegration of the nucleus\footnote{This happens when energy transferred to a nucleus is 
+effect. The physics behind the models is complicated, however on the qualitative level the QE interaction 
+represents scattering off a single nucleon, the MEC interaction means scattering off a pair of nucleons, 
+the RES process produces an excited nucleus, and the DIS interaction between a neutrino and a nucleus can 
+disintegrate the nucleus\footnote{This happens only when the energy transferred to a nucleus is 
 sufficiently large}.
 
 \begin{figure}[t!]
@@ -79,8 +77,8 @@ sufficiently large}.
 \label{fig:simPlots}
 \end{figure}
 
-On the left hand side of \ref{fig:NovaEReg} one can see a typical energy regions of QE, RES and DIS neutrino 
-interactions overlaped with NOvA energy domain. These three types of neutrino scattering are implemented 
+Based on the left hand side of \ref{fig:NovaEReg}, the typical energy regions of QE, RES and DIS neutrino 
+interactions overlap with the NOvA energy domain. These three types of neutrino scattering are implemented 
 in GENIE based on the Llewellyn-Smith model \cite{QE}, Rein-Sehgal model \cite{RES} and effective leading 
 order model with Bodek and Yang modifications \cite{DIS} for QE, RES and DIS respectively. MEC process, 
 which is included in GENIE as semi-empirical model, is described in \cite{MEC}.
@@ -90,14 +88,14 @@ After GENIE is done with its part of simulation, or in other words, the list of 
 the nucleus with their energies, momenta and initial positions is ready, now one needs to propagate them
 through the detector material and simulate the energy deposition, interaction and decay. NOvA experiment
 uses GEANT4 \cite{GEANT4} simulation package for this step. Besides the list of particles, GEANT4 takes
-another input namely geometry of the detector and its surrounding. Detailed information about blocks 
+another input, namely geometry of the detector and its surrounding. Detailed information about blocks 
 positions, cell structure and materials they made of, scintillator composition, conrete and steel support
 structure around the detectors is encoded in special geometry files.
 
 The way GEANT4 propagates particles is done in the following manner. For each particle at each step of the 
 trajectory it is decided with appropriate probability what particle should do next - move forward and deposit 
-some energy, interact and scatter of particles which constitute detector components or decay. As particle
-propagates further it loosing its kinetic energy and as soon as particle's kinetic energy is less than 100 eV
+some energy, interact and scatter of particles that represent detector components, or decay. As a particle
+propagates further it loses its kinetic energy and as soon as particle's kinetic energy is less than 100 eV
 propagation stops. GEANT4 saves these trajectory steps as a list of particle positions, energy and momenta 
 for the next step of simulation chain. 
 
@@ -119,16 +117,16 @@ introduced to the Birks law. NOvA experiment utilizes this correction -
 Parameters $k_B$ and $k_C$ are tuned using muon and protons tracks in the Near Detector.
 
 \section{Light propagation and signal to store}
-The last step in simulation is done with custom NOvA software and could be split into two parts - light 
-propagation to the readout electronic and signal forming by that electronic. While on practice cells could 
+The last simulation step is done using custom NOvA software that is split into two parts - light
+propagation to the readout electronics, and the signal measurement made by the electronics. Although in practice cells could 
 be different from each other (horizontal cells are not exactly horizontal because of their length - cells could be
 slightly bent, escpecially in the far detector. Not exact horizontality also leads to small bubbles of air are
-being trapped inside the cells) it is assumed in simulation that all the cells are exactly the same.
+being trapped inside the cells) in simulations it is assumed that all cells are identical.
 
 \subsection{Light propagation}
-Assumption that all cells are equivalent and usage of ray-tracing model allow to find a template to determine how 
-many photons were trapped by the wave-shifting fiber. Following characteristics of detector components were 
-measured in bench experiments 
+Assuming all cells are equivalent, a ray-tracing model is used to estimate how many photons were trapped by
+each WLS fiber. The following characteristics of detector components were measured in bench experiments, and
+used in light propagation simulations:
 \begin{itemize}
 \item characteristic scintillator emission time - 9 ns
 \item scintillator index of refraction - 1.46
@@ -136,11 +134,11 @@ measured in bench experiments
 \item capture length of photon capture probability\footnote{Probability to capture a photon $P \sim e^{x/L}$, where
 $x$ is distance between the point where the photon was produced and the fiber, $L$ is capture length.} - 30.66 cm
 \end{itemize}
-The resulting template is shown on \ref{fig:Coll_rate}. Knowing how many and where photons were emitted and using
-the template number of trapped photons could be determined. To simulate what fraction of photons reaches the APD
+The resulting template is shown on \ref{fig:Coll_rate}. This template is used to determine the number of photons 
+trapped in WLS fiber. To simulate what fraction of photons reaches the APD
 half of photons are sent in opposite directions around the fiber. There are some fraction on photons which is 
-absorbed or get out of fiber and in order to account for that simulation uses attenuation curve which was 
-measured in bench tests. Before the last phase of simulation starts number of photoelctron created in the APD
+absorbed or get out of fiber, and the effect is accounted for in simulation by using attenuation curve which was 
+measured in bench tests. Before the last simulation step starts, the number of photoelctrons created in each APD
 is determined by taking into account APD's quantum efficiency and additional Poisson smearing.
 \begin{figure}
 \includegraphics[width=1.0\textwidth]{figures/Coll_rate.png}
@@ -187,7 +185,7 @@ where $t_0$ is the time when pulse was created by APD, F and R are the fall time
 circuit. And as was mention in chapter \ref{experiment_chapter} the signal value is split into 4096 possible
 values and only 4 last ADCs - value of the digitization sample - is stored when the difference $ADC_i - ADC_{i-3}$
 is greater then a treshold. 
-At this point simulation files have the same structure\footnote{Of course plus additional information about type 
-of neutrino information, resulting particles' momenta and energies etc.} as files with detectors gathered data.
+At this point the simulation files have the same structure\footnote{Of course plus additional information about type 
+of neutrino information, resulting particles' momenta and energies etc.} as the data files.
 The next step in NOvA analysis is to reconstruct high level information about recorded or simulated events
 with the help of reconstruction algorithms which are the same for the real data and simulation.
