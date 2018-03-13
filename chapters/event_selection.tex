@@ -5,4 +5,87 @@
 \label{event_selection_chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+This and the next chapter constitute the main part of current thesis. As was stated before
+all additional information which could be extracted from data improves current measurements 
+of $\theta_{23}$ and $\Delta m_{32}^2$. In this chapter, 
+
+
+\section{Contained sample}
+Contained sample is selected with the help of series cuts which ensure that passed events
+are $\nu_\mu$ CC events with good energy resolution and low cosmic contamination. Several
+next subsecitions are briefly describes these cuts.
+
+\subsection{Data Quality}
+Data quality is the first cut in contained sample selection flow and serves to remove
+events of poor quality. Events which pass data quality cut have
+\begin{itemize}
+\item more than 20 reconstructed hits. There is no useful inforamtion for events with fewer 
+number of hits.
+\item at least one track reconstructed by cosmic tracker. This criterion confirms that there is
+cluster of hits which could be associated with track.
+\item PID value of ReMId selector should be greater than zero. This ensures that at least on 
+3D Kalman track was reconstructed.
+\item slice which spans more than 4 cosecutive planes. This cut removes events with geometric 
+gaps and highly vertical tracks, thus the cut is a good preselector for a good fraction of 
+cosmic rays.
+\end{itemize}
+
+\subsection{Containment}
+The main purpose of containment cut is to select events with activity happening inside the 
+detector. This allows partially to remove cosmic rays since they enter detector from the top 
+or the side edges. Contained events have the best energy resolution and satisfy following 
+criteria
+\begin{itemize}
+\item Kalman Forward Cell $>$ 6,
+\item Kalman Backward Cell $>$ 6,
+\item Cosmic Forward Cell $>$ 0,
+\item Cosmic Backward Cell $>$ 7,
+\item Planes to Front $>$ 1,
+\item Planes to Back $>$ 1,
+\item Minimal Prong Distance to FD Top $>$ 60,
+\item Minimal Prong Distance to FD Bottom $>$ 12,
+\item Minimal Prong Distance to FD East $>$ 16,
+\item Minimal Prong Distance to FD West $>$ 12,
+\item Minimal Prong Distance to FD Front $>$ 18,
+\item Minimal Prong Distance to FD Back $>$ 18.
+\end{itemize}
+First four criteria use tracks reconstructed with the help of Kalman Tracker and Cosmic Tracker.
+For every track, number of projected cells\footnote{along the track} from start/end of the track 
+to the edge of the detector is estimated and these numbers should be bigger than above stated
+tresholds. The next two criteria checks that reconstructed slice does not have hits in the first
+and the last planes of detector active region\footnote{Data were taken during detector construction
+period, thus active region was changing with time.}. Finally, the last six criteria use objects
+reconstructed by Fuzzy clustering algorithm, the objects consist of hits that could belong to 
+different clusters (in other words, two particle which move in close trajectories could contribute
+to one hit). The tresholds in the last six criteria are result of optimization carried out in 
+\cite{numucont_technote}.
+
+\subsection{$\nu_\mu$ CC selection}
+This cut aims to select $\nu_\mu$ CC like events and to reject $\nu_e$ CC and $\nu$ NC like events.
+Extensive optimization analysis is done in \cite{numupid_technote} and result are folowong
+\begin{itemize}
+\item ReMId $>$ 0.5 - event has long muon track with a good ReMId score,
+\item CVN $>$ 0.5 - event has a good score for $\nu_\mu$ CC classifier based on convolutional neural net.
+\end{itemize}
+
+\subsection{Cosmic Rejection}
+The final cut is cosmic rejection and its purpose is to remove cosmic events which might slipped in after
+previous cuts. Several variables are extracted from the event and input into Boosted Decision Tree (BDT)
+algorithm\footnote{See next chapter for more information about BDT algorithm.}\cite{cosrej_technote}. 
+These features are
+\begin{itemize}
+\item cosine of angle between muon track and incoming neutrino,
+\item reconstructed y-deriction of the muon track,
+\item reconstructed length of the muon track,
+\item largest y-position of either the start or the end of muon the track,
+\item CVN cosmic score,
+\item min(CosmicForwardCell + CosmicBackwardCell, KalmanForwardCell + KalmanBackwardCell), this 
+variable helps to descriminate going-through cosmic muons which passed all previous cuts,
+\item ratio of hit number in kalman track to hit number in slice, this ratio is a measure of hadronic
+energy fraction. Cosmic events have very little hadronic energy as compared to beam neutrino events. 
+\end{itemize}
+BDT algorithm outputs a PID value and the cut choice is based on optimization carried out in 
+\cite{numupid_technote}.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
