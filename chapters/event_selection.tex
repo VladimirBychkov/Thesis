@@ -10,7 +10,7 @@ all additional information which could be extracted from data improves current m
 of $\theta_{23}$ and $\Delta m_{32}^2$. In this chapter, 
 
 
-\section{Contained sample}
+\section{Contained Sample}
 Contained sample is selected with the help of series cuts which ensure that passed events
 are $\nu_\mu$ CC events with good energy resolution and low cosmic contamination. Several
 next subsecitions are briefly describes these cuts.
@@ -30,7 +30,7 @@ gaps and highly vertical tracks, thus the cut is a good preselector for a good f
 cosmic rays.
 \end{itemize}
 
-\subsection{Containment}
+\subsection{Containment} \label{Containment}
 The main purpose of containment cut is to select events with activity happening inside the 
 detector. This allows partially to remove cosmic rays since they enter detector from the top 
 or the side edges. Contained events have the best energy resolution and satisfy following 
@@ -85,7 +85,47 @@ variable helps to descriminate going-through cosmic muons which passed all previ
 energy fraction. Cosmic events have very little hadronic energy as compared to beam neutrino events. 
 \end{itemize}
 BDT algorithm outputs a PID value and the cut choice is based on optimization carried out in 
-\cite{numupid_technote}.
+\cite{numupid_technote}. Events pass cosmic rejection selection if PID value is grater than $0.5$.
 
+\subsection{Resolution Bins}
+Previous analysis carried out in \cite{Kanika}, \cite{Dominick}, \cite{Susan} used one selected sample for 
+fitting to actual data. Analysis carried out in \cite{Nick} used several samples for fitting to data 
+such as contained QE sample, contained non-QE sample and escaping sample\footnote{Most of the events 
+selected in escaping sample in \cite{Nick} have energy far from first oscillation dip, thus it is not 
+contributing much to the disappearance analysis. Current analysis aims to address this issue.}. This 
+approach separates events into different energy resolution bins and there by improves final sensitivity 
+of the experiment. Finally, recent analysis \cite{Luke} goes further and separates contained sample into 
+four independent ones with different fraction of hadronic energy in selected events. 
+
+Hadronic energy fraction ($\frac{E_{had}}{E_\nu}$) distribution in made for every reconstructed energy
+bin and than it splitted into four equal parts - lowest, second to lowest, second to highest and highest
+quantiles - so every quantile has equal number of events. Plot of $\frac{E_{had}}{E_\nu}$ vs $E_\nu$ and 
+quantile bondaries are shown in \ref{XXX}. Since detector configuration was different for different run 
+periods, the analysis uses different quantiles boundaries to account for that. 
+
+\section{Escaping Sample}
+The rest of the chapter is an original work devoted to selection of escaping sample with minimal
+cosmic backrgound and maximal beam neutrino signal.
+
+\subsection{Definition And Basic Selection}
+Escaping sample does not have a nice quality of contained sample such as low cosmic background and
+high energy resolution nevertheless it might provide additional information on neutrino oscillation
+effectively increasing gathered statistics. 
+
+Events which define escaping sample do not need to be consist of particles which leave the detector but
+rather ones which fail to pass some cuts of contained sample. The obvious cut escaping events should 
+fail is containment cut \ref{Containment}. Escaping events also should pass some cuts from contained 
+sample because it is still needed that they contain useful information for the analysis. Those cuts are
+\begin{itemize}
+\item data quality cut - events have reasonable number of reconstructed hits and tracks,
+\item CVN $>$ 0.5 - events are highly $\nu_\mu$ CC events,
+\item loose cosmic rejection, cosmic rejection PID value is $>$ 0.48 - events should not to be an obvious 
+cosmic rays.
+\end{itemize}
+
+Selections above are the basic criteria for the escaping sample. Figure \ref{YYY} illustrates expected 
+number of cosmic and signal events which pass basic criteria for primary track length distribution.
+
+\subsection{Preselection}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
