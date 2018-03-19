@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % event_selection.tex: Select of showering and tracking events:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{$\nu_\mu$ CC Selection}
+\chapter{Contained and Escaped $\nu_\mu$ CC Event Selection}
 \label{event_selection_chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -60,7 +60,7 @@ different clusters (in other words, two particle which move in close trajectorie
 to one hit). The tresholds in the last six criteria are result of optimization carried out in 
 \cite{numucont_technote}.
 
-\subsection{$\nu_\mu$ CC selection}
+\subsection{$\nu_\mu$ CC selection} \label{CCSel}
 This cut aims to select $\nu_\mu$ CC like events and to reject $\nu_e$ CC and $\nu$ NC like events.
 Extensive optimization analysis is done in \cite{numupid_technote} and result are folowong
 \begin{itemize}
@@ -100,14 +100,24 @@ four independent ones with different fraction of hadronic energy in selected eve
 Hadronic energy fraction ($\frac{E_{had}}{E_\nu}$) distribution in made for every reconstructed energy
 bin and than it splitted into four equal parts - lowest, second to lowest, second to highest and highest
 quantiles - so every quantile has equal number of events. Plot of $\frac{E_{had}}{E_\nu}$ vs $E_\nu$ and 
-quantile bondaries are shown in \ref{XXX}. Since detector configuration was different for different run 
-periods, the analysis uses different quantiles boundaries to account for that. 
+quantile bondaries are shown in \ref{fig:hadE_Quant}. Since detector configuration was different for 
+different run periods, the analysis uses different quantiles boundaries to account for that. 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/hadERecoE_QuantileLimits.png}
+\caption{Haronic energy fraction quantiles.}
+{Hadronic energy fraction vs reconstructed neutrino energy plot allows to determine for every bin of
+reconstructed energy hadronic energy fraction quantile. Events from every bin are splitted into 4 parts
+and separated by black horizontal lines. This plot is made for run period 2, plots for otherrun periods 
+are similar.}
+\label{fig:hadE_Quant}
+\end{figure}
 
 \section{Escaping Sample}
 The rest of the chapter is an original work devoted to selection of escaping sample with minimal
 cosmic backrgound and maximal beam neutrino signal.
 
-\subsection{Definition And Basic Selection}
+\subsection{Definition And Basic Selection} \label{base_cut}
 Escaping sample does not have a nice quality of contained sample such as low cosmic background and
 high energy resolution nevertheless it might provide additional information on neutrino oscillation
 effectively increasing gathered statistics. 
@@ -123,9 +133,119 @@ sample because it is still needed that they contain useful information for the a
 cosmic rays.
 \end{itemize}
 
-Selections above are the basic criteria for the escaping sample. Figure \ref{YYY} illustrates expected 
-number of cosmic and signal events which pass basic criteria for primary track length distribution.
+Selections above are the basic criteria for the escaping sample. Figure \ref{fig:length_1} illustrates 
+expected number of cosmic and signal events which pass basic criteria for primary track length distribution.
 
-\subsection{Preselection}
+\subsection{Preselection} \label{presel}
+The next step is to understand what variables could help to descriminate cosmic rays and beam neutrino
+signal. The first approach here is to try to determine direction of the primary track - is track going 
+out of or in the detector? Unfortunately, the time resolution of individual hits is not enough to determine 
+confidently the direction of the track and other approaches are needed. 
+
+Figure \ref{fig:cosmic_top} shows topologies of cosmic rays and beam neutrinos with escaping muons and figure
+\ref{fig:cosmic_top_2} illustrates corresponding reconstructed Kalman tracks. The feature of the Kalman 
+tracker is that it all reconstructed tracks are asumed to point along the positive Z-axis, this allows 
+to remove a big fraction of cosmic ray at a small expense to the signal in the following way. All cosmic 
+rays effectively are devided into two populations, the one where track direction assumed correctly and the 
+one where it is not. These populations are clearly seen on the figure \ref{fig:stopdiry_1} where distribution
+of reconstructed Kalman track Y-direction at its end (StopDirY) is showed for the cosmic rays and the primary 
+track of the signal events. The usage of this variable will become clear later on. Now, one can see that it 
+is easy to remove one population by requiring backwards projected distance \ref{fig:bakdist} (KalBakCell) to 
+be greater than some treshold. The actual cut is perform for 'number of backwards projected cells' variable, 
+see figure \ref{fig:kalbakcell}. The cut value was obtained by optimazing .........
+Plot on the figure \ref{fig:stopdiry_2} illustrates the result of that selection criterion.
+\begin{figure}[h]
+\begin{subfigure}[t]{0.9\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/numu_and_cosmic_top.png}
+  \caption{Topologies.}
+  {Dash lines illustrates parts which are not visible in the detector.}
+  \label{fig:cosmic_top}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.9\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/numu_and_cosmic_top_2.png}
+  \caption{Reconstracted Kalman tracks.}
+  \label{fig:cosmic_top_2}
+\end{subfigure}
+\caption{Cosmic rays and beam neutrinos in the far detector.}
+\label{fig:top_and_reco_tracks}
+\end{figure}
+
+The next cut does not designed to further decrease amount of cosmic rays but rather make selected sample 
+to be more clean for energy estimation. Next chapter is completely devoted to this topic. It is required for 
+hadronic cluster (all hits in slice except the ones which belong to primary track) that a hit which is the 
+closest hit to the edge of detector was no closer to the edge than 2 cells. Figure \ref{fig:stopdiry_3} shows
+distribution of StopDirY after this cut. 
+
+There is another variable which remove big fraction of cosmic rays similar to KalBakCell. And this variable 
+is StopDirY. As can be seen from figure \ref{fig:cosmic_top_2}, all cosmic rays, which have incorrectly reconstructed
+direction, have their StopDirY grater than zero. By asking that variable to be less than zero for escaping 
+sample the second population of cosmic rays could be eliminated. Physically, that means that only those events
+are selected whose primary track stops or leaves the detector pointing downward. This cut has a big impact
+on the signal as incoming beam neutrinos pointing upward at a few degrees level, thus muons resulting in $\nu_\mu$
+CC interaction also prefer upward direction. Track direction at its end is more useful variable as compared to
+track's start since it has information about cosmic ray direction as ray enters the detector. 
+
+Figure \ref{fig:stopdiry_4} shows that escaping sample still has noticeable cosmic ray background and the next 
+section developes a few more optimized cuts to decrease further the rest of background.
+
+\subsection{Selection}
+Following the section \ref{CCSel} for contained sample, $\nu_\mu$ CC selection for escaping sample is exactly 
+the same, namely ReMid and CVN score have to be grater than 0.5. Figure \ref{fig:remid} shows ReMId value for
+events which pass Base \ref{base_cut} and Preselection \ref{presel} cuts. 
+
+The last two criteria are based on the facts that cosmic rays tend to be vertical and the majority of them are 
+muons with small amount of deposited energy outside the reconstructed track. Figures \ref{fig:ptp} and \ref{fig:calHadE}
+illustrate previous statement - the first figure shows reconstructed transverse momentum over total momentum 
+($\frac{p_t}{p}$)and the second one shows reconstructed hadronic energy of the events after Base and Preselection 
+cuts. However, a simple cut on event hadronic energy leads to a significant loss in signal and as result to a 
+worse experiment sensitivity for $\theta_23$ and $\Delta m^2_{32}$ parameters. To bypass this unpleasantness one 
+can use a strength of CVN classifier - it predicts not only type of neutrino but also a type of interaction the 
+neutrino participated in. Figure \ref{fig:cvnVsHadE} shows distribution of reconstructed hadronic energy for 
+different type of neutrino interaction determined by CVN classifier. The final cut optimization is done for 
+$\frac{p_t}{p}$ variable and reconstructed hadronic energy of CVN QE-like events.
+
+The ultimate goal of this work is to measure $\theta_{23}$ and $\Delta m^2_{32}$ parameters which govern muon
+neutrino oscillations and the tuning of selection criteria is done to maximaze experiment sensitivity. However,
+to measure a sensitivity one needs to estimate energy for the selected events and to make energy estimator one 
+needs final selection criteria. To break this vicious circle energy estimator (see chapter \ref{energy_estimator_chapter})
+is trained on the events which pass not final but rather close to final selection criteria. And then, final 
+selection are chosen by using that energy estimator.
+
+The final selections after optimization are
+\begin{itemize}
+\item $\frac{p_t}{p} < 0.6$,
+\item hadronic energy for CVN QE-lie events is less than 0.1 GeV.
+\end{itemize}
+Figures \ref{fig:startx}, \ref{fig:starty}, \ref{fig:startz}, \ref{fig:startxVsstarty}, \ref{fig:length_2} show
+X, Y, and Z-position of primary track start (position of interaction point), X-Y plane of primary track start and
+length of the primary track for signal and cosmic events. 
+
+\subsection{Summary}
+In this section all selection criteria are briefly stated together. 
+
+\textbf{Base cuts}
+\begin{itemize}
+\item data quality,
+\item CVN $>$ 0.5,
+\item cosmic rejection PID value is $>$ 0.48.
+\end{itemize}
+
+\textbf{Preselection}
+\begin{itemize}
+\item number of backwards projected cells for primary track is grater than 7,
+\item number of cells from detector edge to hadronic cluster is grater than 2,
+\item Y-component of track's direction at its end is less than 0.
+\end{itemize}
+
+\textbf{Selection}
+\begin{itemize}
+\item ReMId is grater than 0.5,
+\item $\frac{p_t}{p}$ is less than 0.6,
+\item hadronic energy for CVN QE-like events is grater than 0.1 GeV.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
