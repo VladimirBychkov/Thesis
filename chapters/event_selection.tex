@@ -117,7 +117,7 @@ are similar.}
 The rest of the chapter is an original work devoted to selection of escaping sample with minimal
 cosmic backrgound and maximal beam neutrino signal.
 
-\subsection{Definition And Basic Selection} \label{base_cut}
+\subsection{Definition and Basic Selection} \label{base_cut}
 Escaping sample does not have a nice quality of contained sample such as low cosmic background and
 high energy resolution nevertheless it might provide additional information on neutrino oscillation
 effectively increasing gathered statistics. 
@@ -135,25 +135,20 @@ cosmic rays.
 
 Selections above are the basic criteria for the escaping sample. Figure \ref{fig:length_1} illustrates 
 expected number of cosmic and signal events which pass basic criteria for primary track length distribution.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/reco_Length_Base.pdf}
+\caption{Length of Primary Track After Base Cuts.}
+{The plot illustrates almost two order of magnitude difference between expected number of signal events 
+(black) and cosmic events (red). }
+\label{fig:length_1}
+\end{figure}
 
 \subsection{Preselection} \label{presel}
 The next step is to understand what variables could help to descriminate cosmic rays and beam neutrino
 signal. The first approach here is to try to determine direction of the primary track - is track going 
 out of or in the detector? Unfortunately, the time resolution of individual hits is not enough to determine 
 confidently the direction of the track and other approaches are needed. 
-
-Figure \ref{fig:cosmic_top} shows topologies of cosmic rays and beam neutrinos with escaping muons and figure
-\ref{fig:cosmic_top_2} illustrates corresponding reconstructed Kalman tracks. The feature of the Kalman 
-tracker is that it all reconstructed tracks are asumed to point along the positive Z-axis, this allows 
-to remove a big fraction of cosmic ray at a small expense to the signal in the following way. All cosmic 
-rays effectively are devided into two populations, the one where track direction assumed correctly and the 
-one where it is not. These populations are clearly seen on the figure \ref{fig:stopdiry_1} where distribution
-of reconstructed Kalman track Y-direction at its end (StopDirY) is showed for the cosmic rays and the primary 
-track of the signal events. The usage of this variable will become clear later on. Now, one can see that it 
-is easy to remove one population by requiring backwards projected distance \ref{fig:bakdist} (KalBakCell) to 
-be greater than some treshold. The actual cut is perform for 'number of backwards projected cells' variable, 
-see figure \ref{fig:kalbakcell}. The cut value was obtained by optimazing .........
-Plot on the figure \ref{fig:stopdiry_2} illustrates the result of that selection criterion.
 \begin{figure}[h]
 \begin{subfigure}[t]{0.9\textwidth}
   \centering
@@ -174,11 +169,58 @@ Plot on the figure \ref{fig:stopdiry_2} illustrates the result of that selection
 \label{fig:top_and_reco_tracks}
 \end{figure}
 
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-15pt}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/backdist.png}
+  \end{center}
+\vspace{0.5mm}
+\caption{Backwards projected distance}
+\label{fig:bakdist}
+\end{wrapfigure}
+Figure \ref{fig:cosmic_top} shows topologies of cosmic rays and beam neutrinos with escaping muons and figure
+\ref{fig:cosmic_top_2} illustrates corresponding reconstructed Kalman tracks. The feature of the Kalman 
+tracker is that it all reconstructed tracks are asumed to point along the positive Z-axis, this allows 
+to remove a big fraction of cosmic ray at a small expense to the signal in the following way. All cosmic 
+rays effectively are devided into two populations, the one where track direction assumed correctly and the 
+one where it is not. These populations are clearly seen on the figure \ref{fig:stopdiry_1} where distribution
+of reconstructed Kalman track Y-direction at its end (StopDirY) is showed for the cosmic rays and the primary 
+track of the signal events. The usage of this variable will become clear later on. Now, one can see that it 
+is easy to remove one population by requiring backwards projected distance \ref{fig:bakdist} (KalBakCell) to 
+be greater than some treshold. The actual cut is perform for 'number of backwards projected cells' variable, 
+see figure \ref{fig:kalbakcell}. The cut value was obtained by optimazing .........
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/reco_StopDirY_Base.pdf}
+\caption{Primary Track's End Y-Direction.}
+{Two population structure is clearly visible for cosmic rays background, this is an artifact of Kalman tracker.
+Figure \ref{fig:cosmic_top_2} shows membres of these populations. The tracker reconstructs a track with an assumption 
+that its starting point is always to the right of its end point. }
+\label{fig:stopdiry_1}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/reco_KalbakCell_Base.pdf}
+\caption{Number of Backwards Projected Cells.}
+{Three order of magninture more cosmic events for lower end of number of backwards projected cells comes from cosmic 
+rays which move along the positive Z-axis. See left example of cosmic ray in figure \ref{fig:cosmic_top_2}. }
+\label{fig:kalbakcell}
+\end{figure}
+
 The next cut does not designed to further decrease amount of cosmic rays but rather make selected sample 
 to be more clean for energy estimation. Next chapter is completely devoted to this topic. It is required for 
 hadronic cluster (all hits in slice except the ones which belong to primary track) that a hit which is the 
-closest hit to the edge of detector was no closer to the edge than 2 cells. Figure \ref{fig:stopdiry_3} shows
-distribution of StopDirY after this cut. 
+closest hit to the edge of detector was no closer to the edge than 2 cells. Figure \ref{fig:stopdiry_2} shows
+distribution of StopDirY after this cut and the previous one (KalBakCell $>$ 7).
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/reco_StopDirY_Base_kbc7_ncfe2.pdf}
+\caption{Primary Track's End Y-Direction after two preselection cuts.}
+{Cut on number of cells from the edge to hadronic cluster has a small impact on all distributions, it is needed
+only for a clean sample to train energy estimator on. On the opposite, Kalbakcell cut removes half of the cosmic
+background. }
+\label{fig:stopdiry_2}
+\end{figure} 
 
 There is another variable which remove big fraction of cosmic rays similar to KalBakCell. And this variable 
 is StopDirY. As can be seen from figure \ref{fig:cosmic_top_2}, all cosmic rays, which have incorrectly reconstructed
@@ -189,20 +231,28 @@ on the signal as incoming beam neutrinos pointing upward at a few degrees level,
 CC interaction also prefer upward direction. Track direction at its end is more useful variable as compared to
 track's start since it has information about cosmic ray direction as ray enters the detector. 
 
-Figure \ref{fig:stopdiry_4} shows that escaping sample still has noticeable cosmic ray background and the next 
+Figure \ref{fig:stopdiry_3} shows that escaping sample still has noticeable cosmic ray background and the next 
 section developes a few more optimized cuts to decrease further the rest of background.
 
 \subsection{Selection}
 Following the section \ref{CCSel} for contained sample, $\nu_\mu$ CC selection for escaping sample is exactly 
 the same, namely ReMid and CVN score have to be grater than 0.5. Figure \ref{fig:remid} shows ReMId value for
 events which pass Base \ref{base_cut} and Preselection \ref{presel} cuts. 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/reco_remid_kbc7_ncfe2_diry0.pdf}
+\caption{ReMId value for the events which pass Base and Preselection cuts.}
+{Cut on ReMId value is chosen similar to contained sample. Low value means a poorly reconstructed muon track or
+track produced by a pion. }
+\label{fig:remid}
+\end{figure}
 
 The last two criteria are based on the facts that cosmic rays tend to be vertical and the majority of them are 
 muons with small amount of deposited energy outside the reconstructed track. Figures \ref{fig:ptp} and \ref{fig:calHadE}
 illustrate previous statement - the first figure shows reconstructed transverse momentum over total momentum 
-($\frac{p_t}{p}$)and the second one shows reconstructed hadronic energy of the events after Base and Preselection 
+($\frac{p_t}{p}$) and the second one shows reconstructed hadronic energy of the events after Base and Preselection 
 cuts. However, a simple cut on event hadronic energy leads to a significant loss in signal and as result to a 
-worse experiment sensitivity for $\theta_23$ and $\Delta m^2_{32}$ parameters. To bypass this unpleasantness one 
+worse experiment sensitivity for $\theta_{23}$ and $\Delta m^2_{32}$ parameters. To bypass this unpleasantness one 
 can use a strength of CVN classifier - it predicts not only type of neutrino but also a type of interaction the 
 neutrino participated in. Figure \ref{fig:cvnVsHadE} shows distribution of reconstructed hadronic energy for 
 different type of neutrino interaction determined by CVN classifier. The final cut optimization is done for 
@@ -230,6 +280,7 @@ In this section all selection criteria are briefly stated together.
 \textbf{Base cuts}
 \begin{itemize}
 \item data quality,
+\item failed containment cut for the contained sample,
 \item CVN $>$ 0.5,
 \item cosmic rejection PID value is $>$ 0.48.
 \end{itemize}
