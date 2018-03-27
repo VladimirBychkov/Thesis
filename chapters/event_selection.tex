@@ -231,8 +231,16 @@ on the signal as incoming beam neutrinos pointing upward at a few degrees level,
 CC interaction also prefer upward direction. Track direction at its end is more useful variable as compared to
 track's start since it has information about cosmic ray direction as ray enters the detector. 
 
-Figure \ref{fig:stopdiry_3} shows that escaping sample still has noticeable cosmic ray background and the next 
+Figure \ref{fig:length_2} shows that escaping sample still has noticeable cosmic ray background and the next 
 section developes a few more optimized cuts to decrease further the rest of background.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/reco_Length_Presel.pdf}
+\caption{Length of Primary Track After Base and Preselection Cuts.}
+{The plot illustrates abundance of cosmic ray background after base and preselection cuts. }
+\label{fig:length_2}
+\end{figure}
 
 \subsection{Selection}
 Following the section \ref{CCSel} for contained sample, $\nu_\mu$ CC selection for escaping sample is exactly 
@@ -277,8 +285,35 @@ ReMId grater than 0.5 cuts. }
 \includegraphics[width=0.9\textwidth]{figures/reco_hadCalE_Presel_remid5.pdf}
 \caption{Hadronic Calorimetric Energy.}
 {Distribution of hadronic calorimetric energy for events which pass Base, Preselection and ReMId grater than 0,5 cuts. 
-Simple cut on this variable sagnificantlysensitivity hurts sensitivity, thus different approach is taken.}
+Simple cut on this variable sagnificantly hurts sensitivity, thus different approach is taken.}
 \label{fig:calHadE}
+\end{figure}
+\begin{figure}[!th]
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/reco_CVNInt-vs-hadCalE_Presel_remid5.pdf}
+  \caption{Signal.}
+  \label{fig:cvnVsHadE_sig}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/cosmic_reco_CVNInt-vs-hadCalE_Presel_remid5.pdf}
+  \caption{Cosmic Background.}
+  \label{fig:cvnVsHadE_bkg}
+\end{subfigure}
+\caption{ Hadronic Calorimetric Energy for Different CVN Classes.  }
+\label{fig:cvnVsHadE}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/reco_hadCalE_Presel_CVNQE.pdf}
+\caption{Hadronic Calorimetric Energy for CVN QE-like events.}
+{Distribution of hadronic calorimetric energy for events which pass Base, Preselection, ReMId grater than 0,5 cuts and 
+classified by CVN as QE events. Optimized cut was chosen at 0.1 GeV. }
+\label{fig:calHadEVNQE}
 \end{figure}
 
 The final selections after optimization are
@@ -286,10 +321,108 @@ The final selections after optimization are
 \item $\frac{p_t}{p} < 0.6$,
 \item hadronic energy for CVN QE-lie events is less than 0.1 GeV.
 \end{itemize}
-Figures \ref{fig:startx}, \ref{fig:starty}, \ref{fig:startz}, \ref{fig:startxVsstarty}, \ref{fig:length_2} show
-X, Y, and Z-position of primary track start (position of interaction point), X-Y plane of primary track start and
-length of the primary track for signal and cosmic events. 
+Figures \ref{fig:startx}, \ref{fig:starty}, \ref{fig:startz} show X, Y, and Z-position of primary track start 
+(position of interaction point), figures \ref{fig:startXZ}, \ref{fig:startYZ}, \ref{fig:startYX}  show distributions 
+of primary track start in planes X-Z, Y-Z, X-Y, figure \ref{fig:length_3} shows length of the primary track for 
+signal and cosmic events. All these figures show events whic pass full escaping sample selection criteria. 
 
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_StartX_Full.pdf}
+\caption{StartX Position of Primary Track.}
+{Distribution of primary track Start X-position for events which pass all selection criteria.  }
+\label{fig:startx}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_StartY_Full.pdf}
+\caption{StartY Position of Primary Track.}
+{Distribution of primary track Start Y-position for events which pass all selection criteria.  }
+\label{fig:starty}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_StartZ_Full.pdf}
+\caption{StartZ Position of Primary Track.}
+{Distribution of primary track Start Z-position for events which pass all selection criteria.  }
+\label{fig:startz}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/reco_trkStartX-vs-trkStartZ_Full.pdf}
+  \caption{Signal.}
+  \label{fig:startXZ_sig}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/cosmic-reco_trkStartX-vs-trkStartZ_Full.pdf}
+  \caption{Cosmic Background.}
+  \label{fig:startXZ_bkg}
+\end{subfigure}
+\caption{ Distribution of Primary Track Start in X-view.}
+{ Events pass all the escaping sample selection criteria. X-view can be interpreted as look from the top of the detector. }
+\label{fig:startXZ}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/reco_trkStartY-vs-trkStartZ_Full.pdf}
+  \caption{Signal.}
+  \label{fig:startYZ_sig}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/cosmic-reco_trkStartY-vs-trkStartZ_Full.pdf}
+  \caption{Cosmic Background.}
+  \label{fig:startYZ_bkg}
+\end{subfigure}
+\caption{ Distribution of Primary Track Start in Y-view.}
+{ Events pass all the escaping sample selection criteria. Y-view can be interpreted as look from the side of the detector. }
+\label{fig:startYZ}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/reco_trkStartY-vs-trkStartX_Full.pdf}
+  \caption{Signal.}
+  \label{fig:startYX_sig}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/cosmic-reco_trkStartY-vs-trkStartX_Full.pdf}
+  \caption{Cosmic Background.}
+  \label{fig:startYX_bkg}
+\end{subfigure}
+\caption{ Distribution of Primary Track Start in X-Y view.}
+{ Events pass all the escaping sample selection criteria. X-Y view can be interpreted as look from the side of the detector
+along the beam direction. }
+\label{fig:startYX}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_Length_Full.pdf}
+\caption{Length of Primary Track.}
+{ Events pass all the escaping sample selection criteria. }
+\label{fig:length_3}
+\end{figure}
+
+\clearpage
 \subsection{Summary}
 In this section all selection criteria are briefly stated together. 
 
@@ -314,28 +447,4 @@ In this section all selection criteria are briefly stated together.
 \item $\frac{p_t}{p}$ is less than 0.6,
 \item hadronic energy for CVN QE-like events is grater than 0.1 GeV.
 \end{itemize}
-
-\begin{figure}
-\centering
-\includegraphics[width=1.0\textwidth]{figures/reco_StartX_Full.pdf}
-\caption{StartX Position of Primary Track.}
-{Distribution of primary track Start X-position for events which pass all selection criteria.  }
-\label{fig:startx}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=1.0\textwidth]{figures/reco_StartY_Full.pdf}
-\caption{StartY Position of Primary Track.}
-{Distribution of primary track Start Y-position for events which pass all selection criteria.  }
-\label{fig:starty}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=1.0\textwidth]{figures/reco_StartZ_Full.pdf}
-\caption{StartZ Position of Primary Track.}
-{Distribution of primary track Start Z-position for events which pass all selection criteria.  }
-\label{fig:startz}
-\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
