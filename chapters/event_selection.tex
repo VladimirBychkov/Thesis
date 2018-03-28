@@ -5,12 +5,25 @@
 \label{event_selection_chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This and the next chapter constitute the main part of current thesis. As was stated before
-all additional information which could be extracted from data improves current measurements 
-of $\theta_{23}$ and $\Delta m_{32}^2$. In this chapter, 
+In this chapter, algorithms for event selection are
+considered. The first part of the chapter is dedicated to the contained sample and its selection 
+criteria. These criteria were developed and optimazed by people from NuMu group in NOvA collaboration 
+which resulted in several Ph.D. theses. For completeness the criteria are briefly summarized in
+section \ref{cont_sec}.
 
+The second part of the chapter \ref{esc_sec} presents development of selection criteria for
+the escaping sample - events which are failed to get selected into contained sample and 
+partially left the detector. The section is supported with numerious plots which show how 
+different selections help to reduce initially gigantic cosmic background down to small fraction
+of total selected events. The final selections is chosen to get maximal improvement in 
+$\theta_{23}$ and $\Delta m_{32}^2$ sensitivity and to remove any bias optimization is performed
+on simulated events at the far detector. To study cosmic background a cosmic trigger data is used.
 
-\section{Contained Sample}
+The escaping sample on its own does not provide a good measurements of $\theta_{23}$ and 
+$\Delta m_{32}^2$, however it improves measurements when combined with contained sample. And this
+is the main goal of this thesis. 
+
+\section{Contained Sample} \label{cont_sec}
 Contained sample is selected with the help of series cuts which ensure that passed events
 are $\nu_\mu$ CC events with good energy resolution and low cosmic contamination. Several
 next subsecitions are briefly describes these cuts.
@@ -113,7 +126,7 @@ are similar.}
 \label{fig:hadE_Quant}
 \end{figure}
 
-\section{Escaping Sample}
+\section{Escaping Sample} \label{esc_sec}
 The rest of the chapter is an original work devoted to selection of escaping sample with minimal
 cosmic backrgound and maximal beam neutrino signal.
 
@@ -188,7 +201,7 @@ of reconstructed Kalman track Y-direction at its end (StopDirY) is showed for th
 track of the signal events. The usage of this variable will become clear later on. Now, one can see that it 
 is easy to remove one population by requiring backwards projected distance \ref{fig:bakdist} (KalBakCell) to 
 be greater than some treshold. The actual cut is perform for 'number of backwards projected cells' variable, 
-see figure \ref{fig:kalbakcell}. The cut value was obtained by optimazing .........
+see figure \ref{fig:kalbakcell}.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/reco_StopDirY_Base.pdf}
@@ -447,4 +460,6 @@ In this section all selection criteria are briefly stated together.
 \item $\frac{p_t}{p}$ is less than 0.6,
 \item hadronic energy for CVN QE-like events is grater than 0.1 GeV.
 \end{itemize}
+
+This concludes escaping and contained events selection chapter, the next step is to determine selected events energies.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
