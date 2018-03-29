@@ -5,5 +5,48 @@
 \label{energy_estimator_chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+This chapter discusses the energy estimation for the selected events with selection
+criteria developed in previous chapter. How energy is measured for the contained 
+sample one can refer section \ref{energy_est_cont} of event reconstruction chapter.
+For the escaping events, energy estimation algorithm is discussed in this chapter.
 
+\section{Different Approaches}
+Similar to energy estimation for contained sample events, escaped event is divided
+into two parts: muon track (track with the highest ReMId score) and hadronic cluster.
+Hadronic cluster is the set of all hits in the slice with removed hits on primary 
+track. Preselection cut, which keeps hudronic cluster to at least 3 cells from
+the edge of the detector, makes sure that all the activity associated with hadrons is
+contained. Thus, hadronic energy of the selected escaping event can be estimated
+with the help of the same algorithm as for contained event, but other approach is needed
+for the muon track.
+
+\subsection{Quasi-Elastic Formula}
+Interaction which constitute a significant fraction of the $\nu_\mu$ CC interactions 
+in NOvA is QE interaction. This interaction allows to use an analytic expression for
+neutrino energy which is written in terms of obervable variables. For escaping events
+observable quantaties are hadronic energy and the primary track angle\footnote{Angle
+between muon track and incoming neutrino.}. 
+
+Well known quasi-elastic formula for neutrino energy reconstruction in terms of muon
+energy $E_\mu$ and scattering angle %\theta%
+\be
+E_{\nu} = \frac{E_\mu m_N - \frac{m_\mu^2}{2}}{m_N - E_\mu + p_\mu\cos\theta}
+\ee
+can be easily rewritten in terms of reconstructed hadronic energy $E_{had}$ and 
+scattering angle. With assumptions $E_\mu >> m_\mu$ and that reconstructed hadronic 
+energy is kinetic energy of a hadron neutrino interacted with, the previous formula 
+tranforms into
+\be
+E_{\nu} = E_{had}\Big[1 + \sqrt{1 + \frac{4m_N}{E_{had}(1-\cos\theta)}}\Big].
+\ee
+
+In practice this approach to neutrino energy reconstruction turned out to be unsatisfactory.
+Firstly, figure \ref{fig:trueInt} shows true distribution of neutrino interaction types for
+energies in NOvA experiment, for significant fraction of events the formula is not applicable. 
+Secondly, reconstructed hadronic energy resolution for lower energy (exactly where QE
+events are expected) is worse, see figure 9.18 in \cite{Susan}. Finally, for majority
+of muon tracks $\cos\theta$ is close to one which leads to a big uncertainty in 
+$\frac{1}{1-\cos\theta}$ term.
+
+\subsection{Lookup Table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
