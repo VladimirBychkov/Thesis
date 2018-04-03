@@ -20,6 +20,10 @@ contained. Thus, hadronic energy of the selected escaping event can be estimated
 with the help of the same algorithm as for contained event, but other approach is needed
 for the muon track.
 
+Following subsections briefly describe several approaches taken in attempt to reconstruct
+neutrino energy by using either analytic expression for the neutrino energy or a 
+lookup table.
+
 \subsection{Quasi-Elastic Formula}
 Interaction which constitute a significant fraction of the $\nu_\mu$ CC interactions 
 in NOvA is QE interaction. This interaction allows to use an analytic expression for
@@ -49,4 +53,103 @@ of muon tracks $\cos\theta$ is close to one which leads to a big uncertainty in
 $\frac{1}{1-\cos\theta}$ term.
 
 \subsection{Lookup Table}
+The other approach is to measure hadronic energy of the event together with the scattering
+angle of primary track and make a table. Rows and columns of the table are intervals in
+reconstructed hadronic energy and scattering angle - 5 bins for hadronic energy from 0 GeV 
+to 1 GeV and 5 bins for cosine of scattering angle from 0.5 to 1. For every one of these 25
+bins distribution of true energy of neutrino is made and mean is calculated, that mean value
+is an entry in the table.
+
+During the test period entry of the table is used as reconstructed energy for the event
+with corresponding reconstructed hadronic energy and scattering angle of primary track. 
+Results of the approach also turned out to be unsatisfactory independent of number of bins
+for reconstructed hadronic energy and scattering angle. Reconstructed energy is mapped to
+a narrow region around 2 GeV and no power was left to distinguish between maximal mixing and
+non-maximal one. In other words, sensitivity of the experiment was not improved by using 
+this energy estimator for escaping events.
+
+\section{Machine Learning Regression Algorithms}
+Approaches described in the previous section while being simple and easy interpretable do
+not provide good enough improvement in experiment sensitivity. The natural next step in
+searching for a good energy estimator for escaping events is to try different machine 
+learning regression algorithms such as artificial neural network, k Nearest Neighbours and
+decision trees. All these algorithms are aplicable for regression problem and all of them 
+were examined with the same set of input variables.
+
+\subsection{Input Variables}
+The first step in construction of muon energy estimator is to determine which variables 
+contribute most of the information about true muon energy. The following set is probably
+the fullest set of these variables. Extensive search for other variables did not provide 
+variables which improved muon energy estimator.
+\begin{itemize}
+\item Track Length. The length of the primary track contains all the information about muon
+energy when track is fully contained in the detector and provides a lower limit for the 
+energy otherwise.
+\item Track scattering. The cumulutive sum of all deviations from a straight line in degrees
+normilized by track length. Muon with a small energy has a shorter track and a lot of scattering 
+while propagating through the detector resulting in a bigger track scattering variable. 
+This variable descriminates cases with the same amount of contained track but different amount
+of escaped part.
+\item Track angle. The variable describes the angle between the reconstructed track and 
+incoming neutrino\footnote{At the far detector neutrino source is a point source and direction
+of incoming neutrinos could be determine.}. 
+\item Track Energy Per Hit. Visible energy of the track is divided by number of hits in the 
+track. The variable helps to detmine if muon is minimum ionizing particle or not, this has
+a strong connection with the muon total energy.
+\end{itemize}
+
+During the training period every set of these four variables is supplimented with a true muon
+energy in the corresponding event. The distribution of the training variables and a target 
+one is shown in figure \ref{fig:trainVars}. 
+
+\subsection{Training}
+Training and testing samples contain ZZZ and ZZZ events respectively. This events in addition
+to escaping sample selection are subject to one more selection. Namely, events have to be
+from the files with subrun number less or eqaul to 55. This criteria selects events from all
+runs with different detector states, so energy estimator during the training process exsposed
+to events it could see in the final analysis. Events with subrun more than 55 are used for 
+final validation. 
+
+Early tests showed that artificial neural net and k nearest neighbours algorithms have a 
+significantly worse performance and these algorithms are not used for final muon energy 
+estimator tuning. On the other hand, results for the Boosted Decision Trees (BDT) turned out
+to be more promising. The next several paragraph briefly explain how BDT work and what 
+hyperparameters are chosen for muon energy estimator.
+
+Regression decision tree is a tree-like graph where data flow from root to leaves through 
+several branching points. Root and branching points corresponds to questions and if data 
+satisfies the question it propogates through one branch, if not then it propagates through
+another branch. During the training process tree learns its structure and populates leaves 
+with examples from training sample. When a new data point is fed into the tree it propagates
+through the tree following the questions in branching points and finally reaches one of the leaf. 
+Then regression output of the tree is an average over all training examples in the leaf. 
+
+Unfortunately, decision tree shows worse performance on average compare to other algorithms 
+and tree structure is unstable on training data meaning that small changes leads to drastically 
+effect on tree structure. Nevertheless, performance could be improved via ensemble method 
+where many different trees are fit and predictions are aggregated across the trees. Ensemble 
+sometime called a forest.
+
+One more way to improve performance of decision trees is to use boosting. A function which is 
+needed to be learnt, in this case muon energy estimator $E_{muon}$, taken as a weighted sum of 
+base functions $f(\vec{x}, \alpha)$ - single tree - often called "weak learners". 
+\be
+E_{muon}^N(\vec{x}, \vec{\beta}, \vec{\alpha}) = \sum_{n=0}^N \beta_n f(\vec{x}, \alpha_n),
+\ee
+where $\vec{x}$ is a input vector, $\vec{\beta}$ are weights for different trees and $\vec{\alpha}$
+are parameters of the trees. Boosting is a iterative process where each subsequent tree 
+$f(\vec{x}, \alpha_{N+1})$ learn in a way to minimize a loss function\footnote{Huber loss function
+is used,
+$
+L(E_{muon}, E_{true}) = \begin{cases}
+				\frac{1}{2}(E_{true} - E_{muon})^2 & |E_{true} - E_{muon}| \leq \delta, \\
+				\delta(|E_{true} - E_{muon}| - \frac{\delta}{2}) & |E_{true} - E_{muon}| > \delta.
+			\end{cases}
+$} for $E_{muon}^N(\vec{x}, \vec{\beta}, \vec{\alpha}) + \beta_{N+1}f(\vec{x}, \alpha_{N+1})$.
+
+It is recommended not to use trees with depth deeper than 8, so depth 5 were chosen. Another 
+hyperparameter for BDT training is the number of weak learners. Ten different options were tried
+and the best result were achieved for 800.
+
+\subsection{Performance}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
