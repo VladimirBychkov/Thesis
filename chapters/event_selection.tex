@@ -5,31 +5,25 @@
 \label{event_selection_chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this chapter, algorithms for event selection are
-considered. The first part of the chapter is dedicated to the contained sample and its selection 
-criteria. These criteria were developed and optimazed by people from NuMu group in NOvA collaboration 
-which resulted in several Ph.D. theses. For completeness the criteria are briefly summarized in
-section \ref{cont_sec}.
-
-The second part of the chapter \ref{esc_sec} presents development of selection criteria for
-the escaping sample - events which are failed to get selected into contained sample and 
-partially left the detector. The section is supported with numerious plots which show how 
-different selections help to reduce initially gigantic cosmic background down to small fraction
-of total selected events. The final selections is chosen to get maximal improvement in 
-$\theta_{23}$ and $\Delta m_{32}^2$ sensitivity and to remove any bias optimization is performed
-on simulated events at the far detector. To study cosmic background a cosmic trigger data is used.
-
-The escaping sample on its own does not provide a good measurements of $\theta_{23}$ and 
-$\Delta m_{32}^2$, however it improves measurements when combined with contained sample. And this
-is the main goal of this thesis. 
+In this chapter, algorithms for the event selection are
+described. The chapter begins by describing the contained sample and the event selection
+criteria. These criteria were developed by previous members of the NOvA collaboration,
+and are summarized in section \ref{cont_sec}.  This is followed by a description of
+the new selection criteria used to select the ''escaping sample`` - events that failed
+the contained event selection criteria, but had evidence of a muon neutrino decay. The
+final selection criteria for escaping events maximizes sensitivity to
+$\theta_{23}$ and $\Delta m_{32}^2$, and minimizes bias from cosmic ray events.  By
+combining the contained and escaping samples of events, better measurements of $\theta_{23}$
+and $\Delta m_{32}^2$ are made.
 
 \section{Contained Sample} \label{cont_sec}
-Contained sample is selected with the help of series cuts which ensure that passed events
-are $\nu_\mu$ CC events with good energy resolution and low cosmic contamination. Several
-next subsecitions are briefly describes these cuts.
+The selection criteria used to select contained sample events ensure that selected events
+contain a $\nu_\mu$ CC interaction, the muon energy is measured with good resolution,
+and cosmic contamination is low.  These selection criteria are described in the subsequent
+sections.
 
 \subsection{Data Quality}
-Data quality is the first cut in contained sample selection flow and serves to remove
+A data quality is the first cut in contained sample selection flow and serves to remove 
 events of poor quality. Events which pass data quality cut have
 \begin{itemize}
 \item more than 20 reconstructed hits. There is no useful inforamtion for events with fewer 
@@ -44,10 +38,11 @@ cosmic rays.
 \end{itemize}
 
 \subsection{Containment} \label{Containment}
-The main purpose of containment cut is to select events with activity happening inside the 
-detector. This allows partially to remove cosmic rays since they enter detector from the top 
-or the side edges. Contained events have the best energy resolution and satisfy following 
-criteria
+The containment requirement selects events where the majority of the activity is
+measured in the central region of the detector. This further reduces contamination from cosmic 
+ray events, as most cosmic rays enter from the tops or sides.  Contained events have the best 
+energy resolution and satisfy following criteria
+
 \begin{itemize}
 \item Kalman Forward Cell $>$ 6,
 \item Kalman Backward Cell $>$ 6,
@@ -62,7 +57,7 @@ criteria
 \item Minimal Prong Distance to FD Front $>$ 18,
 \item Minimal Prong Distance to FD Back $>$ 18.
 \end{itemize}
-First four criteria use tracks reconstructed with the help of Kalman Tracker and Cosmic Tracker.
+The first four criteria use tracks reconstructed by the Kalman Tracker and Cosmic Tracker.
 For every track, number of projected cells\footnote{along the track} from start/end of the track 
 to the edge of the detector is estimated and these numbers should be bigger than above stated
 tresholds. The next two criteria checks that reconstructed slice does not have hits in the first
@@ -75,17 +70,18 @@ to one hit). The tresholds in the last six criteria are result of optimization c
 
 \subsection{$\nu_\mu$ CC selection} \label{CCSel}
 This cut aims to select $\nu_\mu$ CC like events and to reject $\nu_e$ CC and $\nu$ NC like events.
-Extensive optimization analysis is done in \cite{numupid_technote} and result are folowong
+The optimization of the selection thresholds is discussed in detail in \cite{numupid_technote}, 
+and the thresholds are
 \begin{itemize}
 \item ReMId $>$ 0.5 - event has long muon track with a good ReMId score,
 \item CVN $>$ 0.5 - event has a good score for $\nu_\mu$ CC classifier based on convolutional neural net.
 \end{itemize}
 
 \subsection{Cosmic Rejection}
-The final cut is cosmic rejection and its purpose is to remove cosmic events which might slipped in after
-previous cuts. Several variables are extracted from the event and input into Boosted Decision Tree (BDT)
-algorithm\footnote{See next chapter for more information about BDT algorithm.}\cite{cosrej_technote}. 
-These features are
+The final selection criterion in the contained selection further reduces cosmic ray contamination.
+Several event variables are analyzed using a Boosted Decision Tree (BDT) algorithm\footnote{Discussed 
+further in the next chapter.}\cite{cosrej_technote}, and the BDT output is used to discriminate between 
+cosmic and $\nu_\mu$ CC events. These event variables used in the BDT are
 \begin{itemize}
 \item cosine of angle between muon track and incoming neutrino,
 \item reconstructed y-deriction of the muon track,
@@ -97,20 +93,19 @@ variable helps to descriminate going-through cosmic muons which passed all previ
 \item ratio of hit number in kalman track to hit number in slice, this ratio is a measure of hadronic
 energy fraction. Cosmic events have very little hadronic energy as compared to beam neutrino events. 
 \end{itemize}
-BDT algorithm outputs a PID value and the cut choice is based on optimization carried out in 
-\cite{numupid_technote}. Events pass cosmic rejection selection if PID value is grater than $0.5$.
+The BDT outputs a PID value, and events are selected if their PID value is $> 0.5$ \cite{numupid_technote}.
 
 \subsection{Resolution Bins}
 Previous analysis carried out in \cite{Kanika}, \cite{Dominick}, \cite{Susan} used one selected sample for 
 fitting to actual data. Analysis carried out in \cite{Nick} used several samples for fitting to data 
-such as contained QE sample, contained non-QE sample and escaping sample\footnote{Most of the events 
-selected in escaping sample in \cite{Nick} have energy far from first oscillation dip, thus it is not 
+such as contained QE sample, contained non-QE sample and escaping sample\footnote{The most of the events 
+selected in the escaping sample in \cite{Nick} have energy far from first oscillation dip, thus it is not 
 contributing much to the disappearance analysis. Current analysis aims to address this issue.}. This 
-approach separates events into different energy resolution bins and there by improves final sensitivity 
+approach separates events into different energy resolution bins and thereby improves the final sensitivity 
 of the experiment. Finally, recent analysis \cite{Luke} goes further and separates contained sample into 
-four independent ones with different fraction of hadronic energy in selected events. 
+four independent samples with different fraction of hadronic energy in selected events. 
 
-Hadronic energy fraction ($\frac{E_{had}}{E_\nu}$) distribution in made for every reconstructed energy
+Hadronic energy fraction ($\frac{E_{had}}{E_\nu}$) distribution is made for every reconstructed neutrino energy
 bin and than it splitted into four equal parts - lowest, second to lowest, second to highest and highest
 quantiles - so every quantile has equal number of events. Plot of $\frac{E_{had}}{E_\nu}$ vs $E_\nu$ and 
 quantile bondaries are shown in \ref{fig:hadE_Quant}. Since detector configuration was different for 
@@ -127,8 +122,9 @@ are similar.}
 \end{figure}
 
 \section{Escaping Sample} \label{esc_sec}
-The rest of the chapter is an original work devoted to selection of escaping sample with minimal
-cosmic backrgound and maximal beam neutrino signal.
+The remainder of the chapter describes the new work done to select $\nu_\mu$ CC events where part of 
+a muon track was measured. The main goal is to select the sample with minimal cosmic backgound and maximal
+beam neutrino signal.
 
 \subsection{Definition and Basic Selection} \label{base_cut}
 Escaping sample does not have a nice quality of contained sample such as low cosmic background and
@@ -146,8 +142,9 @@ sample because it is still needed that they contain useful information for the a
 cosmic rays.
 \end{itemize}
 
-Selections above are the basic criteria for the escaping sample. Figure \ref{fig:length_1} illustrates 
-expected number of cosmic and signal events which pass basic criteria for primary track length distribution.
+These are the basic criteria for the escaping sample. In Figure \ref{fig:length_1}, the
+expected number of cosmic and signal events which pass basic criteria for primary track length
+distribution is shown.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/reco_Length_Base.pdf}
@@ -191,14 +188,14 @@ confidently the direction of the track and other approaches are needed.
 \caption{Backwards projected distance}
 \label{fig:bakdist}
 \end{wrapfigure}
-Figure \ref{fig:cosmic_top} shows topologies of cosmic rays and beam neutrinos with escaping muons and figure
+Figure \ref{fig:cosmic_top} shows topologies of cosmic rays and beam neutrinos with escaping muons, and Figure
 \ref{fig:cosmic_top_2} illustrates corresponding reconstructed Kalman tracks. The feature of the Kalman 
-tracker is that it all reconstructed tracks are asumed to point along the positive Z-axis, this allows 
-to remove a big fraction of cosmic ray at a small expense to the signal in the following way. All cosmic 
+tracker is that it all reconstructed tracks are asumed to point along the positive Z-axis, and this substantially 
+reduces cosmic ray contamination at the cost of a small reduction in the signal. All cosmic 
 rays effectively are devided into two populations, the one where track direction assumed correctly and the 
-one where it is not. These populations are clearly seen on the figure \ref{fig:stopdiry_1} where distribution
-of reconstructed Kalman track Y-direction at its end (StopDirY) is showed for the cosmic rays and the primary 
-track of the signal events. The usage of this variable will become clear later on. Now, one can see that it 
+one where it is not. These populations are clearly seen on the figure \ref{fig:stopdiry_1} where the distribution
+of reconstructed Kalman track Y-direction at its end (StopDirY) is shown for the cosmic rays and the primary 
+track of the signal events. The usage of this variable will be explained later. Now, one can see that it 
 is easy to remove one population by requiring backwards projected distance \ref{fig:bakdist} (KalBakCell) to 
 be greater than some treshold. The actual cut is perform for 'number of backwards projected cells' variable, 
 see figure \ref{fig:kalbakcell}.
@@ -220,18 +217,18 @@ rays which move along the positive Z-axis. See left example of cosmic ray in fig
 \label{fig:kalbakcell}
 \end{figure}
 
-The next cut does not designed to further decrease amount of cosmic rays but rather make selected sample 
-to be more clean for energy estimation. Next chapter is completely devoted to this topic. It is required for 
-hadronic cluster (all hits in slice except the ones which belong to primary track) that a hit which is the 
-closest hit to the edge of detector was no closer to the edge than 2 cells. Figure \ref{fig:stopdiry_2} shows
+The next selection criterion does not designed to further decrease amount of cosmic rays but rather make selected sample 
+to be more clean for energy estimation. Next chapter is completely devoted to this topic. Each
+hadronic cluster (all hits in slice except the ones which belong to primary track) cannot have a hit which is within
+2 cells of the edge of the detector. Figure \ref{fig:stopdiry_2} shows the
 distribution of StopDirY after this cut and the previous one (KalBakCell $>$ 7).
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/reco_StopDirY_Base_kbc7_ncfe2.pdf}
 \caption{Primary Track's End Y-Direction after two preselection cuts.}
-{Cut on number of cells from the edge to hadronic cluster has a small impact on all distributions, it is needed
-only for a clean sample to train energy estimator on. On the opposite, Kalbakcell cut removes half of the cosmic
-background. }
+{Cut on the number of cells from the edge of the detector to hadronic cluster has a small impact on all distributions, 
+it is needed only for a clean sample to train energy estimator on. On the opposite, Kalbakcell cut removes half of 
+the cosmic background. }
 \label{fig:stopdiry_2}
 \end{figure} 
 
