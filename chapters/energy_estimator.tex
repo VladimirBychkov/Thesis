@@ -101,6 +101,14 @@ a strong connection with the muon total energy.
 During the training period every set of these four variables is supplimented with a true muon
 energy in the corresponding event. The distribution of the training variables and a target 
 one is shown in figure \ref{fig:trainVars}. 
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/CorrelationMatrix.pdf}
+\caption{Correlation Matrix.}
+{Correlations between input variables for BDT algorithms. The algorithm performs better if input
+variables are first transform into a Gaussian form and then decorrelated. }
+\label{fig:corrMatrix}
+\end{figure}
 
 \subsection{Training}
 Training and testing samples contain ZZZ and ZZZ events respectively. This events in addition
@@ -152,4 +160,54 @@ hyperparameter for BDT training is the number of weak learners. Ten different op
 and the best result were achieved for 800.
 
 \subsection{Performance}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_MuE_BDT_Full.pdf}
+\caption{Reconstructed Muon Energy.}
+\label{fig:recoMuE}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_mu_Full.pdf}
+\caption{Reconstructed Muon Energy Resolution.}
+\label{fig:recoMuE_resol}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_E_BDT_Full.pdf}
+\caption{Reconstructed Neutrino Energy.}
+\label{fig:recoE}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_Full.pdf}
+\caption{Reconstructed Neutrino Energy Resolution.}
+\label{fig:recoE}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_vs_trueE_Full.pdf}
+\caption{Neutrino Energy Resolution vs True Neutrino Energy.}
+\label{fig:resol_vs_trueE}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_vs_recoE_Full.pdf}
+\caption{Neutrino Energy Resolution vs Reconstructed Neutrino Energy.}
+\label{fig:resol_vs_recoE}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_vs_len_Full.pdf}
+\caption{Neutrino Energy Resolution vs Length of Primary Track.}
+\label{fig:resol_vs_len}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
