@@ -43,6 +43,14 @@ tranforms into
 \be
 E_{\nu} = E_{had}\Big[1 + \sqrt{1 + \frac{4m_N}{E_{had}(1-\cos\theta)}}\Big].
 \ee
+\begin{figure}[!th]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/neutrino_mode.pdf}
+\caption{True Neutrino Interaction Mode.}
+{Only $20\%$ of all neutrino interactions which pass Base Cut \ref{evt_sel_sum} are QE, this
+fraction even less for the full selection as some CVN QE-like events are not allowed.}
+\label{fig:trueInt}
+\end{figure}
 
 In practice this approach to neutrino energy reconstruction turned out to be unsatisfactory.
 Firstly, figure \ref{fig:trueInt} shows true distribution of neutrino interaction types for
@@ -98,25 +106,35 @@ track. The variable helps to detmine if muon is minimum ionizing particle or not
 a strong connection with the muon total energy.
 \end{itemize}
 
-During the training period every set of these four variables is supplimented with a true muon
-energy in the corresponding event. The distribution of the training variables and a target 
-one is shown in figure \ref{fig:trainVars}. 
 \begin{figure}[!th]
 \centering
-\includegraphics[width=1.0\textwidth]{figures/CorrelationMatrix.pdf}
+\includegraphics[width=0.9\textwidth]{figures/CorrelationMatrix.pdf}
 \caption{Correlation Matrix.}
 {Correlations between input variables for BDT algorithms. The algorithm performs better if input
 variables are first transform into a Gaussian form and then decorrelated. }
 \label{fig:corrMatrix}
 \end{figure}
 
+\begin{figure}[!th]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/InputVarsDG.pdf}
+\caption{Input and target variables after decorrelation and gaussinization procedures were performed.}
+\label{fig:inputDG}
+\end{figure}
+During the training period every set of these four variables is supplimented with a true muon
+energy in the corresponding event. These variables are not completely independent as 
+can be seen in figure \ref{fig:corrMatrix}. It is known that regression algorithms achieve 
+better results when input variables are decorrelated, thus decorrelation and gaussinization
+procedures were carried out and final distributions before they enter training are shown in figure
+\ref{fig:inputDG}.
+
 \subsection{Training}
-Training and testing samples contain ZZZ and ZZZ events respectively. This events in addition
+Training and testing samples contain equal number of events - 101079. This events in addition
 to escaping sample selection are subject to one more selection. Namely, events have to be
-from the files with subrun number less or eqaul to 55. This criteria selects events from all
+from the files with subrun number less than 55. This criteria selects events from all
 runs with different detector states, so energy estimator during the training process exsposed
-to events it could see in the final analysis. Events with subrun more than 55 are used for 
-final validation. 
+to events it could see in the final analysis. Events with subrun equal or more than 55 are used 
+for final validation. 
 
 Early tests showed that artificial neural net and k nearest neighbours algorithms have a 
 significantly worse performance and these algorithms are not used for final muon energy 
@@ -160,14 +178,17 @@ hyperparameter for BDT training is the number of weak learners. Ten different op
 and the best result were achieved for 800.
 
 \subsection{Performance}
-
-\begin{figure}[!th]
-\centering
-\includegraphics[width=1.0\textwidth]{figures/reco_MuE_BDT_Full.pdf}
-\caption{Reconstructed Muon Energy.}
-\label{fig:recoMuE}
-\end{figure}
-
+The performance of escaping events energy estimator is evaluated by looking at the RMS of the 
+resolution histogram. Resolution is defined as 
+\be
+\text{Resolution} = \frac{\text{True Muon Energy} - \text{Reco Muon Energy}}{\text{True Muon Energy}}.
+\ee
+As can be seen in figure \ref{fig:recoMuE_resol}, muon energy resolution is about $\textbf{32\%}$, the 
+distribution is not symmetrical and shifted towards positive values meaning that estimator on average 
+undershoot the escaping muon energy. Correction could be made to make energy estimator to get right
+muon energy on $\textit{average}$ (mean of resolution histogram is zero), however as it shown in the 
+next chapter this is not necessary. Figure \ref{fig:recoMuE} illustrates reocntructed muon energy together 
+with cosmic background. 
 \begin{figure}[!th]
 \centering
 \includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_mu_Full.pdf}
@@ -177,30 +198,73 @@ and the best result were achieved for 800.
 
 \begin{figure}[!th]
 \centering
+\includegraphics[width=1.0\textwidth]{figures/reco_MuE_BDT_Full.pdf}
+\caption{Reconstructed Muon Energy.}
+\label{fig:recoMuE}
+\end{figure}
+
+For the final fit reconstructed neutrino energy ($E_\nu = E_{\text{had}} + E_\mu$) is used instead 
+of just muon energy. Hadronic energy resolution is on the order of $20\%$ which leads to 
+$\textbf{23\%}$ reconstructed neutrino energy resolution. Figures \ref{fig:recoE_resol} and 
+\ref{fig:recoE} illustrate reconstructed neutrino energy resolution and reconstructed neutrino
+energy together with cosmic background. Similar to escaping muon energy, shift to make neutrino
+energy correct on $\textit{average}$ is not necessary and it is not improving experiment sensitivity.
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_Full.pdf}
+\caption{Reconstructed Neutrino Energy Resolution.}
+\label{fig:recoE_resol}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
 \includegraphics[width=1.0\textwidth]{figures/reco_E_BDT_Full.pdf}
 \caption{Reconstructed Neutrino Energy.}
 \label{fig:recoE}
 \end{figure}
 
+Another useful plots to look at are neutrino energy resolution as a function of true and reconstructed
+neutrino energy, figures \ref{fig:resol_vs_trueE} and \ref{fig:resol_vs_recoE}. These plots illustrate that 
+neutrino energy resolution is stable across the measured neutrino spectrum. Two plots on figure 
+\ref{fig:true_vs_reco} show how true energy related to reconstructed energy for muon and neutrino respectively.
 \begin{figure}[!th]
 \centering
-\includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_Full.pdf}
-\caption{Reconstructed Neutrino Energy Resolution.}
-\label{fig:recoE}
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/reco_resol_BDT_vs_trueE_Full.pdf}
+  \caption{Neutrino Energy Resolution vs True Neutrino Energy.}
+  \label{fig:resol_vs_trueE}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/reco_resol_BDT_vs_recoE_Full.pdf}
+  \caption{Neutrino Energy Resolution vs Reconstructed Neutrino Energy.}
+  \label{fig:resol_vs_recoE}
+\end{subfigure}
+\caption{ Neutrino Energy Resolution vs Neutrino Energy.}
+\label{fig:resol_vs_E}
 \end{figure}
 
 \begin{figure}[!th]
 \centering
-\includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_vs_trueE_Full.pdf}
-\caption{Neutrino Energy Resolution vs True Neutrino Energy.}
-\label{fig:resol_vs_trueE}
-\end{figure}
-
-\begin{figure}[!th]
-\centering
-\includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_vs_recoE_Full.pdf}
-\caption{Neutrino Energy Resolution vs Reconstructed Neutrino Energy.}
-\label{fig:resol_vs_recoE}
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/reco_trueMuE_vs_BDT_recoMuE_Full.pdf}
+  \caption{True Muon Energy vs Reconstructed Muon Energy.}
+  \label{fig:trueMuE_vs_recoMuE}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/reco_trueE_vs_BDT_recoE_Full.pdf}
+  \caption{True Neutrino Energy vs Reconstructed Neutrino Energy.}
+  \label{fig:trueE_vs_recoE}
+\end{subfigure}
+\caption{ True Energy vs Reconstructed Energy.}
+\label{fig:true_vs_reco}
 \end{figure}
 
 \begin{figure}[!th]
