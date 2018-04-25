@@ -17,9 +17,73 @@ helps to predict FD neutrino spectrum based on ND measurements and is described 
 \section{Prediction}
 Predicted FD spectrum consists of $\nu_\mu$ CC signal, beam background components and cosmic background.
 Extrapolation procedure uses ND data only to predict $\nu_\mu$ CC signal since it is a significant
-portion of the FD neutrino spectra. Beam background components are taken directly from FD Monte Carlo
+portion of the FD neutrino spectrum. Beam background components are taken directly from FD Monte Carlo
 and cosmic background is estimated based on data recorded outside the beam spill window of NuMI spill. 
 
-\subsection{Signal Extrapolation}
+\subsection{Signal Extrapolation} \label{extrap_procedure}
+Monte Carlo simulations for ND and FD are genereated separately and under assumption of no neutrino
+oscillation. The shape of reconstructed neutrino spetra at different detectors is different largely due 
+to the fact of different geometric effects and inconsistency in distortions caused by different 
+resolutions of energy estimators at ND and FD. Figure \ref{fig:ND_FD_shapes} illustrates the overlay
+of neutrino spectra shapes for both detectors.
 
+Being a small detector ND cannot contain a highly energetic neutrinos, thus its observed neutrino
+spectrum is based towards lower energy - smaller hadronic activite and shorter muon tracks. However,
+steal plates alternating with regular detectors planes at the end of ND help to contain more
+energetic muons, nevertheless neutrino spectrum is limited by around 4 GeV. One more geometrical effect
+which plays a role in FD/ND spectra shape difference is that decay tube\footnote{Place where pions
+decay into neutrinos and other particles} is not seen as a point neutrino source. ND catch neutrinos
+which was produced at wider range of off-axis angle and therefore ND sees broader neutrino spectrum 
+as compared to FD. All these effects are well model by NOvA simulations.
+
+Distortions caused by different resolutions of energy estimators at ND and FD is also metigated by
+extrapolation procedure. For every detector a 2D histogram of reconstructed energy vs. true energy
+is created. These \textit{reco-true matricies} is used to convert bins of reconstructed energy at
+each detector to bins of true energy. 
+
+The full extrapolation procedure works as follows. Firstly, an observed ND neutrino spectum in bins of 
+reconstructed energy is converted to the spectrum in bins of true energy with the help reco-true 
+matrix. Secondly, geometric effect is metigated by multiplying result of previous step with FD/ND 
+true energy ratio to get FD unoscillated prediction in bins of true energy. Thirdly, every bin of the 
+spectrum is reweighted with oscillated probability. Finally, FD reco-true matrix is applied to 
+convert neutrino spectrum in bin of true energy back to spectrum in bins of reconstructed energy,
+thus result is the predicted FD neutrino spectrum based on the observed neutrinos at the ND. 
+Figure \ref{fig:extrap_scheme} illustrates steps of the extrapolation procedure.
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/extrapolation_scheme.pdf}
+\caption{Extrapolation procedure schematic.}
+{To obtain a correct prediction of neutrino spectrum at the FD based on the observed neutrino 
+spectrum at the ND 4 steps are needed to take. Convert ND spectrum in bins of reconstructed energy to
+spectrum in bins of true energy by reco-true matrix. Multiply by FD/ND true energy ratio to account
+for a different geometric effects for the FD and the ND. Reweight every bin of the spectrum by
+oscillation probability. Convert spectrum in bins of true energy back to spectrum in bins of
+recontructed energy. }
+\label{fig:extrap_scheme}
+\end{figure}
+
+\subsection{Beam Background Prediction}
+As mentioned in the begginig of the section, only $\nu_\mu$ CC signal\footnote{Signal consists of two
+channels: $\nu_\mu \rightarrow \nu_\mu$ and $\bar\nu_\mu \rightarrow \bar\nu_\mu$.} is passing 
+through extrapolation procedure described in section \ref{extrap_procedure}. All beam induced 
+background components, namely $\nu_e, \bar\nu_e, \nu_\tau, \bar\nu_\tau$ and NC, are small compare 
+to signal and ND Monte Carlo is substracted from observed neutrino spectrum before it get extrapolated.
+Then beam background from FD Monte Carlo is added back to predicted FD neutrino spectrum \cite{extrap_technote}. 
+
+\subsection{Cosmic Background Prediction}
+Since for every 10 $\mu$s of NuMI spill a wider window of 450 $\mu$s is recorded the same data files
+are used for the cosmic background estimation. All selected events outside of NuMI spill window are 
+normalized by scale factor 
+\be
+\text{scale} = \frac{10 \mu\text{s}}{450 \mu\text{s} - 10 \mu\text{s}},
+\ee
+to estimate cosmic background inside the NuMI spill window. After than, this selected spectrum is added 
+to the FD predicted neutrino spectrum.
+
+\section{Analysis}
+This section describes a procedure used for the measurement of oscillation parameters $\Delta m^2_{32}$ 
+and $\sin^2\theta_{23}$. The procedure is called a binned maximal-likelihood fitting.
+
+\subsection{4+1 Sample Fitting}
+ND neutrino spectrum at some point reweighted with oscillation probability during the extrapolation procedure 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
