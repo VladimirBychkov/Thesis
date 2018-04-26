@@ -86,4 +86,57 @@ and $\sin^2\theta_{23}$. The procedure is called a binned maximal-likelihood fit
 
 \subsection{4+1 Sample Fitting}
 ND neutrino spectrum at some point reweighted with oscillation probability during the extrapolation procedure 
+and with other steps one gets the FD predicted neutrino spectrum for those specific oscillation parameters. 
+Analysis framework calculates oscillation probability in the three-flavor neutrino formalism where all other
+parameters \ref{osc_param} are held fixed except for $\Delta m^2_{32}$ and $\sin^2\theta_{23}$. 
+
+The final FD neutrino spectra predictions consists of five different spectra. Four spectra for FD contained
+events, these spectra have events with different reconstructed hadronic energy fraction, and one spectrum
+for escaping events. Contained spectra are extrapolated from 4 similar\footnote{ND data before the extrapolation
+procedure is also spilt into 4 quantiles.} ND contained spectra and escaping spectrum is extrapolated from 
+one ND contained spectrum.
+
+When predictions for specific oscillation paramters for five spectra are ready and real FD data is gathered 
+the following likelihood for Poisson distributed data function is used
+\be
+\chi^2 = \sum_{s\in\{\text{cont, esc}\}}\Big[2\sum_i n_{s,i} - o_{s,i} + o_{s,i}\ln\Big(\frac{o_{s,i}}{n_{s,i}}\Big)\Big].
+\ee
+The outer sum is summation over four contained samples and one escaping sample, for each sample inner summation
+is over bins $i$, $n_{s,i}$ is the number of predicted events for bin $i$ and sample $s$, and $o_{s,i}$ is the 
+number of observed events for bin $i$ and sample $s$ in FD data. The closer predicted spectra to observed ones
+the lower $\chi^2$ function, thus maximum likelihhod corresponds to minimal $\chi^2$. The likelihhod function
+is calculated for different oscillation parameters and 2D surface of $\chi^2$ vs $\Delta m^2_{32}$ and 
+$\sin^2\theta_{23}$ is formed. The minimus of the surface corresponds to the best fit point, confidence
+levels are drawn around best fit point on the plane of $\Delta m^2_{32}$ and $\sin^2\theta_{23}$ based on
+the $\Delta\chi^2$ relative to the minimum value \cite{rpf}. The values of $\Delta\chi^2$ for different confidence
+intervals in 1D and 2D cases are illustrated in Table \ref{table:chi2}.
+\begin{table}[!th]
+\centering
+\begin{tabular}{ >{\centering}m{2.5cm} | m{1.5cm}  m{1.5cm} }
+  \hline\hline
+  \text{C.L.} (\%) & \centering{1D} & \centering{2D} \tabularnewline
+  \hline
+  68.3 & \centering{1.00} & \centering{2.30} \tabularnewline
+  90.0 & \centering{2.71} & \centering{4.61} \tabularnewline
+  95.4 & \centering{4.00} & \centering{6.18} \tabularnewline
+  99.7 & \centering{9.00} & \centering{11.83} \tabularnewline
+  \hline\hline
+\end{tabular}
+\caption{$\Delta\chi^2$ values for different dimensions and confidence levels.}
+\label{table:chi2}
+\end{table}
+
+In order to include systematic uncertainties in the current picture, one more term is added to the $chi^2$ 
+function:
+\be
+\chi^2 = \sum_{s\in\{\text{cont, esc}\}}\Big[2\sum_i n_{s,i} - o_{s,i} + o_{s,i}\ln\Big(\frac{o_{s,i}}{n_{s,i}}\Big)
+ + \sum_j \frac{s_j^2}{\sigma_j^2}\Big].
+\ee
+The last term does nщt depend on sample. The $\sigma_j$ parameters describe our knoweldge and understanding of
+the allowed shift in a particular systematic. The $s_j$ parameters are evaluated during the process known as
+magrenalization - for every oscillation set of parameters $\Delta m^2_{32}$ and $\sin^2\theta_{23}$ analysis
+software scan over different values of $s_j$ trying to find the value which minimizes $\chi^2$. This 
+leads to a better fit and to more gentle slope of $\chi^2$ surface, as result confedence level contours gets 
+bigger. Thus, effect of systematic uncertainties makes oscillation parameters measurements less certain as 
+expected. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
