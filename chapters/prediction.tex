@@ -19,13 +19,74 @@ Predicted FD spectrum consists of $\nu_\mu$ CC signal, beam background component
 Extrapolation procedure uses ND data only to predict $\nu_\mu$ CC signal since it is a significant
 portion of the FD neutrino spectrum. Beam background components are taken directly from FD Monte Carlo
 and cosmic background is estimated based on data recorded outside the beam spill window of NuMI spill. 
+\begin{figure}[th]
+\centering
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fd_nd_spectra.pdf}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fd_nd_ratio.pdf}
+\end{subfigure}
+\caption{ MC Prediction for the contained samples in ND and FD. }
+{ The first plot above illustrates the contained neutrino spectra in the Near Detector and the Far
+Detector. Both detectors observed neutrinos from the same cource, however smaller ND size leads to
+a bigger fraction of low energy neutrinos and close position of ND to decay pipe also broaden observed
+neutrino spectrum. The second plot illustrates the shape of Far to Near ratio, however for the extrapolation
+procedure Far to Near ration is used in bins of true energy. The actual extrapolation procedure is performed
+for four quantiles separately and spectra shapes are very similar to what is illustrated here. }
+\label{fig:ND_FD_shapes}
+\end{figure}
+\begin{figure}[th]
+\centering
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fd_nd_spectra_esc.pdf}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fd_nd_ratio_esc.pdf}
+\end{subfigure}
+\caption{ MC Prediction for the contained sample in ND and the escaping sample in FD. }
+{ The first plot above illustrates the contained neutrino spectrum in the Near Detector and the escaping spectrum
+in the Far Detector. Both detectors observed neutrinos from the same cource, however smaller ND size leads to
+a bigger fraction of low energy neutrinos and close position of ND to decay pipe also broaden observed
+neutrino spectrum. The second plot illustrates the shape of Far to Near ratio, however for the extrapolation
+procedure Far to Near ration is used in bins of true energy. To obtained prediction of escaping neutrino spectrum
+in the Far Detector contained Near Detector spectrum is used. }
+\label{fig:ND_FD_shapes_esc}
+\end{figure}
+\begin{figure}[th]
+\centering
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fd_reco_true_matrix.pdf}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/nd_reco_true_matrix.pdf}
+\end{subfigure}
+\caption{ Reco-true matricies for FD and ND contained samples. }
+{ This is an example of reco-true matricies for FD (top) and ND (bottom) contained samples, matricies for the
+escaping sample looks similar. The matricies are used in extrapolation procedures to convert ND neutrino spectrum
+in reconstructed energy bins to spectrum in true energy bin and vice versa for FD neutrino spectrum. }
+\label{fig:reco_true_matricies}
+\end{figure}
+\clearpage
 
 \subsection{Signal Extrapolation} \label{extrap_procedure}
 Monte Carlo simulations for ND and FD are genereated separately and under assumption of no neutrino
-oscillation. The shape of reconstructed neutrino spetra at different detectors is different largely due 
-to the fact of different geometric effects and inconsistency in distortions caused by different 
-resolutions of energy estimators at ND and FD. Figure \ref{fig:ND_FD_shapes} illustrates the overlay
-of neutrino spectra shapes for both detectors.
+oscillation. The shape of reconstructed neutrino spetra at different detectors is different largely due
+to the fact of different geometric effects and inconsistency in distortions caused by different
+resolutions of energy estimators at ND and FD. Figures \ref{fig:ND_FD_shapes} and \ref{fig:ND_FD_shapes_esc}
+illustrate the overlay of neutrino spectra shapes for both detectors.
 
 Being a small detector ND cannot contain a highly energetic neutrinos, thus its observed neutrino
 spectrum is based towards lower energy - smaller hadronic activite and shorter muon tracks. However,
@@ -39,7 +100,7 @@ as compared to FD. All these effects are well model by NOvA simulations.
 Distortions caused by different resolutions of energy estimators at ND and FD is also metigated by
 extrapolation procedure. For every detector a 2D histogram of reconstructed energy vs. true energy
 is created. These \textit{reco-true matricies} is used to convert bins of reconstructed energy at
-each detector to bins of true energy. 
+each detector to bins of true energy. Figure \ref{fig:reco_true_matricies} illustrates these matricies.
 
 The full extrapolation procedure works as follows. Firstly, an observed ND neutrino spectum in bins of 
 reconstructed energy is converted to the spectrum in bins of true energy with the help reco-true 
@@ -49,7 +110,7 @@ spectrum is reweighted with oscillated probability. Finally, FD reco-true matrix
 convert neutrino spectrum in bin of true energy back to spectrum in bins of reconstructed energy,
 thus result is the predicted FD neutrino spectrum based on the observed neutrinos at the ND. 
 Figure \ref{fig:extrap_scheme} illustrates steps of the extrapolation procedure.
-\begin{figure}[!th]
+\begin{figure}[!h]
 \centering
 \includegraphics[width=1.0\textwidth]{figures/extrapolation_scheme.pdf}
 \caption{Extrapolation procedure schematic.}
@@ -126,7 +187,7 @@ intervals in 1D and 2D cases are illustrated in Table \ref{table:chi2}.
 \label{table:chi2}
 \end{table}
 
-In order to include systematic uncertainties in the current picture, one more term is added to the $chi^2$ 
+In order to include systematic uncertainties in the current picture, one more term is added to the $\chi^2$ 
 function:
 \be
 \chi^2 = \sum_{s\in\{\text{cont, esc}\}}\Big[2\sum_i n_{s,i} - o_{s,i} + o_{s,i}\ln\Big(\frac{o_{s,i}}{n_{s,i}}\Big)
