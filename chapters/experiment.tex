@@ -23,7 +23,7 @@ the following sections.
 \caption{Schematics of neutrino production\cite{numi}.} \label{fig:NuMI}
 \end{figure}
 Neutrinos for the NOvA experiments comes from decay of pions and kaons. To get a beam of 
-the mesons Main Injector at Fermilab is used, which provides an intense beam of proton with 
+meson the Main Injector at Fermilab is used, which provides an intense beam of proton with 
 energy 120 GeV. The structure of NuMI is illustrated on figure \ref{fig:NuMI}. It is designed to 
 deliver $4.9 \times 10^{13}$ proton on target (POT) with the repetition rate of 1.3s, which 
 corresponds to 700 kW of beam power. The proton beam is directed into a graphite target.  
@@ -53,15 +53,17 @@ to better understand beam properties, but they do not play any role in the NOvA 
 
 After the neutrinos leave the decay pipe they begin their journey to the near and far detectors.
 The NO$\nu$A detectors are placed 14.6 mrad off-axis of the NuMI beam for several reasons. As can
-be seen on the picture on the right of figure \ref{fig:Spec}, the first minimum of the muon neutrino survival
+be seen on the picture on the right, the first minimum of the muon neutrino survival
 probability and first maximum of the electron neutrino appearance probability occur near 400 km/GeV,
-while the on-axis neutrino spectrum, shown in black on the top of figure \ref{fig:Spec}, requires a
-baseline of $\sim$800 km for the first extremum of $P(\nu_\mu \rightarrow \nu_e)$\footnote{First extremum
-of $P(\nu_\mu \rightarrow \nu_e)$ at the distance 800 km occurs for the neutrino with energy around 2 GeV.}. 
-In order to get $\nu_e$ signal in the Far detector energy of neutrinos has to be decreased. The solution is 
-simple: pions and kaons decay isotropically in their rest frame, but, after a Lorentz boost to
-the laboratory frame, the neutrino flux and energy at the far detector (for small off-axis angles $\theta$)
-can be expressed in the following form
+The on-axis neutrino spectrum is shown in black on the top of figure \ref{fig:Spec}. To get a better 
+$\delta_{CP}$ sensitivity neutrino baseline should be as big as possible and for the practical reasons
+baseline is choosen to be 810 km. For this baseline maximum of $P(\nu_\mu \rightarrow \nu_e)$ corresponds
+to 2 GeV of neutrino energy. Only a tiny fraction of neutrinos satisifies this condition if Far Detector 
+stays on-axis of neutrino beam\footnote{Together with small fraction of suitable neutrinos another problem 
+arises here - high energy neutrinos after NC interaction potentially can mimic 2 GeV $\nu_e$ signal} and 
+there should be a way to fix that. The solution is simple: pions and kaons decay isotropically in their 
+rest frame, but, after a Lorentz boost to the laboratory frame, the neutrino flux and energy at the Far 
+Detector (for small off-axis angles $\theta$) can be expressed in the following form
 \be
 F = \Big(\frac{2\gamma}{1+\gamma^2\theta^2}\Big)^2\frac{A}{4\pi d}
 \ee
@@ -83,8 +85,8 @@ significantly improves the sensitivity of the $P(\nu_\mu \rightarrow \nu_e)$ pro
 \includegraphics[width=0.9\textwidth]{figures/FD_NOvA_OffAxis_Spectra.pdf}\\%
 \includegraphics[width=0.9\textwidth]{figures/EnuVSEpi_NOvA.pdf}
 \centering
-\caption{(Left) Expected unoscillated neutrino spectrum at the Far Detector as a function of 
-angle relative to NuMI beam. (Right)~Neutrino oscillation probabilities as a function of $\frac{L}{E}$, $
+\caption{(Top) Expected unoscillated neutrino spectrum at the Far Detector as a function of 
+angle relative to NuMI beam. (Bottom)~Neutrino oscillation probabilities as a function of $\frac{L}{E}$, $
 P(\nu_\mu \rightarrow \nu_\mu)$ - blue line, $P(\nu_\mu \rightarrow \nu_e)$ - black line and 
 $P(\nu_\mu \rightarrow \nu_\tau)$ - red line.} \label{fig:Spec}
 \end{figure}
@@ -93,11 +95,11 @@ $P(\nu_\mu \rightarrow \nu_\tau)$ - red line.} \label{fig:Spec}
 The NOvA experiment uses two detectors for measuring muon neutrino disappearance probability 
 $P(\nu_\mu \rightarrow \nu_\mu)$ and electron neutrino appearance probability $P(\nu_\mu \rightarrow \nu_e)$. 
 In order to decrease systematic uncertainties, such as beam uncertainty and uncertainties due to variation
-in detector efficiency, two detectors are build with exactly the same material and 
+in detector efficiency, two detectors are built with exactly the same material and 
 similar geometry. The Near Detector is placed 1 km from the NuMI source at Fermilab, while the 
 Far Detector sits 810~km away on the surface and 14.6 mrad off beam axis in Ash River, Minnesota. 
 The Near Detector weighs 330 metric ton and is 105 m underground, while the Far Detector mass is 
-14,000 ton and has shielding equivalent to 3 m of rock which reduces cosmic ray background.
+14,000 ton and has shielding equivalent to 3 m of water which reduces cosmic ray background.
 \begin{figure}
 \begin{subfigure}{.2\textwidth}
   \centering
@@ -119,28 +121,28 @@ The Near Detector weighs 330 metric ton and is 105 m underground, while the Far 
 Each detector is made of cells which are made from polyvinyl chloride (PVC) doped with titanium 
 dioxide to increase light reflectivity. The cross section of cells has rectangular shape with sizes
 approximately equal to 4 cm and 6 cm. The length of the cells is varies between the detectors and 
-equals to 4 m for the Near Detector and 15 m for the Far Detector. 32 cells are bound together along
-6 cm side to make a module and the set of modules produces plane. The number of modules in a plane
+is 4 m for the Near Detector and 15 m for the Far Detector. 32 cells are bound together along
+6 cm side to make a module and a set of modules produces plane. The number of modules in a plane
 depends on a detector - 3 and 12 modules per plane for the Near and Far Detector respectively. Planes
 are glued together in a such way that adjacent planes alternating between horizontal and vertical
 allignment. The scetch of the detectors structure can be seen in \ref{fig:2detectors}. Furthemore, 32 planes 
 make up a block and 28 blocks complete the full Far Detector while for the Near Detector block consists
-of 24 planes and 3 blocks make the active part of the detector. In addition, so called muon catcher
-block goes upstream and serves for stopping muons which are produced in $\nu_\mu$ CC interactions. 
+of 24 planes and 3 blocks make the active part of the detector. In addition, so-called muon catcher
+block goes downstream and serves for stopping muons which are produced in $\nu_\mu$ CC interactions. 
 The muon catcher, which helps to contain more muons as the relative size of the Near Detector is not big,
 consists of 22 active planes, with ten steel planes of 10 cm thickness interspersed between pairs of active 
-planes. The size of the muon catcher in the XY plane is smaller the the active part of the Near Detector, but the
-steel absorbs additional particle energy, and results in shorter muon tracks.
+planes. The size of the muon catcher in the XY plane is smaller the the active part of the Near Detector. 
+The steel absorbs additional particle energy, and results in shorter muon tracks.
 
 Using the planes configuration, three-dimensional particle tracks are reconstructed: vertical planes
 provide X measurements, horizontal planes provide Y measurements, and the Z measurements are extracted from
 the plane positions. The Z-axis is directed along the beam, the X-axis points to the west and the Y-axis points
 upward. This choice of axes results in a Cartesian right handed coordinate system.
 
-\subsection{Ligth production and digitization}
+\subsection{Light production and digitization}
 In order to detect particles resulted in neutrino interactions in the detectors these particles 
 should leave footprints. In NOvA experiment cells are filled with a liquid scintillator composed 
-of mineral oil doped with pseudocumene~\footnote{1,2,3-Trimethylbenzene}. In every cell, one wavelength 
+of mineral oil doped with pseudocumene~\footnote{1,2,4-Trimethylbenzene}. In every cell, one wavelength 
 shifting fiber runs from one end of the cell to the opposite end, then back to the other end where 
 it connects to an avalanche photodiode (APD) as can be seen in \ref{fig:cell}. Photons are created by charged 
 particle moving through the scintillator. These reflected by the cell walls and have a high chance 
@@ -155,7 +157,7 @@ help of conventional computers is to digitize the APD output signal. The digitiz
 front end board (FEB). Short APD signals are stretched in time in the Application Specific 
 Integrated Circuit (ASIC) with the help of CR-RC circuit. After, the signal is passed to ADC - 
 analog to digital converter - where continuous signal is converted to discrete, 12-bit signal
-that is read out every 500 ns or 125 ns at the Far and Near Detector, respectively. Only the 4 last ADCs - 
+that is read out every 500 (125) ns at the Far (Near) Detector, respectively. Only the 4 first ADCs - 
 value of the digitization sample - are stored as a hit and the hit is written when the difference
 \be
 ADC_i - ADC_{i-3}
@@ -175,7 +177,7 @@ analysis uses data which is recorded due to external trigger desicions, this so-
 is issued by acceleration complex at Fermilab. The trigger records 550 $\mu s$ window of data centered 
 around the 10 $\mu s$ NuMI beam spill. There are several more triggers such as cosmic trigger, which 
 triggers at the rate of 10 Hz to store FD cosmic data for callibration and background estimation, or 
-supernova trigger, which ideally should record up to 20 minutes of data in the event of supernova burst.
+supernova trigger, which ideally should record up to 1 minutes of data in the event of supernova burst.
 
 The data selected by the triggers is stored temporarily at the FD and ND sites, and eventually transferred
 to Fermilab where it is processed for further analysis.
@@ -205,18 +207,20 @@ with nucleons along their trajectories, and tend to travel much shorter distance
 
 Despite these differences it is a complicated problem to distinguish a charged current (CC) interaction with
 a muon or electron being produced from a neutral current (NC) interaction where no visible lepton is produced.
-NC processes can produce charged or neutral pions with other hadrons.. Charged pions
-leave tracks which could be confused with low energy muons, although occasional hard scatters of the 
+NC processes can produce charged or neutral pions with other hadrons. Charged pions
+leave tracks which could be confused with low energy muons, although occasional hard scatters with 
 nuclei help with identification. Neutral pions decay into two photons and produce electromagnetic
 showers, and these showers can be mistaken with showers from electrons in CC interactions.
-Thus, sophisticated algorithms need to be developed to measure parameters of neutrino mixing matrix where 
+Thus, sophisticated algorithms were developed to measure parameters of neutrino mixing matrix where 
 determination of exact neutrino flavor is a crucial task.
 
-In addition, since NOvA Fad Detector sits on the ground it constantly being bombarded by muons and other
+In addition, since NOvA Far Detector sits on the ground it constantly being bombarded by muons and other
 particles created by interactions of cosmic rays - high energy protons - with air molecules in upper atmosphere. 
-These muons contribute to a background for the main analysis but they could be relatively easy to get rid off
-because of their activity at the top and/or at the sides of the detector. However, they are much harder to deal
-with since cosmic muons a primarily background in a uncontained sample which this thesis are partially about.
+These muons contribute to a background for the main analysis but they are relatively easy to get rid off
+because of their activity at the top and/or at the sides of the detector. 
+
+However, they are much harder to deal with since cosmic muons a primarily background in a escaping sample 
+which this thesis is partially about.
 
 \subsection{NOvA Event Display}
 \begin{figure}
@@ -225,7 +229,7 @@ with since cosmic muons a primarily background in a uncontained sample which thi
 {The candidate $\nu_\mu$ CC event at the Far Detector zoomed in space and time. Top and bottom windows show
 X-Z and Y-Z projections.} \label{fig:EVD}
 \end{figure}
-The NOvA event display helps to visualize a real data gathered by the detectors or a simulated one. The result
+The NOvA event display helps to visualize data gathered by the detectors or a simulated one. The result
 of $\nu_\mu$ CC interaction measured on April 22, 2014 is shown in \ref{fig:EVD}. As NOvA detectors consist of 
 alternating horizontal and vertical planes, event display shows hits from two types of planes in a separate 
 windows. The top window displays X-Z hits position (detector activity as seen from the top), while the lower 
