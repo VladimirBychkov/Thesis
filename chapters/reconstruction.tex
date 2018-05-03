@@ -18,7 +18,7 @@ different groups which ideally correspond to different physical processes.
 trajectories.
 \item Calibration. Each channel in every slice is calibrated to convert the magnitude of each
 measured signal into a channel energy.
-\item Muon identification and Background rejection. Slices that contain a muon track are identified
+\item Muon identification and background rejection. Slices that contain a muon track are identified
 as pertinent to the $\nu_\mu$ CC interaction.
 \item Energy estimation. Templates are used to map muon track length to true muon energy and visible 
 hadronic energy\footnote{Total energy of all hits in the slice which do not belong muon track} to true 
@@ -39,7 +39,7 @@ estimation.
 The task of the slicer is to group hits, which casually related to each other, in slices. The slicer 
 is based on DBSCAN algorithm \cite{DBSCAN}, one of the most common clustering algorithms, and checks 
 every pair of hits to determine how far are they from each other in space and time. The distance 
-function is not exactly spice-time interval but rather modified 
+function is not exactly space-time interval but rather modified 
 \be
 d = \Big(\frac{\Delta t - \frac{\Delta r}{c}}{T_{res}}\Big)^2 + \Big(\frac{\Delta z}{D_z}\Big) + 
 \Big(\frac{\Delta v}{D_v}\Big),
@@ -55,9 +55,9 @@ terms help to remove noise hits as they are randomly distributed in space and ti
 could be far from the main activity. After all corellated activities have been accounting for, and 
 slices are created, the remaining hits are put into one additional noise slice.
 
-NOvA slicing algorithms does efficiently separates different neutrino activities in the near detector
+The NOvA slicing algorithm efficiently separates different neutrino activities in the near detector
 and distinguishes cosmic rays from neutrino interactions in the far detector. However, hits which were produced
-by Michele electrons\footnote{Electron produced in muon decay often called after Louis Michele who
+by Michel electrons\footnote{Electron produced in muon decay often called after Louis Michele who
 contributed significantly to the physics of charged leptons decay.} or photons follow neutrons capture are
 usually not included in the corresponding slice.
 \begin{figure}[t]
@@ -125,7 +125,7 @@ The ADC signal is scaled to PE value - estimation for maximal value of electroni
 ADCs, see chapter \ref{simulation_chapter} for more details. After that for each reference hit, the path length 
 and position within the cell ($W$) is estimated and 2D histogram - ratio of PE and path length versus position 
 within the cell - is made. Mean ration of PE and path length as function of $W$ is fit by the sum of two exponents
-which represent signal trip in two direction along the wave shifting fiber.
+which represent signal trip in two direction along the wave length shifting fiber.
 \be
 y(W) = C + A\Big(e^{\frac{W}{X}} + e^{-\frac{L+W}{X}}\Big),
 \ee
@@ -152,7 +152,7 @@ examples of the fit for far and near detectors.
 \label{fig:att_fit}
 \end{figure}
 
-For analysis part $W$ of every hit is estimated and PE value of the hit is divided by fit at this posotion to 
+For analysis, the $W$ of every hit is estimated and PE value of the hit is divided by fit at this posotion to 
 get a corrected PE value of the hit. Since attenuation curve determines cell responce to cosmic ray muons, thus 
 corrected PE value of the hit shows the relative signal to the cosmic muons. At this point, attenuation is taken
 into account but units of corrected PE signal is still arbitrary and absolute energy calibration is still needed. 
@@ -160,13 +160,13 @@ into account but units of corrected PE signal is still arbitrary and absolute en
 \subsection{Absolute energy calibration}
 As in the previous step cosmic muons is used at this step too, but rather using middle part of cosmic muon tracks
 here is used an end of the track. Thus, tracks which are used for calibration should stop inside the detector. 
-The reason for using tracks end is that according to Bethe-Block formula \cite{rpf} muon energy deposition per 
+The reason for using tracks end is that according to Bethe-Bloch formula \cite{rpf} muon energy deposition per 
 unit length ($\frac{dE}{dx}$) has a well understood minimum near the track end. The minimum deposition is typically
 span several meters from the end of the track for different materials and region from 1 meter to 2 meters from
-the end of the track is used in NOvA absolute energy calibration procedure \ref{fig:dEdx_vs_length}.
+the end of the track is used in NOvA absolute energy calibration procedure. Figure \ref{fig:dEdx_vs_length} illustrates
+calibrated muon $\frac{dE}{dx}$ as a function of distance from track end measured in NOvA.
 \begin{figure}[t]
 \includegraphics[width=1.0\textwidth]{figures/dEdx_vs_length.png}
-\centering
 \caption{Muon $\frac{dE}{dx}$ per unit length in NOvA.}
 {Already calibrated $\frac{dE}{dx}$ is shown as a function of distance to the end of the track.}
 \label{fig:dEdx_vs_length}
@@ -207,18 +207,17 @@ On the higher level though, CVN learns features itself and a human is no longer 
 An input to CVN is two pictures 100 by 80 pixels around neutrino activity in X and Y views. Similar to ReMID, labels 
 for the training pictures are taken from the simulation. However, the biggest difference is that while ReMID checks
 one track at a time and does the muon/non-muon classification for track, CVN analyzes the whole activity in the 
-slice and does the classification in multiple classes - muon/electron/tay neutrino, QE/RES/DIS/MEC interaction, 
+slice and does the classification in multiple classes - muon/electron/tau neutrino, QE/RES/DIS/MEC interaction, 
 NC interaction and cosmic rays.
 
 A deep convolutional neural network requires tremendous amount of training samples to prevent an overfitting togther 
-with regularization techniques such as dropout layers and weight decay. In order to increase available 
+with regularization techniques such as dropout layers \cite{dropout} and weight decay. In order to increase available 
 training dataset some pictures are randomly changed. First, Gaussian noise is added to all pixels with a standard 
 deviation of 1$\%$, this also reduces reliance on the simulated intensity in each pixel. Then, some pictures 
 are reflected in the direction perpendicular to neutrino beam. An example of pictures that are fed into CVN are
 shown in Figure \ref{fig:cvn_example}.
 \begin{figure}[h]
-\includegraphics[width=0.9\textwidth]{figures/cvn_example.pdf}
-\centering
+\includegraphics[width=1.0\textwidth]{figures/cvn_example.pdf}\\%
 \caption{CVN Pixel Map.}
 {Example of the figure which is fed into convolutional neural net for training. The window of $100\times80$ 
 pixels is chosen around the true $\nu_\mu$ CC interaction activity in a such way that reconstructed vertex is 
@@ -226,10 +225,10 @@ approximately put in the left middle part of the picture.}
 \label{fig:cvn_example}
 \end{figure}
 
-As stated above, CVN classifies events in multiple classes i.e. CVN output is n-dimensional vector of unit length
-where components reperesent probability that the current event belongs to a particular class. Only muon neutrinos
-are used in the current analysis, thus to select an event sum of outputs in muon/QE, muon/RES, muon/DIS and 
-muon/MEC classes should be bigger than some treshold.
+As stated above, CVN classifies events in multiple classes i.e. CVN output is n-dimensional vector with sum all its 
+components equal to one. These components could be interpreted as probabilities that the current event belongs 
+to a particular class. Only muon neutrinos are used in the current analysis, thus to select an event sum of outputs 
+in muon/QE, muon/RES, muon/DIS and muon/MEC classes should be bigger than some treshold.
 
 \section{Energy Estimation} \label{energy_est_cont}
 The final step in the reconstruction chain is estimating the total neutrino energy. The probability that one
