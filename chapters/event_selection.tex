@@ -7,14 +7,13 @@
 
 In this chapter, algorithms for the event selection are
 described. The chapter begins by describing the contained sample and the event selection
-criteria. These criteria were developed by previous members of the NOvA collaboration,
+criteria. These criteria were developed by other members of the NOvA collaboration,
 and are summarized in section \ref{cont_sec}.  This is followed by a description of
 the new selection criteria used to select the ''escaping sample`` - events that failed
-the contained event selection criteria, but had evidence of a muon neutrino decay. The
+the contained event selection criteria, but had evidence of a muon neutrino interaction. The
 final selection criteria for escaping events maximizes sensitivity to
-$\theta_{23}$ and $\Delta m_{32}^2$, and minimizes bias from cosmic ray events.  By
-combining the contained and escaping samples of events, better measurements of $\theta_{23}$
-and $\Delta m_{32}^2$ are made.
+$\theta_{23}$ and $\Delta m_{32}^2$. By combining the contained and escaping samples of 
+events, better measurements of $\theta_{23}$ and $\Delta m_{32}^2$ are made.
 
 \section{Contained Sample} \label{cont_sec}
 The selection criteria used to select contained sample events ensure that selected events
@@ -30,7 +29,7 @@ events of poor quality. Events which pass data quality cut have
 number of hits.
 \item at least one track reconstructed by cosmic tracker. This criterion confirms that there is
 cluster of hits which could be associated with track.
-\item PID value of ReMId selector should be greater than zero. This ensures that at least on 
+\item PID value of ReMId selector should be greater than zero. This ensures that at least one 
 3D Kalman track was reconstructed.
 \item slice which spans more than 4 cosecutive planes. This cut removes events with geometric 
 gaps and highly vertical tracks, thus the cut is a good preselector for a good fraction of 
@@ -41,7 +40,7 @@ cosmic rays.
 The containment requirement selects events where the majority of the activity is
 measured in the central region of the detector. This further reduces contamination from cosmic 
 ray events, as most cosmic rays enter from the tops or sides.  Contained events have the best 
-energy resolution and satisfy following criteria
+energy resolution and satisfy criteria below, which are explained in the next paragraph,
 
 \begin{itemize}
 \item Kalman Forward Cell $>$ 6,
@@ -178,7 +177,8 @@ confidently the direction of the track and other approaches are needed.
 \caption{Cosmic rays and beam neutrinos in the far detector.}
 \label{fig:top_and_reco_tracks}
 \end{figure}
-
+\newline
+\newline
 \begin{wrapfigure}{r}{0.5\textwidth}
 \vspace{-15pt}
   \begin{center}
