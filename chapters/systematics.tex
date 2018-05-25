@@ -5,4 +5,37 @@
 \label{systematic_chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Precise measurements of the oscillation parameters depend on correct extrapolated predictions of neutrino spectrum at 
+the Far Detector. In turn, extrapolated predictions depend on our understanding of all properties of the detectors as
+well as properties of particles propagation and interaction with other particles. Naturally this understanding cannot 
+be absolute and the lack of it leads to uncertainties in the final result, this uncertainties are called systematic 
+unsertainty, as opposed to statistical uncertainties which comes from probabalistic nature of high energy experiment.
+While statistical uncertainties are mitigated by longer exposure, systematic uncertainties could be mitigated by the
+experiment design. For example, two detectors design of NOvA reduces an impact of flux and cross section uncertainties.
+
+The first section of this chapter describes the treatment of systemtic uncertainties in NOvA and the following ones
+discuss the impact of different systematic uncertainties on extrapolated predictions.
+
+\section{Evaluation of Systematic Uncertainties}
+For some systematics analysis framework allows a reweightable approach to evaluate an impact of the specific systematic
+on the analysis result. This approach helps to reduce computational resources \cite{cafana}. For instance, any cross section 
+parameter has it own uncertainty and for every simulated event a weight is calculated based on that uncertainty and 
+truth information or the output of reconstructed algorithms, thus one gets a new (shifted) prediction which 
+corresponds to that cross section parameter. One gets 2 shifted predictions by using weights which are calculated for 
+$\pm 1\sigma$ shifts for some cross section parameter; nominal and 2 shifted predictions are used to produced a 
+systematic error band on all plots which are presented in this chapter. 
+
+Those systematic effects which need to alter information on hit-by-hit basis cannot be used in reweightable scheme 
+and a completely new set of Monte Carlo simulation files is generated, for instance, new sets of files are requered for 
+systematically shifted scintillation model, calibration systematics etc. 
+
+During the fitting procedure \ref{chi2syst} fitter needs to know prediction for fractional systetamic shift. This is 
+achieved by using a cubic spline interpolation between nominal, $\pm 1\sigma$ and $\pm 2\sigma$ shifts. 
+
+Analysis framework distincts two types of systematic uncertainties in NOvA, those which are the same or correlated for 
+both detectors and those which are independent. Correlated systematic uncertainties shift prediction in both detectors
+simultaniously by the same amount and are called \textit{absolute} uncertainties. Flux and neutrino cross section 
+uncertainties are examples of absolute uncertainties. Systematic effects which are independent across detectors 
+shift prediction by the same amount but in opposite direction and are called \textit{relative} uncertainties.  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

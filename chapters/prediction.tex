@@ -191,9 +191,9 @@ In order to include systematic uncertainties in the current picture, one more te
 function:
 \be
 \chi^2 = \sum_{s\in\{\text{cont, esc}\}}\Big[2\sum_i n_{s,i} - o_{s,i} + o_{s,i}\ln\Big(\frac{o_{s,i}}{n_{s,i}}\Big)
- + \sum_j \frac{s_j^2}{\sigma_j^2}\Big].
+ + \sum_j \frac{s_j^2}{\sigma_j^2}\Big]. \label{chi2syst}
 \ee
-The last term does nщt depend on sample. The $\sigma_j$ parameters describe our knoweldge and understanding of
+The last term does not depend on sample. The $\sigma_j$ parameters describe our knoweldge and understanding of
 the allowed shift in a particular systematic. The $s_j$ parameters are evaluated during the process known as
 magrenalization - for every oscillation set of parameters $\Delta m^2_{32}$ and $\sin^2\theta_{23}$ analysis
 software scan over different values of $s_j$ trying to find the value which minimizes $\chi^2$. This 
