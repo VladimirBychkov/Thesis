@@ -42,12 +42,25 @@ shift prediction by the same amount but in opposite direction and are called \te
 
 \section{Cross Section Unsertainty}
 GENIE cross section models depends on 80+ parameters and uncertaintes on all these paramters allow to calculate cross
-section weights. When one alters some parameter weight is determined as ratio of cross section with altered parameter
-to nominal one. Later, at analysis time, every selected event at the Near or the Far Detector is weighted with above
-calculated weight, thus shifted prediction is generated. The marginalization process\footnote{fitting procedure with 
+section weights \cite{GENIE}. When one alters some parameter weight is determined as ratio of cross section with altered 
+parameter to nominal one. Later, at analysis time, every selected event at the Near or the Far Detector is weighted with 
+above calculated weight, thus shifted prediction is generated. The marginalization process\footnote{fitting procedure with 
 systematic uncrtainties taken into account.} is computationally heavy and only those GENIE cross section systematics are 
 used which has significant impact on the analysis. Table \ref{table:XSecParam} summarize cross section parameters used in
 the analysis, the fist column is parameter description and the second one is parameter's $1\sigma$ uncertainty. 
+
+In addition to GENIE parameters NOvA framework analysis uses a few more cross section effects to get a better agreement 
+between ND data and simulations. First effect is RPA\footnote{Random Phase Approximation} corrections, data from MINERvA 
+\cite{MINERvA} strongly support the need for a correction to reactions at low momentum transfer - QE and RES reactions. 
+Corrections were needed to accommodate effect of "weak charge screening" and they were computed based on RPA. Both corrections 
+and uncertainties are momentum transfer dependent except for RPA RES unsertainty which is taken at 100\% (means that effect 
+is switched off). Second effect is MEC, .... 
+
+
+Figures \ref{fig:MaCCQEreduced}, \ref{fig:MECEnuShapeNu}, \ref{fig:MaCCRES}, \ref{fig:MvCCRES}, \ref{fig:CCQEPauliSupViaKF},
+\ref{fig:DISvnCC1pi} illustrate effect of GENIE parameters on selected escaping signal and background events. Those parameters
+are choosen to be shown here as they have a noticable impact on FD predictions while the rest of the cross section parameters
+have much smaller effect.
 
 {\renewcommand{\arraystretch}{2}%
 \begin{table}[!th]
@@ -56,15 +69,13 @@ the analysis, the fist column is parameter description and the second one is par
   \hline\hline
   \text{Description} & \text{Uncertainty} \tabularnewline
   \hline
+  Axial mass for CC quasi-elastic neutrino production & $\pm5\%$ \tabularnewline
   Axial mass for CC resonance neutrino production & $\pm20\%$ \tabularnewline
   Axial mass for NC resonance neutrino production & $\pm20\%$ \tabularnewline
   Vector mass for CC resonance neutrino production & $\pm10\%$ \tabularnewline
   CCQE Pauli suppression (via changes in Fermi level $k_F$ ) & $\pm35\%$ \tabularnewline
   CC coherent neutrino production, normalization & $\pm20\%$ \tabularnewline
   NC coherent neutrino production, normalization & $\pm20\%$ \tabularnewline
-  RPA effect in resonance neutrino production & $q^2$ dependent \tabularnewline
-  RPA enhancement effect in CC QE & $q^2$ dependent \tabularnewline
-  RPA suppresion effect in CC QE & $q^2$ dependent \tabularnewline
   Nucleon elastic reaction probability & $\pm30\%$ \tabularnewline
   Nucleon charge exchange probability & $\pm50\%$ \tabularnewline
   Nucleon absorption probability & $\pm20\%$ \tabularnewline
@@ -78,8 +89,26 @@ the analysis, the fist column is parameter description and the second one is par
 \label{table:XSecParam}
 \end{table}}
 
-Figures \ref{}, ... \ref{} illustrate effect of GENIE parameters on selected escaping signal and background events.
-\newpage
+{\renewcommand{\arraystretch}{2}%
+\begin{table}[th]
+\centering
+\begin{tabular}{ m{10cm} m{2.5cm} }
+  \hline\hline
+  \text{Description} & \text{Uncertainty} \tabularnewline
+  \hline
+  RPA effect in resonance neutrino production & $q^2$ dependent \tabularnewline
+  RPA enhancement effect in CC QE & $q^2$ dependent \tabularnewline
+  RPA suppresion effect in CC QE & $q^2$ dependent \tabularnewline
+  MEC initial state np fraction & 0.7...0.9 \tabularnewline
+  MEC cross section energy dependence & $\pm\frac{1}{1+2.5E_{\nu_\mu}}$ \tabularnewline
+  MEC momentum transfer shape & $q^2$ dependent \tabularnewline
+  \hline\hline
+\end{tabular}
+\caption{RPA and MEC uncertainties used in the analysis.}
+\label{table:RPAMEC}
+\end{table}}
+
+\clearpage
 \begin{figure}[t!]
 \begin{subfigure}[t]{0.5\textwidth}
   \centering
@@ -110,7 +139,239 @@ Figures \ref{}, ... \ref{} illustrate effect of GENIE parameters on selected esc
 \caption{ Systematic effect of MaCCQE uncertainty on FD MC signal and background prediction}
 {"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
 show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in relative manner.}
+show the same shifts in a relative manner.}
 \end{table} }
+
+\newpage
+\begin{figure}[t!]
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_MECEnuShapeNu_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+  \caption{FD MC Background Prediction}
+  \label{fig:bkg_MECEnuShapeNu}
+\end{subfigure}%
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_MECEnuShapeNu_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+  \caption{FD MC Signal Prediction}
+  \label{fig:sig_MECEnuShapeNu}
+\end{subfigure}
+\caption{ Systematic effect of MECEnuShapeNu uncertainty }
+\label{fig:MECEnuShapeNu}
+\end{figure}
+
+{\begin{table}[!th]\centerline {
+ \begin{tabular}{ l | r r r | r r }
+          Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
+       $\nu_{\mu}$ signal &         18 &         18 &         17 &       +1.8 &       -1.4   \\
+             Tot beam bkg &       0.46 &       0.46 &       0.46 &       -0.4 &       +0.0   \\
+                       NC &       0.33 &       0.33 &       0.33 &       -0.1 &       -0.1   \\
+          $\nu_{\mu}$ App &      0.027 &      0.026 &      0.027 &       -1.6 &       +1.6   \\
+             $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
+          $\nu_{\tau}$ CC &      0.056 &      0.056 &      0.057 &       -0.6 &       +1.1   \\
+\end{tabular} }
+\caption{ Systematic effect of MECEnuShape uncertainty on FD MC signal and background prediction}
+{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
+show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
+show the same shifts in a relative manner.}
+\end{table} }
+
+\newpage
+\begin{figure}[t!]
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_MaCCRES_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+  \caption{FD MC Background Prediction}
+  \label{fig:bkg_MaCCRES}
+\end{subfigure}%
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_MaCCRES_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+  \caption{FD MC Signal Prediction}
+  \label{fig:sig_MaCCRES}
+\end{subfigure}
+\caption{ Systematic effect of MaCCRES uncertainty }
+\label{fig:MaCCRES}
+\end{figure}
+
+{\begin{table}[!th]\centerline {
+ \begin{tabular}{ l | r r r | r r }
+          Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
+       $\nu_{\mu}$ signal &         18 &         17 &         19 &       -5.4 &       +8.1   \\
+             Tot beam bkg &       0.46 &       0.45 &       0.48 &       -3.7 &       +4.5   \\
+                       NC &       0.33 &       0.33 &       0.33 &       -0.1 &       -0.1   \\
+          $\nu_{\mu}$ App &      0.027 &      0.024 &      0.031 &      -11.9 &      +13.9   \\
+             $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
+          $\nu_{\tau}$ CC &      0.056 &      0.048 &      0.068 &      -14.1 &      +21.3   \\
+\end{tabular} }
+\caption{ Systematic effect of MaCCRES uncertainty on FD MC signal and background prediction}
+{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
+show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
+show the same shifts in a relative manner.}
+\end{table} }
+
+\newpage
+\begin{figure}[t!]
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_MvCCRES_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+  \caption{FD MC Background Prediction}
+  \label{fig:bkg_MvCCRES}
+\end{subfigure}%
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_MvCCRES_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+  \caption{FD MC Signal Prediction}
+  \label{fig:sig_MvCCRES}
+\end{subfigure}
+\caption{ Systematic effect of MvCCRES uncertainty }
+\label{fig:MvCCRES}
+\end{figure}
+
+{\begin{table}[!th]\centerline {
+ \begin{tabular}{ l | r r r | r r }
+          Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
+       $\nu_{\mu}$ signal &         18 &         17 &         18 &       -3.2 &       +4.4   \\
+             Tot beam bkg &       0.46 &       0.45 &       0.47 &       -2.1 &       +2.3   \\
+                       NC &       0.33 &       0.33 &       0.33 &       -0.1 &       -0.1   \\
+          $\nu_{\mu}$ App &      0.027 &      0.025 &      0.029 &       -6.3 &       +7.6   \\
+             $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
+          $\nu_{\tau}$ CC &      0.056 &      0.052 &      0.062 &       -7.5 &      +10.8   \\
+\end{tabular} }
+\caption{ Systematic effect of MvCCRES uncertainty on FD MC signal and background prediction}
+{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
+show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
+show the same shifts in a relative manner.}
+\end{table} }
+
+\newpage
+\begin{figure}[t!]
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_CCQEPauliSupViaKF_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+  \caption{FD MC Background Prediction}
+  \label{fig:bkg_CCQEPauliSupViaKF}
+\end{subfigure}%
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_CCQEPauliSupViaKF_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+  \caption{FD MC Signal Prediction}
+  \label{fig:sig_CCQEPauliSupViaKF}
+\end{subfigure}
+\caption{ Systematic effect of CCQEPauliSupViaKF uncertainty }
+\label{fig:CCQEPauliSupViaKF}
+\end{figure}
+
+{\begin{table}[!th]\centerline {
+ \begin{tabular}{ l | r r r | r r }
+          Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
+       $\nu_{\mu}$ signal &         18 &         17 &         18 &       -1.2 &       +1.3   \\
+             Tot beam bkg &       0.46 &       0.46 &       0.46 &       -0.2 &       -0.2   \\
+                       NC &       0.33 &       0.33 &       0.33 &       -0.0 &       -0.0   \\
+          $\nu_{\mu}$ App &      0.027 &      0.027 &      0.027 &       -0.7 &       -0.7   \\
+             $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
+          $\nu_{\tau}$ CC &      0.056 &      0.056 &      0.056 &       +0.0 &       -0.0   \\
+\end{tabular} }
+\caption{ Systematic effect of CCQEPauliSupViaKF uncertainty on FD MC signal and background prediction}
+{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
+show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
+show the same shifts in a relative manner.}
+\end{table} }
+
+\newpage
+\begin{figure}[t!]
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_DISvnCC1pi_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+  \caption{FD MC Background Prediction}
+  \label{fig:bkg_DISvnCC1pi}
+\end{subfigure}%
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_DISvnCC1pi_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+  \caption{FD MC Signal Prediction}
+  \label{fig:sig_DISvnCC1pi}
+\end{subfigure}
+\caption{ Systematic effect of DISvnCC1pi uncertainty }
+\label{fig:DISvnCC1pi}
+\end{figure}
+
+{\begin{table}[!th]\centerline {
+ \begin{tabular}{ l | r r r | r r }
+          Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
+       $\nu_{\mu}$ signal &         18 &         17 &         18 &       -1.2 &       +1.3   \\
+             Tot beam bkg &       0.46 &       0.46 &       0.46 &       -0.2 &       -0.2   \\
+                       NC &       0.33 &       0.33 &       0.33 &       -0.0 &       -0.0   \\
+          $\nu_{\mu}$ App &      0.027 &      0.027 &      0.027 &       -0.7 &       -0.7   \\
+             $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
+          $\nu_{\tau}$ CC &      0.056 &      0.056 &      0.056 &       +0.0 &       -0.0   \\
+\end{tabular} }
+\caption{ Systematic effect of DISvnCC1pi uncertainty on FD MC signal and background prediction}
+{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
+show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
+show the same shifts in a relative manner.}
+\end{table} }
+
+\section{Flux Uncertainty}
+In order to estimate neutrino flux through the Near and the Far detectors the NuMI beam have to be simulated from the hit proton
+hits of the target through pions, muons and kaons decay in the decay pipe. And systematic uncertainties of all these processes
+have to be evaluated.
+
+Flux uncertainties could be separated into two categories 
+\begin{itemize}
+\item \textbf{Hadron production}. Uncertainties on cross section of proton interaction in the NuMI target. 
+\item \textbf{Beam transport}. Uncertainties on target facility components:
+\begin{itemize}
+	\item Horn current, 5\% uncertainty
+	\item Horn 1 and Horn 2 positions in both transverse dimensions,  $\pm2$ mm uncertainties
+	\item Beam position on target, $\pm0.5$ mm uncertainty
+        \item Beam spot size on target, $\pm0.2$ mm uncertainty
+	\item Target posistion in longitudinal direction, $\pm2$ mm uncertainty
+\end{itemize} 
+\end{itemize}
+
+It turns out that flux uncertainties are heavily correlated accros almost all neutrino true energy bins. To correctly treat this,
+2000 predictions were generates in different flux universes where parameters described above have different values within their
+uncertainty limits, \cite{fluxPCA_technote}. Correlation matrix is constructed based on flux histograms from different universes 
+and after that a Principal Component Analysis (PCA) is carried out to disintangle the correlations. It is shown in 
+\cite{fluxPCA_technote} that only first 5 or 8 PCA components are enough to explain most of the information hidden in correlation 
+matrix i.e. first several PCA components describes all flux uncertainties. 
+
+As mentioned previously two detectors and extrapolation procedure help to reduce flux systematics significantly, in figure 
+\ref{fig:ppfxhadpbeampc02} shown 3 PCA component which has the biggest impact on the Far detector prediction.
+
+\newpage
+\begin{figure}[t!]
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_ppfxhadpbeampc02_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+  \caption{FD MC Background Prediction}
+  \label{fig:bkg_ppfxhadpbeampc02}
+\end{subfigure}%
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_ppfxhadpbeampc02_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+  \caption{FD MC Signal Prediction}
+  \label{fig:sig_ppfxhadpbeampc02}
+\end{subfigure}
+\caption{ Systematic effect of 3rd flux PCA component.}
+\label{fig:ppfxhadpbeampc02}
+\end{figure}
+
+{\begin{table}[!th]\centerline {
+ \begin{tabular}{ l | r r r | r r }
+          Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
+       $\nu_{\mu}$ signal &         18 &         17 &         18 &       -0.7 &       +0.7   \\
+             Tot beam bkg &       0.46 &       0.47 &       0.46 &       +1.2 &       -1.3   \\
+                       NC &       0.33 &       0.33 &       0.32 &       +1.3 &       -1.4   \\
+          $\nu_{\mu}$ App &      0.027 &      0.027 &      0.027 &       -0.5 &       +0.5   \\
+             $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
+          $\nu_{\tau}$ CC &      0.056 &      0.057 &      0.055 &       +1.4 &       -1.6   \\
+\end{tabular} }
+\caption{ Systematic effect of 3rd flux PCA component on FD MC signal and background prediction}
+{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
+show number selected events when 3rd flux PCA component shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
+show the same shifts in a relative manner.}
+\end{table} } 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
