@@ -14,7 +14,7 @@ reconstruction process chain is summarized as follows:
 \item Slicing. The full 550$\mu s$ readout window contains hits which are associated with
 neutrino interaction, cosmis rays activity and noise. The hits need to be separated into
 different groups which ideally correspond to different physical processes.
-\item Tracking.  Each slice is processed by a tracking algorithm to detrmine 3-dimensional particle
+\item Tracking.  Each slice is processed by a tracking algorithm to determine the 3-dimensional particle
 trajectories.
 \item Calibration. Each channel in every slice is calibrated to convert the magnitude of each
 measured signal into a channel energy.
@@ -26,20 +26,20 @@ hadronic energy in order to determine neutrino total energy.
 \end{itemize}
 The analysis done here is based on two different data samples - contained and uncontained muons -
 that were selected and processed by different reconstruction algorithms. Muon identification and energy
-estimation algorithms used in the contained sample are explaned here, and algorithms used in the uncontained
+estimation algorithms used in the contained sample are explained here, and algorithms used in the uncontained
 sample are explained later.
 
 \section{Slicing}
 As can be seen on the figure \ref{fig:EVD_full} data recorded for one NuMI spill contains
-multple uncorrelated activities. Even though the length of NuMI spill is 10$\mu s$ in the middle
+multiple uncorrelated activities. Even though the length of NuMI spill is 10$\mu s$ in the middle
 of 550$\mu s$ readout window, the slicer algorithm is applied to all the hits in the window to protect 
 against small possible drift of NuMI spills as well as to make slices for cosmic rays for background
 estimation.
 
 The task of the slicer is to group hits, which casually related to each other, in slices. The slicer 
-is based on DBSCAN algorithm \cite{DBSCAN}, one of the most common clustering algorithms, and checks 
+is based on the DBSCAN algorithm \cite{DBSCAN}, one of the most common clustering algorithms, and checks 
 every pair of hits to determine how far are they from each other in space and time. The distance 
-function is not exactly space-time interval but rather modified 
+function is not exactly a space-time interval but rather modified 
 \be
 d = \Big(\frac{\Delta t - \frac{\Delta r}{c}}{T_{res}}\Big)^2 + \Big(\frac{\Delta z}{D_z}\Big) + 
 \Big(\frac{\Delta v}{D_v}\Big),
@@ -47,10 +47,10 @@ d = \Big(\frac{\Delta t - \frac{\Delta r}{c}}{T_{res}}\Big)^2 + \Big(\frac{\Delt
 where $c$ is the speed of light, $\Delta t$ and $\Delta r$ are time and space difference between two 
 hits respectively, $T_{res}$ is the timing resolution, $\Delta z$ is the distance between the hits
 along the z direction, $\Delta v$ is the distance between hits in x or y direction. As soon as the 
-function returns value which is lower than predefined treshold, two hits are put together in one slice.
+function returns a value which is lower than a predefined treshold, two hits are put together in one slice.
 The first term prefers hits which lie close to a light cone, in other words it is assumed that all
 the particles move with the speed of light\footnote{Or energy of the particles is much large than their 
-masses.} The second and the third terms penalize hits which are far from each other in space. These
+masses.}. The second and the third terms penalize hits which are far from each other in space. These
 terms help to remove noise hits as they are randomly distributed in space and time, and thefore, they 
 could be far from the main activity. After all corellated activities have been accounting for, and 
 slices are created, the remaining hits are put into one additional noise slice.
@@ -68,27 +68,27 @@ usually not included in the corresponding slice.
 \end{figure}
 
 \section{Tracking}
-As all the activities are separated into corresponding slices the next step in reconstruction chain is 
-to find sets of hits which are attributed to the different particles produced in the neutrino interaction 
+As all the activities are separated into corresponding slices the next step in the reconstruction chain is 
+to find the sets of hits which are attributed to the different particles produced in the neutrino interaction 
 or cosmic activity. Cosmic ray activity is usually consistent with only one particle, while neutrino 
 interaction measurements are usually consistent with multiple particles.
 
-NOvA tracking algorithm is based on Kalman filtering \cite{Kalman} and its implementation could be found 
-in \cite{Nick}. In short, algorithm is run on two views (X and Y) separately and merge 2D tracks into
-3D ones. To construct a 2D track two hits with separation smaller than three planes are choosen as track 
-seeds at most downstream location\footnote{Downstream in a sence of incoming neutrino from Fermilab}. 
-Algorithm is working upstream and added hits are fit with piecewise linear segments. To add hit or not 
-is decided on the basis of how much is the $\chi^2$ is changed for the hit; if less than eight units 
-then hit is added. Fitting track with linear segments naturally helps to follow particles trajectory 
-with multiple scatterings. A track is considered to be reconstructed if algorithm travels more than 3 planes
+The NOvA tracking algorithm is based on Kalman filtering \cite{Kalman} and its implementation could be found 
+in \cite{Nick}. In short, the algorithm is run on two views (X and Y) separately and merges 2D tracks into
+3D ones. To construct a 2D track two hits with separation smaller than three planes are chosen as track 
+seeds at the most downstream location\footnote{Downstream in the sense of the incoming neutrino from Fermilab}. 
+The algorithm is working upstream and the added hits are fit with piecewise linear segments. Adding a hit or not 
+is decided on the basis of how much the $\chi^2$ is changed by the hit; if it less than eight units 
+then the hit is added. Fitting the track with linear segments naturally helps to follow particles trajectory 
+with multiple scatterings. A track is considered to be reconstructed if the algorithm travels more than 3 planes
 and no hits are added, and the algorithm is run repetitively until no more tracks are reconstructed. 
 The majority of the particles produced by neutrino interactions travel dowstream, and thus the longest 
 track, often the muon, is reconstructed first.
 
 After all 2D tracks are found in both views they need to be merged into 3D tracks. Tracks are merged based on
 a geometric algorithm that considers the degree of overlap of disparate tracks, and the distances between
-their start and end points. For each track in X view with Z coordinates $(z_{x1}, z_{x2})$ and track in Y view with
-Z coordinates $(z_{y1}, z_{y2})$
+their start and end points. For each track in X view with Z coordinates $(z_{x1}, z_{x2})$ and each track in 
+Y view with Z coordinates $(z_{y1}, z_{y2})$ a score is calculated
 \be
 \text{score} = \frac{|z_{x1}-z_{y1}| + |z_{x2}-z_{y2}|}{\min(z_{x2},z_{y2}) - \max(z_{x1},z_{y1})}.
 \ee
@@ -102,29 +102,28 @@ process should be carried out. Calibration consists of two parts - attenuation a
 Both parts would be briefly explained in this section.
 
 \subsection{Attenuation correction}
-After ADC signal was produced it has to be decided by what factor signal should be multiplied since hit at
+After an ADC signal is produced it has to be decided by what factor the signal should be multiplied since a hit at
 the far end of the cell will result in a smaller signal as compared to a signal from a hit in the middle. 
-For the obvious reasons hits produced by beam neutrino are no appropriate for the calibration. However,
+For obvious reasons, hits produced by a beam neutrino are not appropriate as a source for the calibration. However,
 the abundance of cosmic rays with well understood properties helps with the procedure. Among all reconstructed 
-cosmic tracks those are choosen which start and end on detector edges, this criterion is needed to make sure
-that tracks are not stopped inside the detector. Additional requirement is that tracks should cross more than
+cosmic tracks those are chosen which start and end on detector edges, this criterion is needed to make sure
+that tracks are not stopped inside the detector. An additional requirement is the that tracks should cross more than
 ten planes, thus allowing an accurate estimation of muon path in every cell it crosses. Finally, only those 
-hits on tracks are used for callibration which satisfy tri-cell criterion - a hit for callibration should
+hits on tracks are used for callibration which satisfy a tri-cell criterion - a hit for callibration should
 have both adjacent cells to be hit, see figure \ref{fig:tri-cell}. This conditions lead to a good estimation 
-of muon trajectory and hence path length within each cell\footnote{Only for cells which satisfies tri-cell 
-criterion.}.
+of muon trajectory and hence path length within each cell.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/tri-cell.png}
-\caption{Tri-cell creterion.}
+\caption{Tri-cell criterion.}
 {The cell hit is used in calibration only if adjacent cells in the same view are also hit.}
 \label{fig:tri-cell}
 \end{figure}
 
-The ADC signal is scaled to PE value - estimation for maximal value of electronic signal based on 4 recorded 
+The ADC signal is scaled to a photoelectric (PE) value - estimation for minimal value of electronic signal based on 4 recorded 
 ADCs, see chapter \ref{simulation_chapter} for more details. After that for each reference hit, the path length 
-and position within the cell ($W$) is estimated and 2D histogram - ratio of PE and path length versus position 
-within the cell - is made. Mean ration of PE and path length as function of $W$ is fit by the sum of two exponents
+and position within the cell ($W$) is estimated and a 2D histogram - ratio of PE and path length versus position 
+within the cell - is made. A mean ratio of PE and path length as function of $W$ is fit by the sum of two exponents
 which represent signal trip in two direction along the wave length shifting fiber.
 \be
 y(W) = C + A\Big(e^{\frac{W}{X}} + e^{-\frac{L+W}{X}}\Big),
@@ -152,19 +151,20 @@ examples of the fit for far and near detectors.
 \label{fig:att_fit}
 \end{figure}
 
-For analysis, the $W$ of every hit is estimated and PE value of the hit is divided by fit at this posotion to 
-get a corrected PE value of the hit. Since attenuation curve determines cell responce to cosmic ray muons, thus 
-corrected PE value of the hit shows the relative signal to the cosmic muons. At this point, attenuation is taken
-into account but units of corrected PE signal is still arbitrary and absolute energy calibration is still needed. 
+For analysis, the $W$ of every hit is estimated and a PE value of the hit is divided by fit at this position to 
+get a corrected PE value of the hit. Since attenuation curve is determined cell response to cosmic ray muons, the 
+corrected PE value of the hit shows the relative signal to the cosmic muons. At this point, the attenuation is taken
+into account but the units of corrected PE signal are still arbitrary and the absolute energy calibration is still 
+needed. 
 
 \subsection{Absolute energy calibration}
-As in the previous step cosmic muons is used at this step too, but rather using middle part of cosmic muon tracks
-here is used an end of the track. Thus, tracks which are used for calibration should stop inside the detector. 
+As in the previous step cosmic muons are used at this step too, but now hits a fixed distance from the end of the 
+cosmic muon tracks are used. Thus, tracks which are used for calibration should stop inside the detector. 
 The reason for using tracks end is that according to Bethe-Bloch formula \cite{rpf} muon energy deposition per 
 unit length ($\frac{dE}{dx}$) has a well understood minimum near the track end. The minimum deposition is typically
-span several meters from the end of the track for different materials and region from 1 meter to 2 meters from
+span several meters from the end of the track for different materials and the region from 1 meter to 2 meters from
 the end of the track is used in NOvA absolute energy calibration procedure. Figure \ref{fig:dEdx_vs_length} illustrates
-calibrated muon $\frac{dE}{dx}$ as a function of distance from track end measured in NOvA.
+the calibrated muon $\frac{dE}{dx}$ as a function of distance from track end measured in NOvA.
 \begin{figure}[t]
 \includegraphics[width=1.0\textwidth]{figures/dEdx_vs_length.png}
 \caption{Muon $\frac{dE}{dx}$ per unit length in NOvA.}
@@ -173,9 +173,9 @@ calibrated muon $\frac{dE}{dx}$ as a function of distance from track end measure
 \end{figure}
 
 \section{Muon Identification}
-Neutrino disappearance analysis is heavily relies on correct identification of muon among the byproducts of 
-neutrino interaction with detector material. Existence of the muon in the event suggests $\nu_\mu$ CC interaction
-and event is passed downstream for further analysis. Currently, NOvA uses two different algorithms to identify 
+The neutrino disappearance analysis relies heavily on correct identification of the muon among the byproducts of 
+the neutrino interaction with detector material. Existence of the muon in the event suggests that $\nu_\mu$ CC interaction
+happened and the event is passed downstream for further analysis. Currently, NOvA uses two different algorithms to identify 
 muons: the k-Nearest Neighbor (kNN) clustering algorithm, and a convolutional neural network. Extensive analysis 
 has shown that using both algorithms gives better results than either of them individually.
 
@@ -183,27 +183,27 @@ has shown that using both algorithms gives better results than either of them in
 The Reconstructed Muon Identification (ReMID) algorithm uses four characteristics of a each reconstructed track
 to identify muons. kNN stores training examples in the 4-dimensional (number of dimensions
 is equal to number of features extracted from the track) space with additional label specifying the class examples
-belong to - muon or non-muon. These training examples were taken from NOvA simulation. Four features from the 
+belong to a muon or non-muon. These training examples were taken from NOvA simulation. Four features from the 
 test track are represent a point in this 4-dimensional space and in order to determine the probability the point 
 corresponds to a muon track kNN finds its $k$ nearest neighbors\footnote{Regular $L^2$ metric in $R^4$ is used;
 $||\vec{r}_1 - \vec{r}_2||^2 = (x_1-x_2)^2 + (y_1-y_2)^2 + (z_1-z_2)^2 + (w_1-w_2)^2$} and calculates the 
-fraction of muon nieghbors. This fraction is output of kNN algorithm. Number $k$ is adjustable hyperparameter 
+fraction of muon neighbors. This fraction is output of kNN algorithm. Number $k$ is adjustable hyperparameter 
 and was choosen to be equal 80 in NOvA. 
 
-Four features which exctracted from the track are track length, $\frac{dE}{dx}$ log-likelihood, scattering 
-log-likelihood and non-hadronic plane fraction. $\frac{dE}{dx}$ and scattering log-likelihood are determined with 
-the help of probability distributions that shows particle probability to deposit some energy and scatter by some 
-angle at some distance from the end of the track, and these distributions are derived from simulation, for more 
-information see chapter 6 of \cite{Nick}. The last feature is a ratio of number of planes in the track which are 
-free of hadronic shower contamination and total number of planes in the track. 
+Four features which exctracted from the track are track length, $\frac{dE}{dx}$ and scattering 
+log-likelihood for muon hypothesis and non-hadronic plane fraction. $\frac{dE}{dx}$ and scattering log-likelihood 
+are determined with the help of probability distributions that shows particle probability to deposit some energy 
+and scatter by some angle at some distance from the end of the track, and these distributions are derived from 
+simulation, for more information see chapter 6 of \cite{Nick}. The last feature is a ratio of number of planes in 
+the track which are free of hadronic shower contamination and total number of planes in the track. 
 
 \subsection{CVN}
 Convolutional Visual Networks (CVNs) are neutral networks that excel in image classification, and are used in
 NOvA to identify muons. The full implementation of the CVN is described in \cite{CVN}, and the key points are
 described here.
 
-In its core CVN is a regular neural network but with tens of hidden layers and tens of millions of weights. 
-On the higher level though, CVN learns features itself and a human is no longer required to for this work.
+In its core, CVN is a regular neural network but with tens of hidden layers and tens of millions of weights. 
+On the higher level though, CVN learns features itself and a human is no longer required for this work.
 An input to CVN is two pictures 100 by 80 pixels around neutrino activity in X and Y views. Similar to ReMID, labels 
 for the training pictures are taken from the simulation. However, the biggest difference is that while ReMID checks
 one track at a time and does the muon/non-muon classification for track, CVN analyzes the whole activity in the 
@@ -234,7 +234,7 @@ in muon/QE, muon/RES, muon/DIS and muon/MEC classes should be bigger than some t
 The final step in the reconstruction chain is estimating the total neutrino energy. The probability that one
 flavor of neutrino with a given energy will oscillate to other flavors depends on its energy, thus more
 precise measurements of energy would yield better measurements of $\theta_{23}$ and $\Delta m_{32}^2$.
-Simple approach like sum of all the calibrated energy and additional accounting for dead 
+A simple approach like summing all of the calibrated energy and additional accounting for dead 
 material\footnote{Dead material consists of any detector parts which are not producing light i.e., plastic, air 
 bubble, glue and possible gaps between planes.} is not as good as the following one. In NOvA, energy estimation 
 process is divided into two similar parts; energy estimation of the most muon like track and the rest of the 
@@ -256,7 +256,7 @@ lines represent joint points and red line is a fit. Stiches, offsets and slopes 
 \label{fig:mue_fit}
 \end{figure}
 
-The second term in \ref{Enu} is the hadronic energy, and is estimated differently. Calibrated energy of all hits 
+The second term in eq \ref{Enu} is the hadronic energy, and is estimated differently. Calibrated energy of all hits 
 which are not on muon track is summed together with additional hadronic energy which overlaps with muon track. 
 The algorithm that determines how much energy overlaps with muon track is described in \cite{Kanika}. The hadronic
 energy is challenging to model correctly, so instead of true hadronic energy the fit uses true neutrino energy minus
