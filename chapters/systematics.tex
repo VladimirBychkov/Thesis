@@ -463,75 +463,195 @@ show number selected events when muon track length shifted by $1\sigma$ up or do
 show the same shifts in a relative manner.}
 \end{table} }
 
-\section{Hadronic Energy Uncertainty}
-Hadronic energy uncertainty is 5\% both absolute and relative.
+%\section{Hadronic Energy Uncertainty}
+%Hadronic energy uncertainty is 5\% both absolute and relative.
+%
+%\clearpage
+%\begin{figure}[t!]
+%\begin{subfigure}[t]{0.5\textwidth}
+%  \centering
+%  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_AbsHadEScale2017_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+%  \caption{FD MC Background Prediction}
+%  \label{fig:bkg_AbsHadEScale2017}
+%\end{subfigure}%
+%\begin{subfigure}[t]{0.5\textwidth}
+%  \centering
+%  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_AbsHadEScale2017_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+%  \caption{FD MC Signal Prediction}
+%  \label{fig:sig_AbsHadEScale2017}
+%\end{subfigure}
+%\caption{ Systematic effect of absolute hadronic energy uncertainty }
+%\label{fig:AbsHadEScale2017}
+%\end{figure}
+%
+%{\begin{table}[!th]\centerline {
+% \begin{tabular}{ l | r r r | r r }
+%          Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
+%       $\nu_{\mu}$ signal &         18 &         19 &         17 &       +5.8 &       -5.7   \\
+%             Tot beam bkg &       0.46 &       0.47 &       0.46 &       +1.5 &       -1.4   \\
+%                       NC &       0.33 &       0.34 &       0.32 &       +1.8 &       -1.4   \\
+%          $\nu_{\mu}$ App &      0.027 &      0.027 &      0.027 &       +0.4 &       -1.0   \\
+%             $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
+%          $\nu_{\tau}$ CC &      0.056 &      0.057 &      0.055 &       +1.5 &       -1.8   \\
+%\end{tabular} }
+%\caption{ Systematic effect of absolute hadronic energy uncertainty on FD MC signal and background prediction}
+%{"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
+%show number selected events when hadronic energy shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
+%show the same shifts in a relative manner.}
+%\end{table} }
+%
+%\newpage
+%\begin{figure}[t!]
+%\begin{subfigure}[t]{0.5\textwidth}
+%  \centering
+%  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_RelHadEScale2017_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+%  \caption{FD MC Background Prediction}
+%  \label{fig:bkg_RelHadEScale2017}
+%\end{subfigure}%
+%\begin{subfigure}[t]{0.5\textwidth}
+%  \centering
+%  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_RelHadEScale2017_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+%  \caption{FD MC Signal Prediction}
+%  \label{fig:sig_RelHadEScale2017}
+%\end{subfigure}
+%\caption{ Systematic effect of relative hadronic energy uncertainty }
+%\label{fig:RelHadEScale2017}
+%\end{figure}
+%
+%{\begin{table}[!th]\centerline {
+% \begin{tabular}{ l | r r r | r r }
+%          Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
+%       $\nu_{\mu}$ signal &         18 &         18 &         17 &       +1.3 &       -1.4   \\
+%             Tot beam bkg &       0.46 &       0.46 &       0.47 &       -0.9 &       +0.6   \\
+%                       NC &       0.33 &       0.33 &       0.33 &       -0.8 &       +0.7   \\
+%          $\nu_{\mu}$ App &      0.027 &      0.027 &      0.027 &       -0.5 &       +0.1   \\
+%             $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
+%          $\nu_{\tau}$ CC &      0.056 &      0.056 &      0.057 &       -0.9 &       +0.8   \\
+%\end{tabular} }
+%\caption{ Systematic effect of relative hadronic energy uncertainty on FD MC signal and background prediction}
+%{"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
+%show number selected events when hadronic energy shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
+%show the same shifts in a relative manner.}
+%\end{table} }
+
+\section{Calorimetric Energy Uncertainties}
+Several studies of post calibration calorimetric response of the detectors show that the protons in the Near detector
+have the biggest discrepancy between data and simulations \cite{ecalib_talk}. It is found that calorimetric detector
+response in data is 5\% lower than the simulation and this desrepancy is interpreted as a 5\% absolute calibration
+uncertainty. In order to evaluate an impact of this uncertainty a new simulation is generated and a different calibration
+is applied before the reconstruction step. As result, every slice has the same number of hits but their energies are 
+shifted up or down. Figure \ref{fig:Calibration} illustrates the impact of absolute calibration uncertainty.
+
+While comparison of simulated muons to data can be done in both detectors (simulation/data comparison in the Near detector 
+and simulation/cosmic comparison in the Far detector) however for protons it could be done only in the Near detector.  
+Thus, the same 5\% effect is assumed as the worst case for a relative effect. Figure \ref{fig:RelativeCalib} illustrates 
+impact of relative calibration uncertainty on selected escaping sample at the Far detector. 
+
+A detector cell has a different response for energy deposition at different distances to the readout electronics. 
+A comparison of the reconstructed and true energy of simulated cosmic hits as function of their position along the cell 
+is performed in \cite{shape_talk} and the discrepancy is interpreted as calibration 'shape' uncertainty. The effect of this 
+systematic is illustrated in figure \ref{fig:CalibShape}.  
 
 \clearpage
 \begin{figure}[t!]
 \begin{subfigure}[t]{0.5\textwidth}
   \centering
-  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_AbsHadEScale2017_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_Calibration_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
   \caption{FD MC Background Prediction}
-  \label{fig:bkg_AbsHadEScale2017}
+  \label{fig:bkg_Calibration}
 \end{subfigure}%
 \begin{subfigure}[t]{0.5\textwidth}
   \centering
-  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_AbsHadEScale2017_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_Calibration_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
   \caption{FD MC Signal Prediction}
-  \label{fig:sig_AbsHadEScale2017}
+  \label{fig:sig_Calibration}
 \end{subfigure}
-\caption{ Systematic effect of absolute hadronic energy uncertainty }
-\label{fig:AbsHadEScale2017}
+\caption{ Systematic effect of absolute calibration uncertainty }
+\label{fig:Calibration}
 \end{figure}
 
 {\begin{table}[!th]\centerline {
  \begin{tabular}{ l | r r r | r r }
           Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
-       $\nu_{\mu}$ signal &         18 &         19 &         17 &       +5.8 &       -5.7   \\
-             Tot beam bkg &       0.46 &       0.47 &       0.46 &       +1.5 &       -1.4   \\
-                       NC &       0.33 &       0.34 &       0.32 &       +1.8 &       -1.4   \\
-          $\nu_{\mu}$ App &      0.027 &      0.027 &      0.027 &       +0.4 &       -1.0   \\
+       $\nu_{\mu}$ signal &         18 &         19 &         16 &       +8.5 &      -10.1   \\
+             Tot beam bkg &       0.46 &       0.54 &       0.39 &      +17.4 &      -15.6   \\
+                       NC &       0.33 &       0.41 &       0.29 &      +23.5 &      -13.2   \\
+          $\nu_{\mu}$ App &      0.027 &      0.026 &      0.023 &       -2.0 &      -12.9   \\
              $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
-          $\nu_{\tau}$ CC &      0.056 &      0.057 &      0.055 &       +1.5 &       -1.8   \\
+          $\nu_{\tau}$ CC &      0.056 &      0.057 &      0.048 &       +2.1 &      -14.9   \\
 \end{tabular} }
-\caption{ Systematic effect of absolute hadronic energy uncertainty on FD MC signal and background prediction}
+\caption{ Systematic effect of absolute calibration uncertainty on FD MC signal and background prediction}
 {"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
-show number selected events when hadronic energy shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+show number selected events when calibration shifted sample is used, columns "Diff ($\pm$)" show the same shifts 
+in a relative manner.}
 \end{table} }
 
 \newpage
 \begin{figure}[t!]
 \begin{subfigure}[t]{0.5\textwidth}
   \centering
-  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_RelHadEScale2017_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_RelativeCalib_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
   \caption{FD MC Background Prediction}
-  \label{fig:bkg_RelHadEScale2017}
+  \label{fig:bkg_RelativeCalib}
 \end{subfigure}%
 \begin{subfigure}[t]{0.5\textwidth}
   \centering
-  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_RelHadEScale2017_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_RelativeCalib_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
   \caption{FD MC Signal Prediction}
-  \label{fig:sig_RelHadEScale2017}
+  \label{fig:sig_RelativeCalib}
 \end{subfigure}
-\caption{ Systematic effect of relative hadronic energy uncertainty }
-\label{fig:RelHadEScale2017}
+\caption{ Systematic effect of relative muon energy uncertainty }
+\label{fig:RelativeCalib}
 \end{figure}
 
 {\begin{table}[!th]\centerline {
  \begin{tabular}{ l | r r r | r r }
           Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
-       $\nu_{\mu}$ signal &         18 &         18 &         17 &       +1.3 &       -1.4   \\
-             Tot beam bkg &       0.46 &       0.46 &       0.47 &       -0.9 &       +0.6   \\
-                       NC &       0.33 &       0.33 &       0.33 &       -0.8 &       +0.7   \\
-          $\nu_{\mu}$ App &      0.027 &      0.027 &      0.027 &       -0.5 &       +0.1   \\
+       $\nu_{\mu}$ signal &         18 &         20 &         15 &      +12.2 &      -13.5   \\
+             Tot beam bkg &       0.46 &       0.54 &       0.39 &      +17.4 &      -15.3   \\
+                       NC &       0.33 &       0.41 &       0.29 &      +23.5 &      -13.0   \\
+          $\nu_{\mu}$ App &      0.027 &      0.026 &      0.023 &       -2.0 &      -12.8   \\
              $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
-          $\nu_{\tau}$ CC &      0.056 &      0.056 &      0.057 &       -0.9 &       +0.8   \\
+          $\nu_{\tau}$ CC &      0.056 &      0.057 &      0.048 &       +2.1 &      -14.3   \\
 \end{tabular} }
-\caption{ Systematic effect of relative hadronic energy uncertainty on FD MC signal and background prediction}
+\caption{ Systematic effect of relative calibration uncertainty on FD MC signal and background prediction}
 {"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
-show number selected events when hadronic energy shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+show number selected events when calibration shifted sample is used, columns "Diff ($\pm$)" show the same shifts
+in a relative manner.}
+\end{table} }
+
+\newpage
+\begin{figure}[t!]
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_CalibShape_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+  \caption{FD MC Background Prediction}
+  \label{fig:bkg_CalibShape}
+\end{subfigure}%
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_CalibShape_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+  \caption{FD MC Signal Prediction}
+  \label{fig:sig_CalibShape}
+\end{subfigure}
+\caption{ Systematic effect of 'shape' calibration uncertainty }
+\label{fig:CalibShape}
+\end{figure}
+
+{\begin{table}[!th]\centerline {
+ \begin{tabular}{ l | r r r | r r }
+          Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
+  $\nu_{\mu}$ signal &     17.524 &     15.811 &         -- &       -9.8 &         -- \\
+        Tot beam bkg &      0.463 &      0.428 &         -- &       -7.5 &         -- \\
+        $\nu_{e}$ CC &      0.051 &      0.040 &         -- &      -20.2 &         -- \\
+                  NC &      0.329 &      0.315 &         -- &       -4.2 &         -- \\
+     $\nu_{\mu} $App &      0.027 &      0.023 &         -- &      -14.2 &         -- \\
+     $\nu_{\tau}$ CC &      0.056 &      0.049 &         -- &      -12.5 &         -- \\
+\end{tabular} }
+\caption{ Systematic effect of 'shape' calibration uncertainty on FD MC signal and background prediction}
+{"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
+show number selected events when calibration shifted sample is used, columns "Diff ($\pm$)" show the same shifts
+in a relative manner.}
 \end{table} }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
