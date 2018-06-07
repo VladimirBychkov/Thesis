@@ -7,31 +7,31 @@
 
 This chapter discusses the energy estimation for the selected events with selection
 criteria developed in previous chapter. How energy is measured for the contained 
-sample one can refer section \ref{energy_est_cont} of event reconstruction chapter.
-For the escaping events, energy estimation algorithm is discussed in this chapter.
+sample one can refer to section \ref{energy_est_cont} of event reconstruction chapter.
+For the escaping events, the energy estimation algorithm is discussed in this chapter.
 
 \section{Different Approaches}
-Similar to energy estimation for contained sample events, escaped event is divided
+Similar to energy estimation for contained sample events, the escaped event is divided
 into two parts: muon track (track with the highest ReMId score) and hadronic cluster.
 Hadronic cluster is the set of all hits in the slice with removed hits on primary 
 track. Preselection cut, which keeps hudronic cluster to at least 3 cells from
 the edge of the detector, makes sure that all the activity associated with hadrons is
 contained. Thus, hadronic energy of the selected escaping event can be estimated
-with the help of the same algorithm as for contained event, but other approach is needed
+with the help of the same algorithm as for contained event, but another approach is needed
 for the muon track.
 
-Following subsections briefly describe several approaches taken in attempt to reconstruct
-neutrino energy by using either analytic expression for the neutrino energy or a 
+The following subsections briefly describe several approaches taken in attempt to reconstruct
+neutrino energy by using either an analytic expression for the neutrino energy or a 
 lookup table.
 
 \subsection{Quasi-Elastic Formula}
-Interaction which constitute a significant fraction of the $\nu_\mu$ CC interactions 
-in NOvA is QE interaction. This interaction allows to use an analytic expression for
-neutrino energy which is written in terms of obervable variables. For escaping events
+Interactions which constitute a significant fraction of the $\nu_\mu$ CC interactions 
+in NOvA are QE interactions, for these interactions an analytic expression for
+neutrino energy, which is written in terms of obervable variables can be used. For escaping events
 observable quantaties are hadronic energy and the primary track angle\footnote{Angle
 between muon track and incoming neutrino.}. 
 
-Well known quasi-elastic formula for neutrino energy reconstruction in terms of muon
+The well known quasi-elastic formula for neutrino energy reconstruction in terms of muon
 energy $E_\mu$ and scattering angle %\theta%
 \be
 E_{\nu} = \frac{E_\mu m_N - \frac{m_\mu^2}{2}}{m_N - E_\mu + p_\mu\cos\theta}
@@ -80,7 +80,7 @@ this energy estimator for escaping events.
 Approaches described in the previous section while being simple and easy interpretable do
 not provide good enough improvement in experiment sensitivity. The natural next step in
 searching for a good energy estimator for escaping events is to try different machine 
-learning regression algorithms such as artificial neural network, k Nearest Neighbours and
+learning regression algorithms such as an artificial neural network, k Nearest Neighbours and
 decision trees. All these algorithms are aplicable for regression problem and all of them 
 were examined with the same set of input variables.
 
@@ -143,14 +143,14 @@ to be more promising. The next several paragraph briefly explain how BDT work an
 hyperparameters are chosen for muon energy estimator.
 
 Regression decision tree is a tree-like graph where data flow from root to leaves through 
-several branching points. Root and branching points corresponds to questions and if data 
+several branching points. Root and branching points correspond to questions and if data 
 satisfies the question it propogates through one branch, if not then it propagates through
 another branch. During the training process tree learns its structure and populates leaves 
 with examples from training sample. When a new data point is fed into the tree it propagates
-through the tree following the questions in branching points and finally reaches one of the leaf. 
+through the tree following the questions in branching points and finally reaches one of the leaves. 
 Then regression output of the tree is an average over all training examples in the leaf. 
 
-Unfortunately, decision tree shows worse performance on average compare to other algorithms 
+Unfortunately, the decision tree shows worse performance on average compare to other algorithms 
 and tree structure is unstable on training data meaning that small changes leads to drastically 
 effect on tree structure. Nevertheless, performance could be improved via ensemble method 
 where many different trees are fit and predictions are aggregated across the trees. Ensemble 
@@ -164,7 +164,7 @@ E_{muon}^N(\vec{x}, \vec{\beta}, \vec{\alpha}) = \sum_{n=0}^N \beta_n f(\vec{x},
 \ee
 where $\vec{x}$ is a input vector, $\vec{\beta}$ are weights for different trees and $\vec{\alpha}$
 are parameters of the trees. Boosting is a iterative process where each subsequent tree 
-$f(\vec{x}, \alpha_{N+1})$ learn in a way to minimize a loss function\footnote{Huber loss function
+$f(\vec{x}, \alpha_{N+1})$ learns in a way to minimize a loss function\footnote{Huber loss function
 is used,
 $
 L(E_{muon}, E_{true}) = \begin{cases}
@@ -173,9 +173,9 @@ L(E_{muon}, E_{true}) = \begin{cases}
 			\end{cases}
 $} for $E_{muon}^N(\vec{x}, \vec{\beta}, \vec{\alpha}) + \beta_{N+1}f(\vec{x}, \alpha_{N+1})$.
 
-It is recommended not to use trees with depth deeper than 8, so depth 5 were chosen. Another 
+It is recommended not to use trees with depth deeper than 8, so a depth 5 of was chosen. Another 
 hyperparameter for BDT training is the number of weak learners. Ten different options were tried
-and the best result were achieved for 800.
+and the best result was achieved for 800.
 
 \subsection{Performance}
 The performance of escaping events energy estimator is evaluated by looking at the RMS of the 
@@ -187,7 +187,7 @@ As can be seen in figure \ref{fig:recoMuE_resol}, muon energy resolution is abou
 distribution is not symmetrical and shifted towards positive values meaning that estimator on average 
 undershoot the escaping muon energy. Correction could be made to make energy estimator to get right
 muon energy on $\textit{average}$ (mean of resolution histogram is zero), however as it shown in the 
-next chapter this is not necessary. Figure \ref{fig:recoMuE} illustrates reocntructed muon energy together 
+next chapter this is not necessary. Figure \ref{fig:recoMuE} illustrates recontructed muon energy together 
 with cosmic background. 
 \begin{figure}[!th]
 \centering
@@ -208,7 +208,7 @@ of just muon energy. Hadronic energy resolution is on the order of $20\%$ which 
 $\textbf{23\%}$ reconstructed neutrino energy resolution. Figures \ref{fig:recoE_resol} and 
 \ref{fig:recoE} illustrate reconstructed neutrino energy resolution and reconstructed neutrino
 energy together with cosmic background. Similar to escaping muon energy, shift to make neutrino
-energy correct on $\textit{average}$ is not necessary and it is not improving experiment sensitivity.
+energy correct on $\textit{average}$ is not necessary and it is not improving the experimental sensitivity.
 \begin{figure}[!th]
 \centering
 \includegraphics[width=1.0\textwidth]{figures/reco_resol_BDT_Full.pdf}
