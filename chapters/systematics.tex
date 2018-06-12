@@ -50,12 +50,19 @@ used which has significant impact on the analysis. Table \ref{table:XSecParam} s
 the analysis, the fist column is parameter description and the second one is parameter's $1\sigma$ uncertainty. 
 
 In addition to GENIE parameters NOvA framework analysis uses a few more cross section effects to get a better agreement 
-between ND data and simulations. First effect is RPA\footnote{Random Phase Approximation} corrections, data from MINERvA 
+between ND data and simulations. The first effect is RPA\footnote{Random Phase Approximation} corrections, data from MINERvA 
 \cite{MINERvA} strongly support the need for a correction to reactions at low momentum transfer - QE and RES reactions. 
 Corrections were needed to accommodate effect of "weak charge screening" and they were computed based on RPA. Both corrections 
 and uncertainties are momentum transfer dependent except for RPA RES unsertainty which is taken at 100\% (means that effect 
-is switched off). Second effect is MEC, .... 
-
+is switched off) \cite{Xsec2017_technote}. The second effect is MEC, neutrino scattering of pair of nucleus
+\footnote{neutron-proton pair (\textit{np}), proton-proton pair (\textit{pp}).} depend on neutrino energy and a fraction of 
+\textit{np} pairs. Different models give different behavior of MEC cross section at low energies, and since MEC is constraint 
+by normalizing to data the most important part of cross section uncertainty is the shape. Ratio of different normalized models 
+to emperical GENIE model lies inside the region bounded by two function given in table \ref{table:RPAMEC}, where "+" and "-" 
+correspond to $+1\sigma$ and $-1\sigma$ shift respectively. Another important effect of MEC interaction is 4-momentum transfer, 
+simulation is fit to the data by applying weights in ($q_0$, $|\vec{q}|$)-plane and uncertainty to the fit tends to make things 
+more QE-like or RES-like, these shifts are achieved by varying other  the combination of uncertainties that distorts the visible 
+hadronic energy distribution \cite{Xsec2018_technote}.
 
 Figures \ref{fig:MaCCQEreduced}, \ref{fig:MECEnuShapeNu}, \ref{fig:MaCCRES}, \ref{fig:MvCCRES}, \ref{fig:CCQEPauliSupViaKF},
 \ref{fig:DISvnCC1pi} illustrate effect of GENIE parameters on selected escaping signal and background events. Those parameters
