@@ -661,4 +661,54 @@ show number selected events when calibration shifted sample is used, columns "Di
 in a relative manner.}
 \end{table} }
 
+\section{Light Model}
+To estimate the uncertainty on the light model a three special datasets are generated. The first dataset which is called
+nominal is generated with increased Cerenkov light collection efficiency and reduced standard scintillation light produciton 
+effectively removing $\frac{dE}{dx}$ discrepancy observed in the ratio of ND data/simulation for muons and protons. The 
+second and the third datasets are regular $\pm 1\sigma$ shifts where alternative scintillator light levels are shifted by 
+10\% up and down while callibration simulteneously adjusted by 10\% in the opposite direction. The effect of the shifts is
+that some hits falling below or rising above the readout treshold.
+
+In comparison to contained sample light model systematic has a significant effect on escaping sample\footnote{a small effect 
+of light model systematic for contained sample could be seen on page 613 of \cite{systematic_technote}}. The main reason is
+that escaping events have a significant fraction of hits which are close to the detector's edges. Those hits which happened 
+at the back end of the cells have a bigger chance to have an incorrect attenuation meaning that the hits are very 
+sensetive to the light model. As result, $\pm 1\sigma$ shifts could significantly affect those hits thereby making an event
+pass or fail preselection criterion in \ref{evt_sel_sum}. Figure \ref{fig:LightLevel} illustrates the effect of light
+model systematic on selected escaping sample. 
+
+\clearpage
+\begin{figure}[t!]
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_LightLevel_EscNumuEnergy_1sigma_bkg_mccomp_ratio.pdf}
+  \caption{FD MC Background Prediction}
+  \label{fig:bkg_LightLevel}
+\end{subfigure}%
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Syst/compare_pred_xp_numu_LightLevel_EscNumuEnergy_1sigma_sig_mccomp_ratio.pdf}
+  \caption{FD MC Signal Prediction}
+  \label{fig:sig_LightLevel}
+\end{subfigure}
+\caption{ Systematic effect of light model uncertainty }
+\label{fig:LightLevel}
+\end{figure}
+
+{\begin{table}[!th]\centerline {
+ \begin{tabular}{ l | r r r | r r }
+          Integral shift  &    Nominal &  Shift (+) &  Shift (-) & \% Diff. (+) & \% Diff. (-)   \\ \hline
+       $\nu_{\mu}$ signal &         18 &         19 &         16 &       +9.1 &       -8.7   \\
+             Tot beam bkg &       0.46 &       0.46 &       0.46 &       +0.4 &       +0.3   \\
+                       NC &       0.33 &       0.33 &       0.34 &       +0.8 &       +3.1   \\
+          $\nu_{\mu}$ App &      0.027 &      0.027 &      0.025 &       +0.4 &       -6.7   \\
+             $\nu_{e}$ CC &      0.051 &      0.051 &      0.051 &       +0.0 &       +0.0   \\
+          $\nu_{\tau}$ CC &      0.056 &      0.059 &      0.049 &       +5.0 &      -13.3   \\
+\end{tabular} }
+\caption{ Systematic effect of light model uncertainty on FD MC signal and background prediction}
+{"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
+show number selected events when light level shifted sample is used, columns "Diff ($\pm$)" show the same shifts
+in a relative manner.}
+\end{table} }
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
