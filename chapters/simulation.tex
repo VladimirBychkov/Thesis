@@ -7,23 +7,23 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In order to predict spectra at the near and the far detectors to compare predictions with
-actual data one need to simulate neutrino interactions in the detectors relying on
+actual data one needs to simulate neutrino interactions in the detectors relying on
 known physics models and theories of how particles are produced, how they travel and interact
-with detector material. The simulation process in the NOvA starts with protons hiting
-NuMI target and finishes with APD readouts and analog to digital converters. Side simulation
+with detector material. The simulation process in NOvA starts with protons hiting
+the NuMI target and finishes with APD readouts and analog to digital converters. Side simulation
 packages or custom NOvA software are used in every step, output information on every step is
 used as input data for the following step
 \begin{itemize}
-\item Beam simulations. The FLUGG simulation package combines FLUKA \cite{FLUKA} with GEANT4 \cite{GEANT4}.
+\item Beam simulations: The FLUGG simulation package combines FLUKA \cite{FLUKA} with GEANT4 \cite{GEANT4}.
 Geometries of the target hall and detectors are encoded in GEANT4, and the proton interactions
 and downstream particle decays are simulated with FLUKA.
-\item Neutrino interactions. The neutrino flux degenrated in the previous step is input to
+\item Neutrino interactions: The neutrino flux generated in the previous step is input into
 the GENIE \cite{GENIE} package, which simulates neutrino-nucleus interactions inside the
 detectors. In each event GENIE produces a list of particles leaving the nucleus.
-\item Particle propagation. Particles produced by GENIE are propagated through the detector,
+\item Particle propagation: Particles produced by GENIE are propagated through the detector,
 and their interactions with the detector materials and decays are simulated by GEANT4. Amount of
 energy deposited in every cell is passed to the last step.
-\item Electronic signal. Deposited energy in the cell is converted to a light by the scintillator;
+\item Electronic signal: Deposited energy in the cell is converted to a light by the scintillator;
 then light travels through the fiber to an APD and analog to digital converter. This step is
 simulated by NOvA custom software \cite{NovaSim}.
 \end{itemize}
@@ -33,9 +33,9 @@ All of these parts are briefly discussed here.
 The beam simulation estimates the neutrino flux into both detectors, and is accomplished using FLUKA and
 GEANT4 via the FLUGG interface. A detailed geometry of the target hall and target, the collimator, two
 focusing horns and the decay pipe is implemented in GEANT4, and the particle simulation is handled by
-FLUKA. The FLUKA package simulates 120 GeV protons which hit the target, which yield hadronic 
+FLUKA. The FLUKA package simulates 120 GeV protons which hit the graphite target, which yield hadronic 
 showers of secondary particles that are directed by the horns into the decay pipe where they decay to 
-neutrinos. All the proton interaction information whose daughter particles produce 
+neutrinos. All the proton interaction information whose daughter particles produce a
 neutrino is saved providing a way to study beam uncertanties related to particle production models. 
 
 The simulation outputs files which describe neutrino flux in terms of neutrino parent particles, 
@@ -46,7 +46,7 @@ The neutrino interactions between ND and FD materials is simulated using GENIE. 
 by the experimental physics community, and is widely used as a neutrino Monte Carlo simulator for experiments due
 to its flexibility to simulate different target materials, and the accuracy of its results over a large
 range of neutrino energies which spans from MeV to PeV. As mentioned above GENIE gets a result of neutrino 
-flux simulation from a previous step and convolute it with neutrino interaction cross sections.
+flux simulation from a previous step and convolutes it with neutrino interaction cross sections.
 
 The neutrino energy spectrum expected in NOvA measurements overlaps
 with the energy regions of several neutrino interaction models, all of which are implemented in GENIE.
@@ -83,7 +83,7 @@ in GENIE based on the Llewellyn-Smith model \cite{QE}, Rein-Sehgal model \cite{R
 order model with Bodek and Yang modifications \cite{DIS} for QE, RES and DIS respectively. MEC process, 
 which is included in GENIE as semi-empirical model, is described in \cite{MEC}.
 
-\section{Particles propagation}
+\section{Particles Propagation and Cerenkov Light}
 After GENIE is done with its part of simulation, or in other words, the list of particles which leave 
 the nucleus with their energies, momenta and initial positions is ready, now one needs to propagate them
 through the detector material and simulate the energy deposition, interaction and decay. NOvA experiment
@@ -102,19 +102,33 @@ for the next step of simulation chain.
 Before the final detector response could be simulated it is necessary to determine how much light was produced
 in the scintillator and what fraction of it was collected by the wave-shifting fiber and transported to the 
 readout electronics. As a matter of fact, amount of light produced by the scintillator is not linearly 
-proportional to amount of deposited energy due to a finite number of scintillaotr centres along the particle
+proportional to amount of deposited energy due to a finite number of scintillator centres along the particle
 trajectory in the cell. The effect is know as Birks supression \cite{birks}. If $\frac{dL}{dx}$ is light 
 output per unit length and $\frac{dE}{dx}$ is amount of deposited energy then Birks law reads
 \be
 \frac{dL}{dx} = L_0 \frac{\frac{dE}{dx}}{1 + k_B\frac{dE}{dx}}, 
 \ee
-where $L_0$ and $k_B$ are constants which depend on scintillator. However, more carefull aproach to the problem
-of particle propagation through scintillator was carried out by Chou \cite{chou} and additional correction was
-introduced to the Birks law. NOvA experiment utilizes this correction - 
+where $L_0$ and $k_B$ are constants which depend on scintillator. Parameter $k_B$ is tuned using muon and 
+protons tracks in the Near Detector.
+
+Another phenomena which plays a significant role in light production is Cerenkov effect \cite{cerenkov}. 
+This effect was observed in a bottle of water subjected to radioactive bombardment. Charged particle while
+moving through the liquid with velocity greater than the phase velocity of light emits light and this emission 
+is simulated in NOvA experiment. The following formula is used to predict the number of Cerenkov photons produced
+per distance traveled at a given wavelength 
 \be
-\frac{dL}{dx} = L_0 \frac{\frac{dE}{dx}}{1 + k_B\frac{dE}{dx} + k_C\Big(\frac{dE}{dx}\Big)^2}.
+\frac{dN_\gamma}{dxd\lambda} = \frac{2\pi\alpha z^2}{\lambda^2}\Big(1 - \frac{1}{\beta^2n^2(\lambda)}\Big),
 \ee
-Parameters $k_B$ and $k_C$ are tuned using muon and protons tracks in the Near Detector.
+where $\alpha$ is fine-structure constant, $z$ is charge of moving particle in units of $e$, $n(\lambda)$ is 
+refraction index and $\beta$ is particle's velocity in units of $c$.
+
+%However, more carefull aproach to the problem
+%of particle propagation through scintillator was carried out by Chou \cite{chou} and additional correction was
+%introduced to the Birks law. NOvA experiment utilizes this correction - 
+%\be
+%\frac{dL}{dx} = L_0 \frac{\frac{dE}{dx}}{1 + k_B\frac{dE}{dx} + k_C\Big(\frac{dE}{dx}\Big)^2}.
+%\ee
+%Parameters $k_B$ and $k_C$ are tuned using muon and protons tracks in the Near Detector.
 
 \section{Light propagation and signal to store}
 The last simulation step is done using custom NOvA software that is split into two parts - light
@@ -138,7 +152,7 @@ The resulting template is shown on \ref{fig:Coll_rate}. This template is used to
 trapped in WLS fiber. To simulate what fraction of photons reaches the APD
 half of photons are sent in opposite directions around the fiber. There are some fraction on photons which is 
 absorbed or get out of fiber, and the effect is accounted for in simulation by using attenuation curve which was 
-measured in bench tests. Before the last simulation step starts, the number of photoelctrons created in each APD
+measured in bench tests. Before the last simulation step starts, the number of photoelectrons created in each APD
 is determined by taking into account APD's quantum efficiency and additional Poisson smearing.
 \begin{figure}
 \includegraphics[width=1.0\textwidth]{figures/Coll_rate.png}
@@ -176,8 +190,8 @@ is determined by taking into account APD's quantum efficiency and additional Poi
 \caption{Schematics of digitization}
 \end{wrapfigure}
 Photo-electron signal in the APD created in the previous step have to be digitazed to finalize the simulation
-of the cell hit. As APD impulse is too short, first it is stretched in the Application Specific Integrated 
-Circuit (ASIC) by CR-RC circuit. The response of the ASIC to a charged impulse has the following form
+of the cell hit. As an APD impulse is too short, first it is stretched in the Application Specific Integrated 
+Circuit (ASIC) by the CR-RC circuit. The response of the ASIC to a charged impulse has the following form
 \be
 f(t) \sim e^{-\frac{t-t_0}{F}} - e^{-\frac{t-t_0}{R}},
 \ee
