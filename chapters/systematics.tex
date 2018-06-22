@@ -7,67 +7,67 @@
 
 Precise measurements of the oscillation parameters depend on correct extrapolated predictions of neutrino spectrum at 
 the Far Detector. In turn, extrapolated predictions depend on our understanding of all properties of the detectors as
-well as properties of particles propagation and interaction with other particles. Naturally this understanding cannot 
-be absolute and the lack of it leads to uncertainties in the final result, this uncertainties are called systematic 
-unsertainty, as opposed to statistical uncertainties which comes from probabalistic nature of high energy experiment.
+well as properties of particles propagation and interaction with other particles. Naturally, this understanding cannot 
+be absolute which leads to uncertainties in the final result, these uncertainties are called systematic 
+unsertainties, as opposed to statistical uncertainties which comes from the probabalistic nature of the high energy experiment.
 While statistical uncertainties are mitigated by longer exposure, systematic uncertainties could be mitigated by the
-experiment design. For example, two detectors design of NOvA reduces an impact of flux and cross section uncertainties.
+experiment design. For example, the two-detector design of NOvA reduces the impact of flux and cross section uncertainties.
 
 The first section of this chapter describes the treatment of systemtic uncertainties in NOvA and the following ones
-discuss the impact of different systematic uncertainties on extrapolated predictions. 
+discuss the impact of different systematic uncertainties on the extrapolated predictions. 
 
 \section{Evaluation of Systematic Uncertainties}
-For some systematics analysis framework allows a reweightable approach to evaluate an impact of the specific systematic
-on the analysis result. This approach helps to reduce computational resources \cite{cafana}. For instance, any cross section 
-parameter has it own uncertainty and for every simulated event a weight is calculated based on that uncertainty and 
-truth information or the output of reconstructed algorithms, thus one gets a new (shifted) prediction which 
+For some systematics, the analysis framework allows a reweightable approach to evaluate the impact of a specific systematic
+on the analysis result. This approach helps to reduce the computational resources \cite{cafana}. For instance, any cross section 
+parameter has its own uncertainty and for every simulated event a weight is calculated based on that uncertainty, and 
+by reweighting events one gets a new (shifted) prediction which 
 corresponds to that cross section parameter. One gets 2 shifted predictions by using weights which are calculated for 
 $\pm 1\sigma$ shifts for some cross section parameter; nominal and 2 shifted predictions are used to produced a 
-systematic error band on all plots which are presented in this chapter. Moreover, for the sake of space systematic 
-error bands are shown only for escaping sample, study of systematic uncertainties for contained sample can be found in
+systematic error band on all plots which are presented in this chapter. In this document, systematic 
+error bands are shown only for escaping sample, study of systematic uncertainties for the contained sample can be found in
 \cite{Luke}.
 
-Those systematic effects which need to alter information on hit-by-hit basis cannot be used in reweightable scheme 
-and a completely new set of Monte Carlo simulation files is generated, for instance, new sets of files are requered for 
-systematically shifted scintillation model, calibration systematics etc. 
+The systematic effects which need to alter information on a hit-by-hit basis cannot be used in a reweightable scheme 
+and a completely new set of Monte Carlo simulation files is generated. For instance, new sets of files are required for 
+the systematically shifted scintillation model, calibration systematics etc. 
 
-During the fitting procedure \ref{chi2syst} fitter needs to know prediction for fractional systetamic shift. This is 
+During the fitting procedure the fitter needs to know the prediction for fractional systetamic shifts. This is 
 achieved by using a cubic spline interpolation between nominal, $\pm 1\sigma$ and $\pm 2\sigma$ shifts. 
 
-Analysis framework distincts two types of systematic uncertainties in NOvA, those which are the same or correlated for 
-both detectors and those which are independent. Correlated systematic uncertainties shift prediction in both detectors
-simultaniously by the same amount and are called \textit{absolute} uncertainties. Flux and neutrino cross section 
+The analysis framework distinguishes between two types of systematic uncertainties in NOvA, those which are correlated for 
+both detectors and those which are independent. Correlated systematic uncertainties shift the prediction in both detectors
+simultaneously by the same amount and are called \textit{absolute} uncertainties. Flux and neutrino cross section 
 uncertainties are examples of absolute uncertainties. Systematic effects which are independent across detectors 
-shift prediction by the same amount but in opposite direction and are called \textit{relative} uncertainties.  
+are called \textit{relative} uncertainties.  
 
-\section{Cross Section Unsertainty}
-GENIE cross section models depends on 80+ parameters and uncertaintes on all these paramters allow to calculate cross
-section weights \cite{GENIE}. When one alters some parameter weight is determined as ratio of cross section with altered 
+\section{Cross Section Uncertainty}
+GENIE cross section models depends on 80+ parameters and uncertaintes on all these parameters allow to calculate cross
+section weights \cite{GENIE}. When one alters some parameter the weight is determined as ratio of cross section with altered 
 parameter to nominal one. Later, at analysis time, every selected event at the Near or the Far Detector is weighted with 
-above calculated weight, thus shifted prediction is generated. The marginalization process\footnote{fitting procedure with 
+above calculated weight, thus the shifted prediction is generated. The marginalization process\footnote{fitting procedure with 
 systematic uncrtainties taken into account.} is computationally heavy and only those GENIE cross section systematics are 
 used which has significant impact on the analysis. Table \ref{table:XSecParam} summarize cross section parameters used in
-the analysis, the fist column is parameter description and the second one is parameter's $1\sigma$ uncertainty. 
+the analysis, the first column is the parameter description and the second one is parameter's $1\sigma$ uncertainty. 
 
-In addition to GENIE parameters NOvA framework analysis uses a few more cross section effects to get a better agreement 
+In addition to GENIE parameters, the NOvA framework analysis uses a few more cross section effects to get a better agreement 
 between ND data and simulations. The first effect is RPA\footnote{Random Phase Approximation} corrections, data from MINERvA 
-\cite{MINERvA} strongly support the need for a correction to reactions at low momentum transfer - QE and RES reactions. 
-Corrections were needed to accommodate effect of "weak charge screening" and they were computed based on RPA. Both corrections 
-and uncertainties are momentum transfer dependent except for RPA RES unsertainty which is taken at 100\% (means that effect 
-is switched off) \cite{Xsec2017_technote}. The second effect is MEC, neutrino scattering of pair of nucleus
-\footnote{neutron-proton pair (\textit{np}), proton-proton pair (\textit{pp}).} depend on neutrino energy and a fraction of 
-\textit{np} pairs. Different models give different behavior of MEC cross section at low energies, and since MEC is constraint 
-by normalizing to data the most important part of cross section uncertainty is the shape. Ratio of different normalized models 
-to emperical GENIE model lies inside the region bounded by two function given in table \ref{table:RPAMEC}, where "+" and "-" 
-correspond to $+1\sigma$ and $-1\sigma$ shift respectively. Another important effect of MEC interaction is 4-momentum transfer, 
-simulation is fit to the data by applying weights in ($q_0$, $|\vec{q}|$)-plane and uncertainty to the fit tends to make things 
+\cite{MINERvA} strongly support the need for a correction to reactions at low momentum transfer for QE and RES reactions. 
+Corrections were needed to accommodate the effect of ``weak charge screening" and they were computed based on RPA. Both corrections 
+and uncertainties are momentum transfer dependent except for RPA RES uncertainty which is taken at 100\% (means that effect 
+is switched off) \cite{Xsec2017_technote}. The second effect is MEC, neutrino scattering on a pair of nucleons
+\footnote{neutron-proton pair (\textit{np}), proton-proton pair (\textit{pp}).}, which depends on neutrino energy and the fraction of 
+\textit{np} pairs. Different models give different behavior for the MEC cross section at low energies, and since MEC is constraint 
+by normalizing to thedata the most important part of cross section uncertainty is the shape. Ratio of different normalized models 
+to the emperical GENIE MEC model lies inside the region bounded by two function given in table \ref{table:RPAMEC}, where ``+" and ``-" 
+correspond to $+1\sigma$ and $-1\sigma$ shift respectively. Another important effect of the MEC interaction is 4-momentum transfer. 
+The simulation is fit to the data by applying weights in ($q_0$, $|\vec{q}|$)-plane and uncertainty to the fit tends to make things 
 more QE-like or RES-like, these shifts are achieved by varying other  the combination of uncertainties that distorts the visible 
 hadronic energy distribution \cite{Xsec2018_technote}.
 
 Figures \ref{fig:MaCCQEreduced}, \ref{fig:MECEnuShapeNu}, \ref{fig:MaCCRES}, \ref{fig:MvCCRES}, \ref{fig:CCQEPauliSupViaKF},
 \ref{fig:DISvnCC1pi} illustrate effect of GENIE parameters on selected escaping signal and background events. Those parameters
-are choosen to be shown here as they have a noticable impact on FD predictions while the rest of the cross section parameters
-have much smaller effect.
+are chosen to be shown here as they have a noticable impact on FD predictions while the rest of the cross section parameters
+have a much smaller effect.
 
 {\renewcommand{\arraystretch}{2}%
 \begin{table}[!th]
@@ -144,9 +144,9 @@ have much smaller effect.
           $\nu_{\tau}$ CC &      0.056 &      0.055 &      0.058 &       -2.1 &       +2.7   \\
 \end{tabular} }
 \caption{ Systematic effect of MaCCQE uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
-show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the GENIE parameter is at its central value.The ``Shift ($\pm$)"
+columns show the number of selected events when the GENIE parameter is shifted by $1\sigma$ up or down correspondingly. The 
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 \newpage
@@ -178,9 +178,9 @@ show the same shifts in a relative manner.}
           $\nu_{\tau}$ CC &      0.056 &      0.056 &      0.057 &       -0.6 &       +1.1   \\
 \end{tabular} }
 \caption{ Systematic effect of MECEnuShape uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
-show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the GENIE parameter is at its central value.The ``Shift ($\pm$)"
+columns show the number of selected events when the GENIE parameter is shifted by $1\sigma$ up or down correspondingly. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 \newpage
@@ -212,9 +212,9 @@ show the same shifts in a relative manner.}
           $\nu_{\tau}$ CC &      0.056 &      0.048 &      0.068 &      -14.1 &      +21.3   \\
 \end{tabular} }
 \caption{ Systematic effect of MaCCRES uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
-show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the GENIE parameter is at its central value.The ``Shift ($\pm$)"
+columns show the number of selected events when the GENIE parameter is shifted by $1\sigma$ up or down correspondingly. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 \newpage
@@ -246,9 +246,9 @@ show the same shifts in a relative manner.}
           $\nu_{\tau}$ CC &      0.056 &      0.052 &      0.062 &       -7.5 &      +10.8   \\
 \end{tabular} }
 \caption{ Systematic effect of MvCCRES uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
-show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the GENIE parameter is at its central value.The ``Shift ($\pm$)"
+columns show the number of selected events when the GENIE parameter is shifted by $1\sigma$ up or down correspondingly. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 \newpage
@@ -280,9 +280,9 @@ show the same shifts in a relative manner.}
           $\nu_{\tau}$ CC &      0.056 &      0.056 &      0.056 &       +0.0 &       -0.0   \\
 \end{tabular} }
 \caption{ Systematic effect of CCQEPauliSupViaKF uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
-show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the GENIE parameter is at its central value.The ``Shift ($\pm$)"
+columns show the number of selected events when the GENIE parameter is shifted by $1\sigma$ up or down correspondingly. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 \newpage
@@ -314,14 +314,14 @@ show the same shifts in a relative manner.}
           $\nu_{\tau}$ CC &      0.056 &      0.056 &      0.056 &       +0.0 &       -0.0   \\
 \end{tabular} }
 \caption{ Systematic effect of DISvnCC1pi uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events when GENIE parameter used at its central value, columns "Shift ($\pm$)"
-show number selected events when GENIE parameter shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the GENIE parameter is at its central value.The ``Shift ($\pm$)"
+columns show the number of selected events when the GENIE parameter is shifted by $1\sigma$ up or down correspondingly. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 \section{Flux Uncertainty}
-In order to estimate neutrino flux through the Near and the Far detectors the NuMI beam have to be simulated from the hit proton
-hits of the target through pions, muons and kaons decay in the decay pipe. And systematic uncertainties of all these processes
+In order to estimate the neutrino flux through the Near and the Far detectors the NuMI beam is simulated from the hit proton
+hits of the target through pions, muons and kaons decaying in the decay pipe. And systematic uncertainties of all these processes
 have to be evaluated.
 
 Flux uncertainties could be separated into two categories 
@@ -337,15 +337,15 @@ Flux uncertainties could be separated into two categories
 \end{itemize} 
 \end{itemize}
 
-It turns out that flux uncertainties are heavily correlated accros almost all neutrino true energy bins. To correctly treat this,
-2000 predictions were generates in different flux universes where parameters described above have different values within their
-uncertainty limits, \cite{fluxPCA_technote}. Correlation matrix is constructed based on flux histograms from different universes 
+It turns out that flux uncertainties are heavily correlated across almost all neutrino true energy bins. To correctly treat this,
+2000 predictions were generated in different flux universes where the parameters described above have different values within their
+uncertainty limits, \cite{fluxPCA_technote}. A correlation matrix is constructed based on the flux histograms from the different universes 
 and after that a Principal Component Analysis (PCA) is carried out to disintangle the correlations. It is shown in 
-\cite{fluxPCA_technote} that only first 5 or 8 PCA components are enough to explain most of the information hidden in correlation 
-matrix i.e. first several PCA components describes all flux uncertainties. 
+\cite{fluxPCA_technote} that only the first 5 or 8 PCA components are enough to explain most of the information contained in the 
+correlation matrix i.e. first several PCA components describes all flux uncertainties. 
 
-As mentioned previously two detectors and extrapolation procedure help to reduce flux systematics significantly, in figure 
-\ref{fig:ppfxhadpbeampc02} shown 3 PCA component which has the biggest impact on the Far detector prediction.
+As mentioned previously the two detectors and the extrapolation procedure help to reduce flux systematics significantly. Figure 
+\ref{fig:ppfxhadpbeampc02} shows the third PCA component that has the biggest impact on the Far detector prediction.
 
 \newpage
 \begin{figure}[t!]
@@ -376,16 +376,17 @@ As mentioned previously two detectors and extrapolation procedure help to reduce
           $\nu_{\tau}$ CC &      0.056 &      0.057 &      0.055 &       +1.4 &       -1.6   \\
 \end{tabular} }
 \caption{ Systematic effect of 3rd flux PCA component on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events when flux parameters used at its central value, columns "Shift ($\pm$)"
-show number selected events when 3rd flux PCA component shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+\caption{ Systematic effect of DISvnCC1pi uncertainty on FD MC signal and background prediction}
+{The ``Nominal" column shows the number of selected events when flux parameters are at its central value. The ``Shift ($\pm$)"
+columns show the number of selected events when the third flux PCA component is shifted by $1\sigma$ up or down correspondingly. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} } 
 
 \section{Muon Energy Uncertainty}
 Due to some uncertainties in detectors masses, compositions, offsets etc. the observed range traveled by muon has its own 
-uncertainty. Muon track length is used directly to estimate muon energy at the Near detector and Far detector (for contained 
+uncertainty. Muon track length is used to estimate muon energy at the Near detector and Far detector (for the contained 
 sample) and is important part of energy estimator for escaping sample at the Far Detector. A very extensive study was carried out
-in \cite{muonEUnc_technote} and following absolute and relative systematic uncertainties were established
+in \cite{muonEUnc_technote} and the following absolute and relative systematic uncertainties were established:
 \begin{itemize}
 \item \textbf{Absolute}: 
 \begin{itemize}
@@ -399,8 +400,8 @@ in \cite{muonEUnc_technote} and following absolute and relative systematic uncer
 \end{itemize}
 \end{itemize}
 
-Figures \ref{fig:AbsMuEScale2017} and \ref{fig:RelMuEScale2017} illustrate impact of absolute and relative systematic 
-uncertainties on ecaping sample prediction at the Far detector correspondingly.
+Figures \ref{fig:AbsMuEScale2017} and \ref{fig:RelMuEScale2017} illustrate the impact of the absolute and relative systematic 
+uncertainties on the ecaping sample prediction at the Far detector correspondingly.
 
 \clearpage
 \begin{figure}[t!]
@@ -431,9 +432,9 @@ uncertainties on ecaping sample prediction at the Far detector correspondingly.
           $\nu_{\tau}$ CC &      0.056 &      0.056 &      0.056 &       -0.6 &       +0.4   \\
 \end{tabular} }
 \caption{ Systematic effect of absolute muon energy uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
-show number selected events when muon track length shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the nominal simulation is used. The ``Shift ($\pm$)"
+columns show the number of selected events when muon track length is shifted by $1\sigma$ up or down correspondingly. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 \newpage
@@ -465,9 +466,9 @@ show the same shifts in a relative manner.}
           $\nu_{\tau}$ CC &      0.056 &      0.056 &      0.056 &       +0.0 &       -0.1   \\
 \end{tabular} }
 \caption{ Systematic effect of relative muon energy uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
-show number selected events when muon track length shifted by $1\sigma$ up or down correspondingly, columns "Diff ($\pm$)"
-show the same shifts in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the nominal simulation is used. The ``Shift ($\pm$)"
+columns show the number of selected events when muon track length is shifted by $1\sigma$ up or down correspondingly. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 %\section{Hadronic Energy Uncertainty}
@@ -542,9 +543,9 @@ show the same shifts in a relative manner.}
 %\end{table} }
 
 \section{Calorimetric Energy Uncertainties}
-Several studies of post calibration calorimetric response of the detectors show that the protons in the Near detector
-have the biggest discrepancy between data and simulations \cite{ecalib_talk}. It is found that calorimetric detector
-response in data is 5\% lower than the simulation and this desrepancy is interpreted as a 5\% absolute calibration
+Several studies of the post calibration calorimetric response of the detectors show that the protons in the Near detector
+have the biggest discrepancy between data and simulations \cite{ecalib_talk}. It is found that the calorimetric detector
+response in data is 5\% lower than the simulation and this disrepancy is interpreted as a 5\% absolute calibration
 uncertainty. In order to evaluate an impact of this uncertainty a new simulation is generated and a different calibration
 is applied before the reconstruction step. As result, every slice has the same number of hits but their energies are 
 shifted up or down. Figure \ref{fig:Calibration} illustrates the impact of absolute calibration uncertainty.
@@ -552,11 +553,11 @@ shifted up or down. Figure \ref{fig:Calibration} illustrates the impact of absol
 While comparison of simulated muons to data can be done in both detectors (simulation/data comparison in the Near detector 
 and simulation/cosmic comparison in the Far detector) however for protons it could be done only in the Near detector.  
 Thus, the same 5\% effect is assumed as the worst case for a relative effect. Figure \ref{fig:RelativeCalib} illustrates 
-impact of relative calibration uncertainty on selected escaping sample at the Far detector. 
+the impact of the relative calibration uncertainty on selected escaping sample at the Far detector. 
 
-A detector cell has a different response for energy deposition at different distances to the readout electronics. 
+A detector cell has a different response for an energy deposition at different distances from the readout electronics. 
 A comparison of the reconstructed and true energy of simulated cosmic hits as function of their position along the cell 
-is performed in \cite{shape_talk} and the discrepancy is interpreted as calibration 'shape' uncertainty. The effect of this 
+is performed in \cite{shape_talk} and the discrepancy is interpreted as calibration `shape' uncertainty. The effect of this 
 systematic is illustrated in figure \ref{fig:CalibShape}.  
 
 \clearpage
@@ -588,9 +589,9 @@ systematic is illustrated in figure \ref{fig:CalibShape}.
           $\nu_{\tau}$ CC &      0.056 &      0.057 &      0.048 &       +2.1 &      -14.9   \\
 \end{tabular} }
 \caption{ Systematic effect of absolute calibration uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
-show number selected events when calibration shifted sample is used, columns "Diff ($\pm$)" show the same shifts 
-in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the nominal simulation is used. The ``Shift ($\pm$)"
+columns show the number of selected events when calibration shifted samples are used. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 \newpage
@@ -622,9 +623,9 @@ in a relative manner.}
           $\nu_{\tau}$ CC &      0.056 &      0.057 &      0.048 &       +2.1 &      -14.3   \\
 \end{tabular} }
 \caption{ Systematic effect of relative calibration uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
-show number selected events when calibration shifted sample is used, columns "Diff ($\pm$)" show the same shifts
-in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the nominal simulation is used. The ``Shift ($\pm$)"
+columns show the number of selected events when calibration shifted samples are used. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 \newpage
@@ -656,24 +657,24 @@ in a relative manner.}
      $\nu_{\tau}$ CC &      0.056 &      0.049 &         -- &      -12.5 &         -- \\
 \end{tabular} }
 \caption{ Systematic effect of 'shape' calibration uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
-show number selected events when calibration shifted sample is used, columns "Diff ($\pm$)" show the same shifts
-in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the nominal simulation is used. The ``Shift ($\pm$)"
+columns show the number of selected events when calibration shifted sample is used. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 \section{Light Model}
-To estimate the uncertainty on the light model a three special datasets are generated. The first dataset which is called
-nominal is generated with increased Cerenkov light collection efficiency and reduced standard scintillation light produciton 
-effectively removing $\frac{dE}{dx}$ discrepancy observed in the ratio of ND data/simulation for muons and protons. The 
-second and the third datasets are regular $\pm 1\sigma$ shifts where alternative scintillator light levels are shifted by 
-10\% up and down while callibration simulteneously adjusted by 10\% in the opposite direction. The effect of the shifts is
-that some hits falling below or rising above the readout treshold.
+To estimate the uncertainty on the light model, three special datasets are generated. The first dataset which is called
+nominal is generated with increased Cerenkov light collection efficiency and reduced standard scintillation light production, 
+effectively removing the $\frac{dE}{dx}$ discrepancy observed in the ratio of ND data/simulation for muons and protons. The 
+second and the third datasets are $\pm 1\sigma$ shifts where alternative scintillator light levels are shifted by 
+10\% up and down while the calibration is simulteneously adjusted by 10\% in the opposite direction. The effect of the shifts is
+that some hits fall below or rise above the readout treshold.
 
-In comparison to contained sample light model systematic has a significant effect on escaping sample\footnote{a small effect 
+In comparison to contained sample, the light model systematic has a significant effect on escaping sample\footnote{a small effect 
 of light model systematic for contained sample could be seen on page 613 of \cite{systematic_technote}}. The main reason is
 that escaping events have a significant fraction of hits which are close to the detector's edges. Those hits which happened 
 at the back end of the cells have a bigger chance to have an incorrect attenuation meaning that the hits are very 
-sensetive to the light model. As result, $\pm 1\sigma$ shifts could significantly affect those hits thereby making an event
+sensitive to the light model. As result, $\pm 1\sigma$ shifts could significantly affect those hits thereby making an event
 pass or fail preselection criterion in \ref{evt_sel_sum}. Figure \ref{fig:LightLevel} illustrates the effect of light
 model systematic on selected escaping sample. 
 
@@ -706,9 +707,9 @@ model systematic on selected escaping sample.
           $\nu_{\tau}$ CC &      0.056 &      0.059 &      0.049 &       +5.0 &      -13.3   \\
 \end{tabular} }
 \caption{ Systematic effect of light model uncertainty on FD MC signal and background prediction}
-{"Nominal" column shows number of selected events for nominal simulations, columns "Shift ($\pm$)"
-show number selected events when light level shifted sample is used, columns "Diff ($\pm$)" show the same shifts
-in a relative manner.}
+{The ``Nominal" column shows the number of selected events when the nominal simulation is used. The ``Shift ($\pm$)"
+columns show the number of selected events when light level shifted samples are used. The
+``Diff ($\pm$)" columns show the same shifts in a relative manner.}
 \end{table} }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
