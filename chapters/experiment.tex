@@ -30,12 +30,12 @@ corresponds to 700 kW of beam power. The proton beam is directed into a graphite
 Collisions between the proton beam and graphite target produces many types of hadrons and 
 mesons, with pions and kaons among them. Magnetic focusing horns, which are supplied with 
 current of 200kA, are used to focus and direct 
-charged pions and kaons into a decay pipe. The decay pipe is long enough such that nearly all 
-of the incoming pions and kaons decay before the end of the pipe. More than 99\% of all pions 
+charged pions and kaons into a decay pipe. The decay pipe is long enough such that more than 
+99\% of all pions 
 and 63\% of kaons decay into anti-muon/muon and muon/anti-muon neutrino, so the flux of 
 particles at the end of the decay pipe consists of mostly muons and muon anti-neutrinos, or 
 their antiparticles. By changing the electric current direction in the focusing horns one can 
-switch between positively and negatively charged pions and kaons which enter the decay pipe. 
+switch between focusing positively or negatively charged pions and kaons into the decay pipe. 
 This gives an opportunity to make two types of neutrino beams - $\nu_\mu$'s and $\bar{\nu}_\mu$'s. 
 Unfortunately, 5\% of charged kaons have electron neutrinos among their byproducts, and this 
 is an irreducible background for an electron neutrino analysis. All the realitively long lived
@@ -49,6 +49,9 @@ to better understand beam properties, but they do not play any role in the NOvA 
     \includegraphics[width=0.48\textwidth]{figures/Neutrino_osc.png}
   \end{center}
 \vspace{-30pt}
+\caption{Neutrino oscillation probabilities.}
+{Neutrino oscillation probabilities as a function of $\frac{L}{E}$, $P(\nu_\mu \rightarrow \nu_\mu)$ - 
+blue line, $P(\nu_\mu \rightarrow \nu_e)$ - black line and $P(\nu_\mu \rightarrow \nu_\tau)$ - red line.}
 \end{wrapfigure}
 
 After the neutrinos leave the decay pipe they begin their journey to the near and far detectors.
@@ -68,12 +71,12 @@ Detector (for small off-axis angles $\theta$) can be expressed in the following 
 F = \Big(\frac{2\gamma}{1+\gamma^2\theta^2}\Big)^2\frac{A}{4\pi d}
 \ee
 \be
-E_\nu = \frac{0.43E_\pi}{1+\gamma^2\theta^2},
+E_\nu = \frac{0.43E_\pi}{1+\gamma^2\theta^2},\label{EnuvsEpi}
 \ee
 where $\gamma = \frac{E_\pi}{m_\pi}$, $A$ is the size of the detector front area and $d$ is 
 the distance to the detector. For kaons numerical factor $0.43$ should be changed to $0.96$. 
 Knowing the pion and kaon energy spectrum at the NuMI source, the neutrino energy spectrum at
-the far detector for different off-axis angles $\theta$ can be predicted. As shown on the bottom of
+the far detector for different off-axis angles $\theta$ can be predicted. As shown on the top of
 figure \ref{fig:Spec}, as $\theta$ increases the neutrino energy distribution gets narrower and shifts
 toward lower energies. At 14.6 mrad the neutrino flux is still appreciable and peaks near 2 GeV.
 Based on this configuration, the NOvA Far Detector is situated 810 km from the source to measure
@@ -86,9 +89,8 @@ significantly improves the sensitivity of the $P(\nu_\mu \rightarrow \nu_e)$ pro
 \includegraphics[width=0.9\textwidth]{figures/EnuVSEpi_NOvA.pdf}
 \centering
 \caption{(Top) Expected unoscillated neutrino spectrum at the Far Detector as a function of 
-angle relative to NuMI beam. (Bottom)~Neutrino oscillation probabilities as a function of $\frac{L}{E}$, $
-P(\nu_\mu \rightarrow \nu_\mu)$ - blue line, $P(\nu_\mu \rightarrow \nu_e)$ - black line and 
-$P(\nu_\mu \rightarrow \nu_\tau)$ - red line.} \label{fig:Spec}
+angle relative to NuMI beam. (Bottom) Neutrino energy as function of pion energy (eq. \ref{EnuvsEpi}) 
+for different off-axis angles.} \label{fig:Spec}
 \end{figure}
 
 \section{NOvA Near and Far Detectors}
@@ -100,6 +102,8 @@ similar geometry. The Near Detector is placed 1 km from the NuMI source at Fermi
 Far Detector sits 810~km away on the surface and 14.6 mrad off beam axis in Ash River, Minnesota. 
 The Near Detector weighs 330 metric ton and is 105 m underground, while the Far Detector mass is 
 14,000 ton and has shielding equivalent to 3 m of water which reduces cosmic ray background.
+The reason the Near Detector is underground is that on the ground NuMI source has to shoot the neutrino beam 
+approximately 3.6 degrees below the ground level so it comes out of the Earth 810 km downrange. 
 \begin{figure}
 \begin{subfigure}{.2\textwidth}
   \centering
@@ -128,11 +132,11 @@ are glued together in a such way that adjacent planes alternating between horizo
 allignment. The scetch of the detectors structure can be seen in \ref{fig:2detectors}. Furthemore, 32 planes 
 make up a block and 28 blocks complete the full Far Detector while for the Near Detector block consists
 of 24 planes and 3 blocks make the active part of the detector. In addition, so-called muon catcher
-block goes downstream and serves for stopping muons which are produced in $\nu_\mu$ CC interactions. 
-The muon catcher, which helps to contain more muons as the relative size of the Near Detector is not big,
-consists of 22 active planes, with ten steel planes of 10 cm thickness interspersed between pairs of active 
-planes. The size of the muon catcher in the XY plane is smaller the the active part of the Near Detector. 
-The steel absorbs additional particle energy, and results in shorter muon tracks.
+block goes downstream of the Near Detector and serves for stopping muons which are produced in $\nu_\mu$ 
+CC interactions. The muon catcher, which helps to contain more muons as the relative size of the Near 
+Detector is not big, consists of 22 active planes, with ten steel planes of 10 cm thickness interspersed 
+between pairs of active planes. The size of the muon catcher in the XY plane is smaller the the active 
+part of the Near Detector. The steel absorbs additional particle energy, and results in shorter muon tracks.
 
 Using the planes configuration, three-dimensional particle tracks are reconstructed: vertical planes
 provide X measurements, horizontal planes provide Y measurements, and the Z measurements are extracted from
@@ -147,7 +151,7 @@ shifting fiber runs from one end of the cell to the opposite end, then back to t
 it connects to an avalanche photodiode (APD) as can be seen in \ref{fig:cell}. Photons are created by charged 
 particle moving through the scintillator. These reflected by the cell walls and have a high chance 
 to be captured by the wavelength shifting fiber. Inside the fiber photons after absorbtion and
-reemission increse its wavelength resulting in propogation without escaping due to total inner
+reemission increase its wavelength resulting in propogation without escaping due to total inner
 reflection. 
 
 Photons that reach each APD are converted into a current of photoelectrons through the avalanche breakdown 
@@ -169,15 +173,15 @@ is proportional to amount of energy charged particle deposited in a particular c
 \subsection{Data acquisition}
 Every DCM is a custom built computer and collecting data from 64 FEBs. Data from the FEBs
 is sorted in time and arranged into 5 ms data blocks, then the data is sent to a buffer node where it 
-stored until a trigger decision is made to save the data permanently to the disks. 200 buffer nodes 
+is stored until a trigger decision is made to save the data permanently to the disks. 200 buffer nodes 
 are arranged in a circular ring buffer and every node has up to a minute to run a trigger software 
 until a new piece of data comes from a DCM. NOvA trigger software which issues trigger decisions relies
-on external triggers as well as data-drivien triggers based on recieved data. Neutrino oscillation
-analysis uses data which is recorded due to external trigger desicions, this so-called NuMI trigger 
-is issued by acceleration complex at Fermilab. The trigger records 550 $\mu s$ window of data centered 
-around the 10 $\mu s$ NuMI beam spill. There are several more triggers such as cosmic trigger, which 
-triggers at the rate of 10 Hz to store FD cosmic data for callibration and background estimation, or 
-supernova trigger, which ideally should record up to 1 minutes of data in the event of supernova burst.
+on external triggers as well as data-driven triggers based on received data. Neutrino oscillation
+analyses use data which are recorded due to a timing trigger, this so-called NuMI trigger 
+is issued by the acceleration complex at Fermilab. The trigger records 550 $\mu s$ window of data centered 
+around the 10 $\mu s$ NuMI beam spill. There are several more triggers such as a cosmic trigger, which 
+triggers at the rate of 10 Hz to store FD cosmic data for callibration and background estimation, and a 
+supernova trigger, which should record up to 1 minute of data in the event of supernova burst.
 
 The data selected by the triggers is stored temporarily at the FD and ND sites, and eventually transferred
 to Fermilab where it is processed for further analysis.
@@ -194,16 +198,17 @@ an electromagnetic shower by decaying into two photons. NC type events form a pr
 disapperance analysis.} \label{fig:Topologies}
 \end{figure}
 The majority of neutrinos impinging on the NOvA detectors carry a few GeV energy, and all the charged
-products of a neutrino-nucleon interaction are clearly visible and as long as their trajectories are
-sufficiently separated. As illustrated in figure \ref{fig:Topologies} muons, electrons, 
-and charged hadrons produce a distinct signatures in NOvA. Particles primary lose their energy through an 
+products of a neutrino-nucleon interaction are clearly visible and can be individually tracked as long as their 
+trajectories are sufficiently separated. As illustrated in figure \ref{fig:Topologies} muons, electrons, 
+and neutral pions produce a distinct signatures in NOvA. Particles primary lose their energy through an 
 ionization 
 process by disrupting electrons of atoms which happen to be close to particles trajectories. Being 
-much havier than an electron and immune to a strong interaction muon can travel a long distance inside 
-the detectors which make it a relatively easy task to determine a high energy muon. Electrons interact
-with detector material electromagnetically, and quickly shower energy in a small conical region as opposed to a 
-long muon track. Hadrons such as protons and pions lose energy through ionization and strong interactions 
-with nucleons along their trajectories, and tend to travel much shorter distances than muons.
+much heavier than an electron and immune to a strong interaction a muon can travel a long distance
+\footnote{Approximately 4.5 meters per 1 GeV of muon energy} inside the detectors which make it a relatively 
+easy task to determine a high energy muon. Electrons interact with detector material electromagnetically, and 
+quickly shower energy in a small conical region as opposed to a long muon track. Hadrons such as protons and 
+charged pions lose energy through ionization and strong interactions with nucleons along their trajectories, and tend 
+to travel much shorter distances than muons.
 
 Despite these differences it is a complicated problem to distinguish a charged current (CC) interaction with
 a muon or electron being produced from a neutral current (NC) interaction where no visible lepton is produced.
@@ -211,16 +216,14 @@ NC processes can produce charged or neutral pions with other hadrons. Charged pi
 leave tracks which could be confused with low energy muons, although occasional hard scatters with 
 nuclei help with identification. Neutral pions decay into two photons and produce electromagnetic
 showers, and these showers can be mistaken with showers from electrons in CC interactions.
-Thus, sophisticated algorithms were developed to measure parameters of neutrino mixing matrix where 
-determination of exact neutrino flavor is a crucial task.
+Thus, sophisticated algorithms were developed to determine the exact neutrino flavor.
 
-In addition, since NOvA Far Detector sits on the ground it constantly being bombarded by muons and other
-particles created by interactions of cosmic rays - high energy protons - with air molecules in upper atmosphere. 
+In addition, since the NOvA Far Detector sits on the ground it is constantly being bombarded by muons and other
+particles created by interactions of cosmic rays with air molecules in upper atmosphere. 
 These muons contribute to a background for the main analysis but they are relatively easy to get rid off
 because of their activity at the top and/or at the sides of the detector. 
 
-However, they are much harder to deal with since cosmic muons a primarily background in a escaping sample 
-which this thesis is partially about.
+However, cosmic muons are a primarily background in a escaping sample which this thesis is partially about.
 
 \subsection{NOvA Event Display}
 \begin{figure}
