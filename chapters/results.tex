@@ -7,14 +7,47 @@
 
 After analysis software processed the Far Detector data, 126 events were selected for 4 contained 
 samples, including an expected background of 5.8 misidentified cosmic rays and 3.4 misidentified 
-neutrino events of other types. For the escaping sample, XXX events were selected, including an expected
+neutrino events of other types. For the escaping sample, 30 events were selected, including an expected
 background of 6.0 misidentified cosmic rays and 0.4 misidentified neutrino of other types. The resulting
-5 spectra were fit simultaneously with the best-fit parameters are $\sin^2\theta_{23} = 0.567$ and 
+5 spectra were fit simultaneously with the best-fit parameters are $\sin^2\theta_{23} = 0.504$ and 
 $|\Delta m^2_{32}| = 2.45\times 10^{-3} eV^2$.
 
-Predicted 21, sel - 32
+\section{Predicted Contours}
+Before the real data is used to make a final sensitivity contours it is important to see a predicted 
+sensitivity contours to understand how much power the escaping sample provides to the experiment. 
+To generate predicted contours and profile functions for $\sin^2\theta_{23}$ and $\Delta m^2_{32}$ simulation
+of the signal\footnote{2017 best fit was used as seed oscillation parameters} was used to generate a fake data.
+Figures \ref{fig:profile_pred_sin}, \ref{fig:profile_pred_delta} and \ref{fig:cont_pred} illustrate profile 
+functions and sensitivity contours respectively. Expected improvement is marginal.
 
-\section{Far Detector Selected Samples}
+\begin{figure}[!th]
+\centering
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Prediction_systs_sin23.pdf}
+  \caption{ $\Delta\chi^2$ functions for $\sin^2\theta_{23}$ 1D fit}
+  \label{fig:profile_pred_sin}
+\end{subfigure}
+\vspace{0.5cm}
+\newline
+\begin{subfigure}[t]{0.95\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{figures/Prediction_systs_delta32.pdf}
+  \caption{$\Delta\chi^2$ functions for $\Delta m^2_{32}$ 1D fit}
+  \label{fig:profile_pred_delta}
+\end{subfigure}
+\caption{ $\Delta\chi^2$ functions for $\sin^2\theta_{23}$ and $\Delta m^2_{32}$ 1D fit }
+{}
+\end{figure}
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/Prediction_systs_contours.pdf}
+\caption{Predicted contours without and with escaping sample}
+{}
+\label{fig:cont_pred}
+\end{figure}
+
 
 \section{Event Displays of Several Selected Escaping Events}
 Figures \ref{fig:candidate1}, \ref{fig:candidate2} and \ref{fig:candidate3} give the examples of selected escaping 
@@ -56,6 +89,9 @@ account for the systematic uncertainties according to equation \ref{chi2syst}. T
 and \ref{fig:dataprediction_uncont} show overlaid Far Detector data with the predicted $1\sigma$ systematic uncertainty band
 for the four contained and one escaping spectra respectively.  
 
+Figure \ref{fig:cant_w_wo_syst} illustrates 90\% confedence levels of 5 samples fit with and without systematics effects 
+included. 
+
 \begin{figure}[!th]
 \centering
 \includegraphics[width=1.0\textwidth]{figures/fd_dataprediction_spectra__fhc_quant14__2018calc.pdf}
@@ -67,7 +103,7 @@ for the four contained and one escaping spectra respectively.
 \begin{figure}[!th]
 \centering
 \includegraphics[width=1.0\textwidth]{figures/fd_prediction_data_escaping_spectra__fhc__2017calc.pdf}
-\caption{Observed escaping spectrum at teh Far Detector with best fit and systematics uncertainties}
+\caption{Observed escaping spectrum at the Far Detector with best fit and systematics uncertainties}
 {}
 \label{fig:dataprediction_uncont}
 \end{figure}
@@ -75,10 +111,27 @@ for the four contained and one escaping spectra respectively.
 \begin{figure}[!th]
 \centering
 \includegraphics[width=1.0\textwidth]{figures/contours_realdata_cosmics__extrap_systs_2018calc_nh_syststat__numu2018.pdf}
-\caption{90\% confidence interval with and without systematic uncertainties}
-{Confedence interval with systematic uncertainties is shown in blue and without systematics uncertainties is shown in red. 
-The best-fit parameters are $\sin^2\theta_{23} = 0.567$ and $|\Delta m^2_{32}| = 2.45\times 10^{-3} eV^2$.}
+\caption{90\% confidence levels with and without systematic uncertainties}
+{Confedence level with systematic uncertainties is shown in blue and without systematics uncertainties is shown in red. 
+The best-fit parameters are $\sin^2\theta_{23} = 0.504$ and $|\Delta m^2_{32}| = 2.45\times 10^{-3} eV^2$.}
 \label{fig:cant_w_wo_syst}
+\end{figure}
+
+It is also interesting to compare if including the escaping sample is improving the NOvA sensitivity when real data is used.
+Figure \ref{fig:contpurd_cont_uncont} illustrates the NOvA sensitivities with and without escaping sample in the fit. 
+
+%It is 
+%hard to quntify the effect by just looking at the contours since escaping sample is low in statistic and has a bigger systematic 
+%influence, however, profile figures \ref{fig:profile_sin} and \ref{fig:profile_delta} provides more information. Profile for
+%$\sin^2\theta_{23}$ shows that usage of escaping sample increases maximal mixing rejection from 0.40 $\sigma$ to 0.61 $\sigma$.
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/Data_systs_contours.pdf}
+\caption{90\% confidence levels with and without escaping sample in the fit}
+{Confedence level without escaping sample is shown in black and with escaping sample is shown oin blue. The best-fit 
+parameters when escaping sample is included are $\sin^2\theta_{23} = 0.504$ and $|\Delta m^2_{32}| = 2.45\times 10^{-3} eV^2$.}
+\label{fig:contpurd_cont_uncont}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
