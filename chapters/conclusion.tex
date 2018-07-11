@@ -6,15 +6,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The data analysed in the present work were taken between 2014 and 2017 in a neutrino mode. The results 
-presented in the previous chapter prefer non-maximal mixing at the significance level of 0.6 $\sigma$
-with best-fit oscillation parameters
+presented in the previous chapter prefer non-maximal mixing with best-fit oscillation parameters 
 \be
-\sin^2\theta_{23} = 0.567, \nn
+\sin^2\theta_{23} = 0.504^{+0.079}_{-0.060}, \nn
 \ee
 \be
-\Delta m^2_{32} = 2.45 \times10^{-3}~ eV^2. \nn
+\Delta m^2_{32} = 2.45^{+0.11}_{-0.07} \times10^{-3}~ eV^2. \nn
 \ee
 
-The selection criteria to select developed in the present thesis 
+The selection criteria to select the escaping sample developed in the present thesis allow to select
+events which were previously discarded by the analysis software. Despite the marginal improvements in measuring
+oscillation parameters using the escaping sample effectivly adds \textbf{4\%} more statistics.
+
+The main difficulties with the escaping sample which are cosmic background and event energy estimation were 
+addressed. And while energy estimation hardly could be improved more, there are still some space for potential 
+improvements in cosmic background rejection. As it can be seen in figure \ref{fig:dataprediction_uncont} the most 
+of cosmic background is in the region of 1-2 GeV where experiment is the most sensitive to oscillation 
+parameters $\sin^2\theta_{23}$ and $\Delta m^2_{32}$. One of the possible future lines of attack could be a
+usage of hit time information to determine the direction of the escaping track\footnote{as of today timing resolution
+is not enough, however potentially it could be improved.}. Another possibility could be a deep convolutional neural
+net, which was used in $\nu_\mu$ disappearance and $\nu_e$ appearance analyses as well as in this thesis for contained sample,
+but trained primarily on escaping events. 
+
+NOvA experiment continues to take data in neutrino and antineutrino mode. Future improvements in analysis techniques,
+better understanding of systematics effects and more statistics will help us to understand neutrino sector in greater details 
+and, perhaps, will bring more questions to study. Stay tuned!
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
