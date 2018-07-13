@@ -31,7 +31,7 @@ sample are explained later.
 
 \section{Slicing}
 As can be seen on the figure \ref{fig:EVD_full} data recorded for one NuMI spill contains
-multiple uncorrelated activities. Even though the length of NuMI spill is 10$\mu s$ in the middle
+multiple uncorrelated activities. Even though the length of NuMI spill is 12$\mu s$ in the middle
 of 550$\mu s$ readout window, the slicer algorithm is applied to all the hits in the window to protect 
 against small possible drift of NuMI spills as well as to make slices for cosmic rays for background
 estimation.
@@ -77,7 +77,8 @@ The NOvA tracking algorithm is based on Kalman filtering \cite{Kalman} and its i
 in \cite{Nick}. In short, the algorithm is run on two views (X and Y) separately and merges 2D tracks into
 3D ones. To construct a 2D track two hits with separation smaller than three planes are chosen as track 
 seeds at the most downstream location\footnote{Downstream in the sense of the incoming neutrino from Fermilab}. 
-The algorithm is working upstream and the added hits are fit with piecewise linear segments. Adding a hit or not 
+The algorithm combines hits as it works upstream and the added hits are fit with piecewise linear segments. 
+Adding a hit or not 
 is decided on the basis of how much the $\chi^2$ is changed by the hit; if it less than eight units 
 then the hit is added. Fitting the track with linear segments naturally helps to follow particles trajectory 
 with multiple scatterings. A track is considered to be reconstructed if the algorithm travels more than 3 planes
@@ -152,10 +153,10 @@ examples of the fit for far and near detectors.
 \end{figure}
 
 For analysis, the $W$ of every hit is estimated and a PE value of the hit is divided by fit at this position to 
-get a corrected PE value of the hit. Since attenuation curve is determined cell response to cosmic ray muons, the 
-corrected PE value of the hit shows the relative signal to the cosmic muons. At this point, the attenuation is taken
-into account but the units of corrected PE signal are still arbitrary and the absolute energy calibration is still 
-needed. 
+get a corrected PE value of the hit. Since the attenuation curve is determined from the cell response to cosmic 
+ray muons, the corrected PE value of the hit shows the relative signal to the cosmic muons. At this point, the 
+attenuation is taken into account but the units of corrected PE signal are still arbitrary and the absolute energy 
+calibration is still needed. 
 
 \subsection{Absolute energy calibration}
 As in the previous step cosmic muons are used at this step too, but now hits a fixed distance from the end of the 

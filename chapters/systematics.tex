@@ -24,8 +24,8 @@ by reweighting events one gets a new (shifted) prediction which
 corresponds to that cross section parameter. One gets 2 shifted predictions by using weights which are calculated for 
 $\pm 1\sigma$ shifts for some cross section parameter; nominal and 2 shifted predictions are used to produced a 
 systematic error band on all plots which are presented in this chapter. In this document, systematic 
-error bands are shown only for escaping sample, study of systematic uncertainties for the contained sample can be found in
-\cite{Luke}.
+error bands are shown only for escaping sample, the readers interested in the study of the systematic uncertainties 
+for the contained sample are refered to \cite{Luke}.
 
 The systematic effects which need to alter information on a hit-by-hit basis cannot be used in a reweightable scheme 
 and a completely new set of Monte Carlo simulation files is generated. For instance, new sets of files are required for 
@@ -56,13 +56,14 @@ Corrections were needed to accommodate the effect of ``weak charge screening" an
 and uncertainties are momentum transfer dependent except for RPA RES uncertainty which is taken at 100\% (means that effect 
 is switched off) \cite{Xsec2017_technote}. The second effect is MEC, neutrino scattering on a pair of nucleons
 \footnote{neutron-proton pair (\textit{np}), proton-proton pair (\textit{pp}).}, which depends on neutrino energy and the fraction of 
-\textit{np} pairs. Different models give different behavior for the MEC cross section at low energies, and since MEC is constraint 
-by normalizing to thedata the most important part of cross section uncertainty is the shape. Ratio of different normalized models 
-to the emperical GENIE MEC model lies inside the region bounded by two function given in table \ref{table:RPAMEC}, where ``+" and ``-" 
-correspond to $+1\sigma$ and $-1\sigma$ shift respectively. Another important effect of the MEC interaction is 4-momentum transfer. 
-The simulation is fit to the data by applying weights in ($q_0$, $|\vec{q}|$)-plane and uncertainty to the fit tends to make things 
-more QE-like or RES-like, these shifts are achieved by varying other  the combination of uncertainties that distorts the visible 
-hadronic energy distribution \cite{Xsec2018_technote}.
+\textit{np} pairs. Different models give different behavior for the MEC cross section at low energies. Since MEC is 
+constraint by normalizing to the data the most important part of cross section uncertainty is the shape. Ratio of 
+different normalized models to the emperical GENIE MEC model lies inside the region bounded by two functions given in 
+table \ref{table:RPAMEC}, where ``+" and ``-" correspond to $+1\sigma$ and $-1\sigma$ shift respectively. Another 
+important effect of the MEC interaction is 4-momentum transfer. The simulation is fit to the data by applying weights 
+in ($q_0$, $|\vec{q}|$)-plane and uncertainty to the fit tends to make things more QE-like or RES-like, these shifts 
+are achieved by varying other  the combination of uncertainties that distorts the visible hadronic energy distribution 
+\cite{Xsec2018_technote}.
 
 Figures \ref{fig:MaCCQEreduced}, \ref{fig:MECEnuShapeNu}, \ref{fig:MaCCRES}, \ref{fig:MvCCRES}, \ref{fig:CCQEPauliSupViaKF},
 \ref{fig:DISvnCC1pi} illustrate effect of GENIE parameters on selected escaping signal and background events. Those parameters
@@ -320,9 +321,9 @@ columns show the number of selected events when the GENIE parameter is shifted b
 \end{table} }
 
 \section{Flux Uncertainty}
-In order to estimate the neutrino flux through the Near and the Far detectors the NuMI beam is simulated from the hit proton
-hits of the target through pions, muons and kaons decaying in the decay pipe. And systematic uncertainties of all these processes
-have to be evaluated.
+In order to estimate the neutrino flux through the Near and the Far detectors the NuMI beam is simulated through the 
+entire production process that starts with protons hitting the target and ends with pions, muons and kaons decaying in 
+the decay pipe. And systematic uncertainties of all these processes have to be evaluated.
 
 Flux uncertainties could be separated into two categories 
 \begin{itemize}
@@ -384,7 +385,7 @@ columns show the number of selected events when the third flux PCA component is 
 
 \section{Muon Energy Uncertainty}
 Due to some uncertainties in detectors masses, compositions, offsets etc. the observed range traveled by muon has its own 
-uncertainty. Muon track length is used to estimate muon energy at the Near detector and Far detector (for the contained 
+uncertainty. Muon track length is used to estimate the muon energy at the Near detector and Far detector (for the contained 
 sample) and is important part of energy estimator for escaping sample at the Far Detector. A very extensive study was carried out
 in \cite{muonEUnc_technote} and the following absolute and relative systematic uncertainties were established:
 \begin{itemize}
@@ -555,7 +556,8 @@ and simulation/cosmic comparison in the Far detector) however for protons it cou
 Thus, the same 5\% effect is assumed as the worst case for a relative effect. Figure \ref{fig:RelativeCalib} illustrates 
 the impact of the relative calibration uncertainty on selected escaping sample at the Far detector. 
 
-A detector cell has a different response for an energy deposition at different distances from the readout electronics. 
+In addition to the average cell response an individual detector cell has a different response for an energy deposition 
+at different distances from the readout electronics. 
 A comparison of the reconstructed and true energy of simulated cosmic hits as function of their position along the cell 
 is performed in \cite{shape_talk} and the discrepancy is interpreted as calibration `shape' uncertainty. The effect of this 
 systematic is illustrated in figure \ref{fig:CalibShape}.  
@@ -665,10 +667,10 @@ columns show the number of selected events when calibration shifted sample is us
 \section{Light Model}
 To estimate the uncertainty on the light model, three special datasets are generated. The first dataset which is called
 nominal is generated with increased Cerenkov light collection efficiency and reduced standard scintillation light production, 
-effectively removing the $\frac{dE}{dx}$ discrepancy observed in the ratio of ND data/simulation for muons and protons. The 
-second and the third datasets are $\pm 1\sigma$ shifts where alternative scintillator light levels are shifted by 
-10\% up and down while the calibration is simulteneously adjusted by 10\% in the opposite direction. The effect of the shifts is
-that some hits fall below or rise above the readout treshold.
+effectively removing the $\frac{dE}{dx}$ discrepancy observed in the ratio of ND data/simulation for muons and protons 
+\cite{dedx_talk}. The second and the third datasets are $\pm 1\sigma$ shifts where alternative scintillator light levels 
+are shifted by 10\% up and down while the calibration is simulteneously adjusted by 10\% in the opposite direction. 
+The effect of the shifts is that some hits fall below or rise above the readout treshold.
 
 In comparison to contained sample, the light model systematic has a significant effect on escaping sample\footnote{a small effect 
 of light model systematic for contained sample could be seen on page 613 of \cite{systematic_technote}}. The main reason is
