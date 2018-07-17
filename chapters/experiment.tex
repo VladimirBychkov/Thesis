@@ -7,12 +7,13 @@
 
 The neutrinos studied by NOvA begin at Fermi National Accelerator Laboratory (Fermilab) 
 in Illinois. An intense muon (anti-)neutrino beam is created at Fermilab by the Neutrino 
-at the Main Injector (NuMI) source. NOvA, which stands for NuMI Off-Axis $\nu_e$ Appearance, 
-is a long baseline experiment which is designed to determine the neutrino mass hierarchy, 
-the octant of $\theta_{23}$, and to measure the CP violating phase $\delta_{CP}$. It 
-consists of the Near Detector (ND), which is located at Fermilab and measures total flux of 
-neutrino, and the Far Detector (FD), which is located near Ash River, Minnesota and measures 
-flux of muon and electron neutrinos. The structures of the NuMI source and the Near and 
+at the Main Injector (NuMI) source \cite{numi_paper}. NOvA, which stands for NuMI Off-Axis 
+$\nu_e$ Appearance, is a long baseline experiment which is designed to determine the neutrino 
+mass hierarchy, the octant of $\theta_{23}$, and to measure the CP violating phase $\delta_{CP}$. It 
+consists of the Near Detector (ND), which is located at Fermilab and measures the combined flux of 
+the neutrino beam and interaction cross section, and the Far Detector (FD), which is located near 
+Ash River, Minnesota and measures interaction yield 
+of muon and electron neutrinos. The structures of the NuMI source and the Near and 
 Far Detectors, and the detector positions relative to the beam axis will be explained in 
 the following sections.
 
@@ -37,10 +38,10 @@ particles at the end of the decay pipe consists of mostly muons and muon anti-ne
 their antiparticles. By changing the electric current direction in the focusing horns one can 
 switch between focusing positively or negatively charged pions and kaons into the decay pipe. 
 This gives an opportunity to make two types of neutrino beams - $\nu_\mu$'s and $\bar{\nu}_\mu$'s. 
-Unfortunately, 5\% of charged kaons have electron neutrinos among their byproducts, and this 
-is an irreducible background for an electron neutrino analysis. All the realitively long lived
-charged particles such as muons and electrons do not reach Near Detector as they get absorbed 
-in rock. A hadron monitor, absorber and muon monitor are placed at the end of decay pipe 
+Unfortunately, 5\% of charged kaons and muons, those which decay in decay pipe, have electron neutrinos 
+among their byproducts, and this is an irreducible background for an electron neutrino analysis. 
+The rest of charged particles such as undecayed muons and electrons do not reach Near Detector as they 
+get absorbed in rock. A hadron monitor, absorber and muon monitor are placed at the end of decay pipe 
 to better understand beam properties, but they do not play any role in the NOvA experiment.
 
 \begin{wrapfigure}{r}{0.5\textwidth}
@@ -57,13 +58,13 @@ blue line, $P(\nu_\mu \rightarrow \nu_e)$ - black line and $P(\nu_\mu \rightarro
 After the neutrinos leave the decay pipe they begin their journey to the near and far detectors.
 The NO$\nu$A detectors are placed 14.6 mrad off-axis of the NuMI beam for several reasons. As can
 be seen on the picture on the right, the first minimum of the muon neutrino survival
-probability and first maximum of the electron neutrino appearance probability occur near 400 km/GeV,
-The on-axis neutrino spectrum is shown in black on the top of figure \ref{fig:Spec}. To get a better 
-$\delta_{CP}$ sensitivity neutrino baseline should be as big as possible and for the practical reasons
-baseline is choosen to be 810 km. For this baseline maximum of $P(\nu_\mu \rightarrow \nu_e)$ corresponds
+probability and first maximum of the electron neutrino appearance probability occur near 400 km/GeV. 
+%To get a better 
+%$\delta_{CP}$ sensitivity neutrino baseline should be as big as possible and for the practical reasons
+%baseline is choosen to be 810 km. 
+For this baseline of 810 km $P(\nu_\mu \rightarrow \nu_e)$ corresponds
 to 2 GeV of neutrino energy. Only a tiny fraction of neutrinos satisifies this condition if Far Detector 
-stays on-axis of neutrino beam\footnote{Together with small fraction of suitable neutrinos another problem 
-arises here - high energy neutrinos after NC interaction potentially can mimic 2 GeV $\nu_e$ signal} and 
+stays on-axis of neutrino beam as shown in Figure \ref{fig:Spec} and 
 there should be a way to fix that. The solution is simple: pions and kaons decay isotropically in their 
 rest frame, but, after a Lorentz boost to the laboratory frame, the neutrino flux and energy at the Far 
 Detector (for small off-axis angles $\theta$) can be expressed in the following form
@@ -82,8 +83,10 @@ toward lower energies. At 14.6 mrad the neutrino flux is still appreciable and p
 Based on this configuration, the NOvA Far Detector is situated 810 km from the source to measure
 the maximum of $P(\nu_\mu \rightarrow \nu_e)$. At this distance, the narrow peak decreases the
 probability that neutral current (NC) events from more energetic neutrinos are misidentified
-as CC events in the energy region of interest. In general, the off-axis detector placement
-significantly improves the sensitivity of the $P(\nu_\mu \rightarrow \nu_e)$ probability measurement.
+as CC events in the energy region of interest\footnote{For example, a 10 GeV neutrino after NC interaction
+can still have 8 GeV of energy and the rest of the energy si deposited in the detector as visible energy.}. 
+In general, the off-axis detector placement significantly improves the sensitivity of the 
+$P(\nu_\mu \rightarrow \nu_e)$ probability measurement.
 \begin{figure}
 \includegraphics[width=0.9\textwidth]{figures/FD_NOvA_OffAxis_Spectra.pdf}\\%
 \includegraphics[width=0.9\textwidth]{figures/EnuVSEpi_NOvA.pdf}
@@ -98,7 +101,7 @@ The NOvA experiment uses two detectors for measuring muon neutrino disappearance
 $P(\nu_\mu \rightarrow \nu_\mu)$ and electron neutrino appearance probability $P(\nu_\mu \rightarrow \nu_e)$. 
 In order to decrease systematic uncertainties, such as beam uncertainty and uncertainties due to variation
 in detector efficiency, two detectors are built with exactly the same material and 
-similar geometry. The Near Detector is placed 1 km from the NuMI source at Fermilab, while the 
+similar technology. The Near Detector is placed 1 km from the NuMI source at Fermilab, while the 
 Far Detector sits 810~km away on the surface and 14.6 mrad off beam axis in Ash River, Minnesota. 
 The Near Detector weighs 330 metric ton and is 105 m underground, while the Far Detector mass is 
 14,000 ton and has shielding equivalent to 3 m of water which reduces cosmic ray background.
@@ -124,7 +127,7 @@ approximately 3.6 degrees below the ground level so it comes out of the Earth 81
 \subsection{Internal construction}
 Each detector is made of cells which are made from polyvinyl chloride (PVC) doped with titanium 
 dioxide to increase light reflectivity. The cross section of cells has rectangular shape with sizes
-approximately equal to 4 cm and 6 cm. The length of the cells is varies between the detectors and 
+approximately equal to 4 cm and 6 cm. The length of the cells are varies between the detectors and 
 is 4 m for the Near Detector and 15 m for the Far Detector. 32 cells are bound together along
 6 cm side to make a module and a set of modules produces plane. The number of modules in a plane
 depends on a detector - 3 and 12 modules per plane for the Near and Far Detector respectively. Planes
@@ -221,9 +224,9 @@ Thus, sophisticated algorithms were developed to determine the exact neutrino fl
 In addition, since the NOvA Far Detector sits on the ground it is constantly being bombarded by muons and other
 particles created by interactions of cosmic rays with air molecules in upper atmosphere. 
 These muons contribute to a background for the main analysis but they are relatively easy to get rid off
-because of their activity at the top and/or at the sides of the detector. 
-
-However, cosmic muons are a primarily background in a escaping sample which this thesis is partially about.
+because of their activity at the top and/or at the sides of the detector and main analysis consider activity 
+which is fully contained in the detector volume. However, cosmic muons are a primarily background in a escaping 
+sample which this thesis is partially about.
 
 \subsection{NOvA Event Display}
 \begin{figure}
