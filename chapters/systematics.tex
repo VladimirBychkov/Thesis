@@ -9,29 +9,29 @@ Precise measurements of the oscillation parameters depend on correct extrapolate
 the Far Detector. In turn, extrapolated predictions depend on our understanding of all properties of the detectors as
 well as properties of particles propagation and interaction with other particles. Naturally, this understanding cannot 
 be absolute which leads to uncertainties in the final result, these uncertainties are called systematic 
-unsertainties, as opposed to statistical uncertainties which comes from the probabalistic nature of the high energy experiment.
+uncertainties, as opposed to statistical uncertainties which comes from the probabilistic nature of the high energy experiment.
 While statistical uncertainties are mitigated by longer exposure, systematic uncertainties could be mitigated by the
 experiment design. For example, the two-detector design of NOvA reduces the impact of flux and cross section uncertainties.
 
-The first section of this chapter describes the treatment of systemtic uncertainties in NOvA and the following ones
+The first section of this chapter describes the treatment of systematic uncertainties in NOvA and the following ones
 discuss the impact of different systematic uncertainties on the extrapolated predictions. 
 
 \section{Evaluation of Systematic Uncertainties}
 For some systematics, the analysis framework allows a reweightable approach to evaluate the impact of a specific systematic
 on the analysis result. This approach helps to reduce the computational resources \cite{cafana}. For instance, any cross section 
 parameter has its own uncertainty and for every simulated event a weight is calculated based on that uncertainty, and 
-by reweighting events one gets a new (shifted) prediction which 
+by reweighing events one gets a new (shifted) prediction which 
 corresponds to that cross section parameter. One gets 2 shifted predictions by using weights which are calculated for 
 $\pm 1\sigma$ shifts for some cross section parameter; nominal and 2 shifted predictions are used to produced a 
 systematic error band on all plots which are presented in this chapter. In this document, systematic 
 error bands are shown only for escaping sample, the readers interested in the study of the systematic uncertainties 
-for the contained sample are refered to \cite{Luke}.
+for the contained sample are referred to \cite{Luke}.
 
 The systematic effects which need to alter information on a hit-by-hit basis cannot be used in a reweightable scheme 
 and a completely new set of Monte Carlo simulation files is generated. For instance, new sets of files are required for 
 the systematically shifted scintillation model, calibration systematics etc. 
 
-During the fitting procedure the fitter needs to know the prediction for fractional systetamic shifts. This is 
+During the fitting procedure the fitter needs to know the prediction for fractional systematic shifts. This is 
 achieved by using a cubic spline interpolation between nominal, $\pm 1\sigma$ and $\pm 2\sigma$ shifts. 
 
 The analysis framework distinguishes between two types of systematic uncertainties in NOvA, those which are correlated for 
@@ -41,11 +41,11 @@ uncertainties are examples of absolute uncertainties. Systematic effects which a
 are called \textit{relative} uncertainties.  
 
 \section{Cross Section Uncertainty}
-GENIE cross section models depends on 80+ parameters and uncertaintes on all these parameters allow to calculate cross
+GENIE cross section models depends on 80+ parameters and uncertainties on all these parameters allow to calculate cross
 section weights \cite{GENIE}. When one alters some parameter the weight is determined as ratio of cross section with altered 
 parameter to nominal one. Later, at analysis time, every selected event at the Near or the Far Detector is weighted with 
 above calculated weight, thus the shifted prediction is generated. The marginalization process\footnote{fitting procedure with 
-systematic uncrtainties taken into account.} is computationally heavy and only those GENIE cross section systematics are 
+systematic uncertainties taken into account.} is computationally heavy and only those GENIE cross section systematics are 
 used which has significant impact on the analysis. Table \ref{table:XSecParam} summarize cross section parameters used in
 the analysis, the first column is the parameter description and the second one is parameter's $1\sigma$ uncertainty. 
 
@@ -58,7 +58,7 @@ is switched off) \cite{Xsec2017_technote}. The second effect is MEC, neutrino sc
 \footnote{neutron-proton pair (\textit{np}), proton-proton pair (\textit{pp}).}, which depends on neutrino energy and the fraction of 
 \textit{np} pairs. Different models give different behavior for the MEC cross section at low energies. Since MEC is 
 constraint by normalizing to the data the most important part of cross section uncertainty is the shape. Ratio of 
-different normalized models to the emperical GENIE MEC model lies inside the region bounded by two functions given in 
+different normalized models to the empirical GENIE MEC model lies inside the region bounded by two functions given in 
 table \ref{table:RPAMEC}, where ``+" and ``-" correspond to $+1\sigma$ and $-1\sigma$ shift respectively. Another 
 important effect of the MEC interaction is 4-momentum transfer. The simulation is fit to the data by applying weights 
 in ($q_0$, $|\vec{q}|$)-plane and uncertainty to the fit tends to make things more QE-like or RES-like, these shifts 
@@ -67,7 +67,7 @@ are achieved by varying other  the combination of uncertainties that distorts th
 
 Figures \ref{fig:MaCCQEreduced}, \ref{fig:MECEnuShapeNu}, \ref{fig:MaCCRES}, \ref{fig:MvCCRES}, \ref{fig:CCQEPauliSupViaKF},
 \ref{fig:DISvnCC1pi} illustrate effect of GENIE parameters on selected escaping signal and background events. Those parameters
-are chosen to be shown here as they have a noticable impact on FD predictions while the rest of the cross section parameters
+are chosen to be shown here as they have a noticeable impact on FD predictions while the rest of the cross section parameters
 have a much smaller effect.
 
 {\renewcommand{\arraystretch}{2}%
@@ -106,7 +106,7 @@ have a much smaller effect.
   \hline
   RPA effect in resonance neutrino production & $q^2$ dependent \tabularnewline
   RPA enhancement effect in CC QE & $q^2$ dependent \tabularnewline
-  RPA suppresion effect in CC QE & $q^2$ dependent \tabularnewline
+  RPA suppression effect in CC QE & $q^2$ dependent \tabularnewline
   MEC initial state np fraction & 0.7...0.9 \tabularnewline
   MEC cross section energy dependence & $\pm\frac{1}{1+2.5E_{\nu_\mu}}$ \tabularnewline
   MEC momentum transfer shape & $q^2$ dependent \tabularnewline
@@ -334,14 +334,14 @@ Flux uncertainties could be separated into two categories
 	\item Horn 1 and Horn 2 positions in both transverse dimensions,  $\pm2$ mm uncertainties
 	\item Beam position on target, $\pm0.5$ mm uncertainty
         \item Beam spot size on target, $\pm0.2$ mm uncertainty
-	\item Target posistion in longitudinal direction, $\pm2$ mm uncertainty
+	\item Target position in longitudinal direction, $\pm2$ mm uncertainty
 \end{itemize} 
 \end{itemize}
 
 It turns out that flux uncertainties are heavily correlated across almost all neutrino true energy bins. To correctly treat this,
 2000 predictions were generated in different flux universes where the parameters described above have different values within their
 uncertainty limits, \cite{fluxPCA_technote}. A correlation matrix is constructed based on the flux histograms from the different universes 
-and after that a Principal Component Analysis (PCA) is carried out to disintangle the correlations. It is shown in 
+and after that a Principal Component Analysis (PCA) is carried out to disentangle the correlations. It is shown in 
 \cite{fluxPCA_technote} that only the first 5 or 8 PCA components are enough to explain most of the information contained in the 
 correlation matrix i.e. first several PCA components describes all flux uncertainties. 
 
@@ -377,7 +377,7 @@ As mentioned previously the two detectors and the extrapolation procedure help t
           $\nu_{\tau}$ CC &      0.056 &      0.057 &      0.055 &       +1.4 &       -1.6   \\
 \end{tabular} }
 \caption{ Systematic effect of 3rd flux PCA component on FD MC signal and background prediction}
-\caption{ Systematic effect of DISvnCC1pi uncertainty on FD MC signal and background prediction}
+%\caption{ Systematic effect of DISvnCC1pi uncertainty on FD MC signal and background prediction}
 {The ``Nominal" column shows the number of selected events when flux parameters are at its central value. The ``Shift ($\pm$)"
 columns show the number of selected events when the third flux PCA component is shifted by $1\sigma$ up or down correspondingly. The
 ``Diff ($\pm$)" columns show the same shifts in a relative manner.}
@@ -402,7 +402,7 @@ in \cite{muonEUnc_technote} and the following absolute and relative systematic u
 \end{itemize}
 
 Figures \ref{fig:AbsMuEScale2017} and \ref{fig:RelMuEScale2017} illustrate the impact of the absolute and relative systematic 
-uncertainties on the ecaping sample prediction at the Far detector correspondingly.
+uncertainties on the escaping sample prediction at the Far detector correspondingly.
 
 \clearpage
 \begin{figure}[t!]
@@ -546,7 +546,7 @@ columns show the number of selected events when muon track length is shifted by 
 \section{Calorimetric Energy Uncertainties}
 Several studies of the post calibration calorimetric response of the detectors show that the protons in the Near detector
 have the biggest discrepancy between data and simulations \cite{ecalib_talk}. It is found that the calorimetric detector
-response in data is 5\% lower than the simulation and this disrepancy is interpreted as a 5\% absolute calibration
+response in data is 5\% lower than the simulation and this discrepancy is interpreted as a 5\% absolute calibration
 uncertainty. In order to evaluate an impact of this uncertainty a new simulation is generated and a different calibration
 is applied before the reconstruction step. As result, every slice has the same number of hits but their energies are 
 shifted up or down. Figure \ref{fig:Calibration} illustrates the impact of absolute calibration uncertainty.
@@ -669,8 +669,8 @@ To estimate the uncertainty on the light model, three special datasets are gener
 nominal is generated with increased Cerenkov light collection efficiency and reduced standard scintillation light production, 
 effectively removing the $\frac{dE}{dx}$ discrepancy observed in the ratio of ND data/simulation for muons and protons 
 \cite{dedx_talk}. The second and the third datasets are $\pm 1\sigma$ shifts where alternative scintillator light levels 
-are shifted by 10\% up and down while the calibration is simulteneously adjusted by 10\% in the opposite direction. 
-The effect of the shifts is that some hits fall below or rise above the readout treshold.
+are shifted by 10\% up and down while the calibration is simultaneously adjusted by 10\% in the opposite direction. 
+The effect of the shifts is that some hits fall below or rise above the readout threshold.
 
 In comparison to contained sample, the light model systematic has a significant effect on escaping sample\footnote{a small effect 
 of light model systematic for contained sample could be seen on page 613 of \cite{systematic_technote}}. The main reason is

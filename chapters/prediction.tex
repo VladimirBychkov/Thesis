@@ -11,7 +11,7 @@ $\theta_{23}$ and second, requires us to compare these predicted samples with th
 of parameters is obtained from a method known as a likelihood fit. The simplest way to do this is to 
 compare the FD prediction with data, however, significant flux and neutrino cross section
 uncertainties would result in not so great experimental sensitivity. The existence of the ND and its measurements
-of the neutrino energy spectum greatly mitigate this aforementioned problem. A procedure, called extrapolation, 
+of the neutrino energy spectrum greatly mitigate this aforementioned problem. A procedure, called extrapolation, 
 helps to predict the FD neutrino spectrum based on ND measurements and is described in the current chapter.
 
 \section{Prediction}
@@ -73,9 +73,9 @@ in the Far Detector contained Near Detector spectrum is used. }
   \centering
   \includegraphics[width=0.9\linewidth]{figures/nd_reco_true_matrix.pdf}
 \end{subfigure}
-\caption{ Reco-true matricies for FD and ND contained samples. }
-{ This is an example of reco-true matricies for FD (top) and ND (bottom) contained samples, matricies for the
-escaping sample looks similar. The matricies are used in extrapolation procedures to convert ND neutrino spectrum
+\caption{ Reco-true matrices for FD and ND contained samples. }
+{ This is an example of reco-true matrices for FD (top) and ND (bottom) contained samples, matrices for the
+escaping sample looks similar. The matrices are used in extrapolation procedures to convert ND neutrino spectrum
 in reconstructed energy bins to spectrum in true energy bin and vice versa for FD neutrino spectrum. }
 \label{fig:reco_true_matricies}
 \end{figure}
@@ -100,13 +100,13 @@ as compared to FD. All these effects are well model by NOvA simulations.
 Distortions caused by different resolutions of energy estimators at the ND and the FD is also mitigated by
 the extrapolation procedure. For every detector a 2D histogram of reconstructed energy vs. true energy
 is created. These \textit{reco-true matrices} are used to convert bins of reconstructed energy at
-each detector to bins of true energy. Figure \ref{fig:reco_true_matricies} illustrates these matricies.
+each detector to bins of true energy. Figure \ref{fig:reco_true_matricies} illustrates these matrices.
 
-The full extrapolation procedure works as follows. Firstly, an observed ND neutrino spectum in bins of 
+The full extrapolation procedure works as follows. Firstly, an observed ND neutrino spectrum in bins of 
 reconstructed energy is converted to the spectrum in bins of true energy with the help reco-true 
 matrix. Secondly, geometric effect is mitigated by multiplying result of previous step with FD/ND 
 true energy ratio to get FD unoscillated prediction in bins of true energy. Thirdly, every bin of the 
-spectrum is reweighted with oscillated probability. Finally, FD reco-true matrix is applied to 
+spectrum is reweighed with oscillated probability. Finally, FD reco-true matrix is applied to 
 convert neutrino spectrum in bin of true energy back to spectrum in bins of reconstructed energy,
 thus result is the predicted FD neutrino spectrum based on the observed neutrinos at the ND. 
 Figure \ref{fig:extrap_scheme} illustrates steps of the extrapolation procedure.
@@ -117,18 +117,18 @@ Figure \ref{fig:extrap_scheme} illustrates steps of the extrapolation procedure.
 {To obtain a correct prediction of neutrino spectrum at the FD based on the observed neutrino 
 spectrum at the ND, 4 steps are needed. 1. Convert the ND spectrum in bins of reconstructed energy to
 bins of true energy with the reco-true matrix. 2. Multiply by the FD/ND true energy ratio to account
-for a different geometric effects for the FD and the ND. 3. Reweight every bin of the spectrum by
+for a different geometric effects for the FD and the ND. 3. Reweigh every bin of the spectrum by
 the oscillation probability. 4. Convert spectrum in bins of true energy back to spectrum in bins of
 reconstructed energy. }
 \label{fig:extrap_scheme}
 \end{figure}
 
 \subsection{Beam Background Prediction}
-As mentioned in the beginnig of the section, only $\nu_\mu$ CC signal\footnote{Signal consists of two
+As mentioned in the beginning of the section, only $\nu_\mu$ CC signal\footnote{Signal consists of two
 channels: $\nu_\mu \rightarrow \nu_\mu$ and $\bar\nu_\mu \rightarrow \bar\nu_\mu$.} is passing 
 through extrapolation procedure described in section \ref{extrap_procedure}. All beam induced 
 background components, namely $\nu_e, \bar\nu_e, \nu_\tau, \bar\nu_\tau$ and NC, are small compare 
-to signal and ND Monte Carlo is substracted from observed neutrino spectrum before it gets extrapolated.
+to signal and ND Monte Carlo is subtracted from observed neutrino spectrum before it gets extrapolated.
 Then the beam background from FD Monte Carlo is added back to predicted FD neutrino spectrum \cite{extrap_technote}. 
 
 \subsection{Cosmic Background Prediction}
@@ -146,7 +146,7 @@ This section describes a procedure used for the measurement of oscillation param
 and $\sin^2\theta_{23}$. The procedure is called a binned maximal-likelihood fitting.
 
 \subsection{4+1 Sample Fitting}
-The ND neutrino spectrum reweighted with the oscillation probability during the extrapolation procedure 
+The ND neutrino spectrum reweighed with the oscillation probability during the extrapolation procedure 
 produces the FD predicted neutrino spectrum for those specific oscillation parameters. 
 The analysis framework calculates the oscillation probability in the three-flavor neutrino formalism for 
 different values of  $\Delta m^2_{32}$ and $\sin^2\theta_{23}$. 
@@ -197,7 +197,7 @@ The last term is the same for the five samples. The $\sigma_j$ parameters descri
 the allowed shift in a particular systematic. The $s_j$ parameters are evaluated during the process known as
 marginalization - for every set of oscillation parameters $\Delta m^2_{32}$ and $\sin^2\theta_{23}$, the analysis
 software scans over different values of $s_j$ trying to find the value which minimizes $\chi^2$. This 
-leads to a better fit and to a more gentle slope of $\chi^2$ surface, as result confedence level contours gets 
+leads to a better fit and to a more gentle slope of $\chi^2$ surface, as result confidence level contours gets 
 bigger. Thus, the effect of systematic uncertainties makes the oscillation parameters measurements less certain as 
 expected. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

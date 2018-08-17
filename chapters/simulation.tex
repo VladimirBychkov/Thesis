@@ -9,7 +9,7 @@
 In order to predict spectra at the near and the far detectors to compare predictions with
 actual data one needs to simulate neutrino interactions in the detectors relying on
 known physics models and theories of how particles are produced, how they travel and interact
-with detector material. The simulation process in NOvA starts with protons hiting
+with detector material. The simulation process in NOvA starts with protons hitting
 the NuMI target and finishes with APD readouts and analog to digital converters. Side simulation
 packages or custom NOvA software are used in every step, output information on every step is
 used as input data for the following step
@@ -36,7 +36,7 @@ focusing horns and the decay pipe is implemented in GEANT4, and the particle sim
 FLUKA. The FLUKA package simulates 120 GeV protons which hit the graphite target, which yield hadronic 
 showers of secondary particles that are directed by the horns into the decay pipe where they decay to 
 neutrinos. All the proton interaction information whose daughter particles produce a
-neutrino is saved providing a way to study beam uncertanties related to particle production models. 
+neutrino is saved providing a way to study beam uncertainties related to particle production models. 
 
 The simulation outputs files which describe neutrino flux in terms of neutrino parent particles, 
 flavour, energy and direction of motion.
@@ -62,7 +62,7 @@ sufficiently large}.
 \begin{subfigure}[t]{.5\textwidth}
   \centering
   \includegraphics[width=0.85\linewidth]{figures/nu_channels.pdf}
-  \caption{Neutrino cross section energy dependence for QE, RES and DIS intercations overlapped with 
+  \caption{Neutrino cross section energy dependence for QE, RES and DIS interactions overlapped with 
 	NOvA energy region used for the oscillation analysis.}
   \label{fig:NovaEReg}
 \end{subfigure}%
@@ -89,7 +89,7 @@ the nucleus with their energies, momenta and initial positions is ready, now one
 through the detector material and simulate the energy deposition, interaction and decay. NOvA experiment
 uses GEANT4 \cite{GEANT4} simulation package for this step. Besides the list of particles, GEANT4 takes
 another input, namely geometry of the detector and its surrounding. Detailed information about blocks 
-positions, cell structure and materials they made of, scintillator composition, conrete and steel support
+positions, cell structure and materials they made of, scintillator composition, concrete and steel support
 structure around the detectors is encoded in special geometry files.
 
 The way GEANT4 propagates particles is done in the following manner. For each particle at each step of the 
@@ -103,7 +103,7 @@ Before the final detector response could be simulated it is necessary to determi
 in the scintillator and what fraction of it was collected by the wave-shifting fiber and transported to the 
 readout electronics. As a matter of fact, amount of light produced by the scintillator is not linearly 
 proportional to amount of deposited energy due to a finite number of scintillator centres along the particle
-trajectory in the cell. The effect is know as Birks supression \cite{birks}. If $\frac{dL}{dx}$ is light 
+trajectory in the cell. The effect is know as Birks suppression \cite{birks}. If $\frac{dL}{dx}$ is light 
 output per unit length and $\frac{dE}{dx}$ is amount of deposited energy then Birks law reads
 \be
 \frac{dL}{dx} = L_0 \frac{\frac{dE}{dx}}{1 + k_B\frac{dE}{dx}}, 
@@ -122,7 +122,7 @@ per distance traveled at a given wavelength
 where $\alpha$ is fine-structure constant, $z$ is charge of moving particle in units of $e$, $n(\lambda)$ is 
 refraction index and $\beta$ is particle's velocity in units of $c$.
 
-%However, more carefull aproach to the problem
+%However, more careful approach to the problem
 %of particle propagation through scintillator was carried out by Chou \cite{chou} and additional correction was
 %introduced to the Birks law. NOvA experiment utilizes this correction - 
 %\be
@@ -134,7 +134,7 @@ refraction index and $\beta$ is particle's velocity in units of $c$.
 The last simulation step is done using custom NOvA software that is split into two parts - light
 propagation to the readout electronics, and the signal measurement made by the electronics. Although in practice cells could 
 be different from each other (horizontal cells are not exactly horizontal because of their length - cells could be
-slightly bent, escpecially in the far detector. Not exact horizontality also leads to small bubbles of air are
+slightly bent, especially in the far detector. Not exact horizontality also leads to small bubbles of air are
 being trapped inside the cells) in simulations it is assumed that all cells are identical.
 
 \subsection{Light propagation}
@@ -189,7 +189,7 @@ is determined by taking into account APD's quantum efficiency and additional Poi
 \vspace{1mm}
 \caption{Schematics of digitization}
 \end{wrapfigure}
-Photo-electron signal in the APD created in the previous step have to be digitazed to finalize the simulation
+Photo-electron signal in the APD created in the previous step have to be digitized to finalize the simulation
 of the cell hit. As an APD impulse is too short, first it is stretched in the Application Specific Integrated 
 Circuit (ASIC) by the CR-RC circuit. The response of the ASIC to a charged impulse has the following form
 \be
@@ -198,7 +198,7 @@ f(t) \sim e^{-\frac{t-t_0}{F}} - e^{-\frac{t-t_0}{R}},
 where $t_0$ is the time when pulse was created by APD, F and R are the fall time and rise time of the CR-RC 
 circuit. And as was mention in chapter \ref{experiment_chapter} the signal value is split into 4096 possible
 values and only 4 last ADCs - value of the digitization sample - is stored when the difference $ADC_i - ADC_{i-3}$
-is greater then a treshold. 
+is greater then a threshold. 
 At this point the simulation files have the same structure\footnote{Of course plus additional information about type 
 of neutrino information, resulting particles' momenta and energies etc.} as the data files.
 The next step in NOvA analysis is to reconstruct high level information about recorded or simulated events

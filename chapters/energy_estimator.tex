@@ -14,7 +14,7 @@ For the escaping events, the energy estimation algorithm is discussed in this ch
 Similar to energy estimation for contained sample events, the escaped event is divided
 into two parts: muon track (track with the highest ReMId score) and hadronic cluster.
 Hadronic cluster is the set of all hits in the slice with removed hits on primary 
-track. Preselection cut, which keeps hudronic cluster to at least 3 cells from
+track. Preselection cut, which keeps hadronic cluster to at least 3 cells from
 the edge of the detector, makes sure that all the activity associated with hadrons is
 contained. Thus, hadronic energy of the selected escaping event can be estimated
 with the help of the same algorithm as for contained event, but another approach is needed
@@ -27,8 +27,8 @@ lookup table.
 \subsection{Quasi-Elastic Formula}
 Interactions which constitute a significant fraction of the $\nu_\mu$ CC interactions 
 in NOvA are QE interactions, for these interactions an analytic expression for
-neutrino energy, which is written in terms of obervable variables can be used. For escaping events
-observable quantaties are hadronic energy and the primary track angle\footnote{Angle
+neutrino energy, which is written in terms of observable variables can be used. For escaping events
+observable quantities are hadronic energy and the primary track angle\footnote{Angle
 between muon track and incoming neutrino.}. 
 
 The well known quasi-elastic formula for neutrino energy reconstruction in terms of muon
@@ -39,7 +39,7 @@ E_{\nu} = \frac{E_\mu m_N - \frac{m_\mu^2}{2}}{m_N - E_\mu + p_\mu\cos\theta}
 can be easily rewritten in terms of reconstructed hadronic energy $E_{had}$ and 
 scattering angle. With assumptions $E_\mu >> m_\mu$ and that reconstructed hadronic 
 energy is kinetic energy of a hadron neutrino interacted with, the previous formula 
-tranforms into
+transforms into
 \be
 E_{\nu} = E_{had}\Big[1 + \sqrt{1 + \frac{4m_N}{E_{had}(1-\cos\theta)}}\Big].
 \ee
@@ -81,7 +81,7 @@ Approaches described in the previous section while being simple and easy interpr
 not provide good enough improvement in experiment sensitivity. The natural next step in
 searching for a good energy estimator for escaping events is to try different machine 
 learning regression algorithms such as an artificial neural network, k Nearest Neighbours and
-decision trees. All these algorithms are aplicable for regression problem and all of them 
+decision trees. All these algorithms are applicable for regression problem and all of them 
 were examined with the same set of input variables.
 
 \subsection{Input Variables}
@@ -93,16 +93,16 @@ variables which improved muon energy estimator.
 \item Track Length. The length of the primary track contains all the information about muon
 energy when track is fully contained in the detector and provides a lower limit for the 
 energy otherwise.
-\item Track scattering. The cumulutive sum of all deviations from a straight line in degrees
-normilized by track length. Muon with a small energy has a shorter track and a lot of scattering 
+\item Track scattering. The cumulative sum of all deviations from a straight line in degrees
+normalized by track length. Muon with a small energy has a shorter track and a lot of scattering 
 while propagating through the detector resulting in a bigger track scattering variable. 
-This variable descriminates cases with the same amount of contained track but different amount
+This variable discriminates cases with the same amount of contained track but different amount
 of escaped part.
 \item Track angle. The variable describes the angle between the reconstructed track and 
 incoming neutrino\footnote{At the far detector neutrino source is a point source and direction
 of incoming neutrinos could be determine.}. 
 \item Track Energy Per Hit. Visible energy of the track is divided by number of hits in the 
-track. The variable helps to detmine if muon is minimum ionizing particle or not, this has
+track. The variable helps to determine if muon is minimum ionizing particle or not, this has
 a strong connection with the muon total energy.
 \end{itemize}
 
@@ -121,7 +121,7 @@ variables are first transform into a Gaussian form and then decorrelated. }
 \caption{Input and target variables after decorrelation and gaussinization procedures were performed.}
 \label{fig:inputDG}
 \end{figure}
-During the training period every set of these four variables is supplimented with a true muon
+During the training period every set of these four variables is supplemented with a true muon
 energy in the corresponding event. These variables are not completely independent as 
 can be seen in figure \ref{fig:corrMatrix}. It is known that regression algorithms achieve 
 better results when input variables are decorrelated, thus decorrelation and gaussinization
@@ -132,7 +132,7 @@ procedures were carried out and final distributions before they enter training a
 Training and testing samples contain equal number of events - 101079. This events in addition
 to escaping sample selection are subject to one more selection. Namely, events have to be
 from the files with subrun number less than 55. This criteria selects events from all
-runs with different detector states, so energy estimator during the training process exsposed
+runs with different detector states, so energy estimator during the training process exposed
 to events it could see in the final analysis. Events with subrun equal or more than 55 are used 
 for final validation. 
 
@@ -140,11 +140,11 @@ Early tests showed that artificial neural net and k nearest neighbours algorithm
 significantly worse performance and these algorithms are not used for final muon energy 
 estimator tuning. On the other hand, results for the Boosted Decision Trees (BDT) turned out
 to be more promising. The next several paragraph briefly explain how BDT work and what 
-hyperparameters are chosen for muon energy estimator.
+hyper parameters are chosen for muon energy estimator.
 
 Regression decision tree is a tree-like graph where data flow from root to leaves through 
 several branching points. Root and branching points correspond to questions and if data 
-satisfies the question it propogates through one branch, if not then it propagates through
+satisfies the question it propagates through one branch, if not then it propagates through
 another branch. During the training process tree learns its structure and populates leaves 
 with examples from training sample. When a new data point is fed into the tree it propagates
 through the tree following the questions in branching points and finally reaches one of the leaves. 
@@ -174,7 +174,7 @@ L(E_{muon}, E_{true}) = \begin{cases}
 $} for $E_{muon}^N(\vec{x}, \vec{\beta}, \vec{\alpha}) + \beta_{N+1}f(\vec{x}, \alpha_{N+1})$.
 
 It is recommended not to use trees with depth deeper than 8, so a depth 5 of was chosen. Another 
-hyperparameter for BDT training is the number of weak learners. Ten different options were tried
+hyper parameter for BDT training is the number of weak learners. Ten different options were tried
 and the best result was achieved for 800.
 
 \subsection{Performance}
@@ -187,7 +187,7 @@ As can be seen in figure \ref{fig:recoMuE_resol}, muon energy resolution is abou
 distribution is not symmetrical and shifted towards positive values meaning that estimator on average 
 undershoot the escaping muon energy. Correction could be made to make energy estimator to get right
 muon energy on $\textit{average}$ (mean of resolution histogram is zero), however as it shown in the 
-next chapter this is not necessary. Figure \ref{fig:recoMuE} illustrates recontructed muon energy together 
+next chapter this is not necessary. Figure \ref{fig:recoMuE} illustrates reconstructed muon energy together 
 with cosmic background. 
 \begin{figure}[!th]
 \centering

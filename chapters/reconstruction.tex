@@ -12,7 +12,7 @@ detectors is reconstructed into particles, and $\nu_\mu$ CC interactions are ide
 reconstruction process chain is summarized as follows:
 \begin{itemize}
 \item Slicing. The full 550$\mu s$ readout window contains hits which are associated with
-neutrino interaction, cosmis rays activity and noise. The hits need to be separated into
+neutrino interaction, cosmic rays activity and noise. The hits need to be separated into
 different groups which ideally correspond to different physical processes.
 \item Tracking.  Each slice is processed by a tracking algorithm to determine the 3-dimensional particle
 trajectories.
@@ -47,12 +47,12 @@ d = \Big(\frac{\Delta t - \frac{\Delta r}{c}}{T_{res}}\Big)^2 + \Big(\frac{\Delt
 where $c$ is the speed of light, $\Delta t$ and $\Delta r$ are time and space difference between two 
 hits respectively, $T_{res}$ is the timing resolution, $\Delta z$ is the distance between the hits
 along the z direction, $\Delta v$ is the distance between hits in x or y direction. As soon as the 
-function returns a value which is lower than a predefined treshold, two hits are put together in one slice.
+function returns a value which is lower than a predefined threshold, two hits are put together in one slice.
 The first term prefers hits which lie close to a light cone, in other words it is assumed that all
 the particles move with the speed of light\footnote{Or energy of the particles is much large than their 
 masses.}. The second and the third terms penalize hits which are far from each other in space. These
-terms help to remove noise hits as they are randomly distributed in space and time, and thefore, they 
-could be far from the main activity. After all corellated activities have been accounting for, and 
+terms help to remove noise hits as they are randomly distributed in space and time, and therefore, they 
+could be far from the main activity. After all correlated activities have been accounting for, and 
 slices are created, the remaining hits are put into one additional noise slice.
 
 The NOvA slicing algorithm efficiently separates different neutrino activities in the near detector
@@ -83,7 +83,7 @@ is decided on the basis of how much the $\chi^2$ is changed by the hit; if it le
 then the hit is added. Fitting the track with linear segments naturally helps to follow particles trajectory 
 with multiple scatterings. A track is considered to be reconstructed if the algorithm travels more than 3 planes
 and no hits are added, and the algorithm is run repetitively until no more tracks are reconstructed. 
-The majority of the particles produced by neutrino interactions travel dowstream, and thus the longest 
+The majority of the particles produced by neutrino interactions travel downstream, and thus the longest 
 track, often the muon, is reconstructed first.
 
 After all 2D tracks are found in both views they need to be merged into 3D tracks. Tracks are merged based on
@@ -110,7 +110,7 @@ the abundance of cosmic rays with well understood properties helps with the proc
 cosmic tracks those are chosen which start and end on detector edges, this criterion is needed to make sure
 that tracks are not stopped inside the detector. An additional requirement is the that tracks should cross more than
 ten planes, thus allowing an accurate estimation of muon path in every cell it crosses. Finally, only those 
-hits on tracks are used for callibration which satisfy a tri-cell criterion - a hit for callibration should
+hits on tracks are used for calibration which satisfy a tri-cell criterion - a hit for calibration should
 have both adjacent cells to be hit, see figure \ref{fig:tri-cell}. This conditions lead to a good estimation 
 of muon trajectory and hence path length within each cell.
 \begin{figure}[h]
@@ -188,10 +188,10 @@ belong to a muon or non-muon. These training examples were taken from NOvA simul
 test track are represent a point in this 4-dimensional space and in order to determine the probability the point 
 corresponds to a muon track kNN finds its $k$ nearest neighbors\footnote{Regular $L^2$ metric in $R^4$ is used;
 $||\vec{r}_1 - \vec{r}_2||^2 = (x_1-x_2)^2 + (y_1-y_2)^2 + (z_1-z_2)^2 + (w_1-w_2)^2$} and calculates the 
-fraction of muon neighbors. This fraction is output of kNN algorithm. Number $k$ is adjustable hyperparameter 
-and was choosen to be equal 80 in NOvA. 
+fraction of muon neighbors. This fraction is output of kNN algorithm. Number $k$ is adjustable hyper parameter 
+and was chosen to be equal 80 in NOvA. 
 
-Four features which exctracted from the track are track length, $\frac{dE}{dx}$ and scattering 
+Four features which extracted from the track are track length, $\frac{dE}{dx}$ and scattering 
 log-likelihood for muon hypothesis and non-hadronic plane fraction. $\frac{dE}{dx}$ and scattering log-likelihood 
 are determined with the help of probability distributions that shows particle probability to deposit some energy 
 and scatter by some angle at some distance from the end of the track, and these distributions are derived from 
@@ -211,7 +211,7 @@ one track at a time and does the muon/non-muon classification for track, CVN ana
 slice and does the classification in multiple classes - muon/electron/tau neutrino, QE/RES/DIS/MEC interaction, 
 NC interaction and cosmic rays.
 
-A deep convolutional neural network requires tremendous amount of training samples to prevent an overfitting togther 
+A deep convolutional neural network requires tremendous amount of training samples to prevent an overfitting together 
 with regularization techniques such as dropout layers \cite{dropout} and weight decay. In order to increase available 
 training dataset some pictures are randomly changed. First, Gaussian noise is added to all pixels with a standard 
 deviation of 1$\%$, this also reduces reliance on the simulated intensity in each pixel. Then, some pictures 
@@ -229,7 +229,7 @@ approximately put in the left middle part of the picture.}
 As stated above, CVN classifies events in multiple classes i.e. CVN output is n-dimensional vector with sum all its 
 components equal to one. These components could be interpreted as probabilities that the current event belongs 
 to a particular class. Only muon neutrinos are used in the current analysis, thus to select an event sum of outputs 
-in muon/QE, muon/RES, muon/DIS and muon/MEC classes should be bigger than some treshold.
+in muon/QE, muon/RES, muon/DIS and muon/MEC classes should be bigger than some threshold.
 
 \section{Energy Estimation} \label{energy_est_cont}
 The final step in the reconstruction chain is estimating the total neutrino energy. The probability that one
@@ -253,7 +253,7 @@ with multiple segments; an example of this function is shown in Figure \ref{fig:
 \centering
 \caption{Muon Energy Estimator.}
 {Muon track energy is measured based on muon track length. The fit is a piecewise linear spline, vertical dashed
-lines represent joint points and red line is a fit. Stiches, offsets and slopes are free parameters of the fit.}
+lines represent joint points and red line is a fit. Stitches, offsets and slopes are free parameters of the fit.}
 \label{fig:mue_fit}
 \end{figure}
 
@@ -272,7 +272,7 @@ during different data taking periods.
 \centering
 \caption{Hadronic Energy Estimator.}
 {Hadronic energy measured based on visible calibrated energy. The fit is a piecewise linear spline, vertical 
-dashed lines represent joint points and red line is a fit. Stiches, offsets and slopes are free parameters of the
+dashed lines represent joint points and red line is a fit. Stitches, offsets and slopes are free parameters of the
 fit.}
 \label{fig:hade_fit}
 \end{figure}

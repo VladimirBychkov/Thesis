@@ -25,13 +25,13 @@ sections.
 A data quality is the first cut in contained sample selection flow and serves to remove 
 events of poor quality. Events which pass data quality cut have
 \begin{itemize}
-\item more than 20 reconstructed hits. There is no useful inforamtion for events with fewer 
+\item more than 20 reconstructed hits. There is no useful information for events with fewer 
 number of hits.
 \item at least one track reconstructed by cosmic tracker. This criterion confirms that there is
 cluster of hits which could be associated with track.
 \item PID value of ReMId selector should be greater than zero. This ensures that at least one 
 3D Kalman track was reconstructed.
-\item slice which spans more than 4 cosecutive planes. This cut removes events with geometric 
+\item slice which spans more than 4 consecutive planes. This cut removes events with geometric 
 gaps and highly vertical tracks, thus the cut is a good preselector for a good fraction of 
 cosmic rays.
 \end{itemize}
@@ -59,12 +59,12 @@ energy resolution and satisfy criteria below, which are explained in the next pa
 The first four criteria use tracks reconstructed by the Kalman Tracker and Cosmic Tracker.
 For every track, the number of projected cells\footnote{along the track} from start/end of the track 
 to the edge of the detector is estimated and these numbers should be bigger than above stated
-tresholds. The next two criteria checks that reconstructed slice does not have hits in the first
+thresholds. The next two criteria checks that reconstructed slice does not have hits in the first
 and the last planes of detector active region\footnote{Data were taken during detector construction
 period, thus active region was changing with time.}. Finally, the last six criteria use objects
 reconstructed by Fuzzy clustering algorithm, the objects consist of hits that could belong to 
 different clusters (in other words, two particle which move in close trajectories could contribute
-to one hit). The tresholds in the last six criteria are result of optimization carried out in 
+to one hit). The thresholds in the last six criteria are result of optimization carried out in 
 \cite{numucont_technote}.
 
 \subsection{$\nu_\mu$ CC selection} \label{CCSel}
@@ -88,7 +88,7 @@ cosmic and $\nu_\mu$ CC events. These event variables used in the BDT are
 \item largest y-position of either the start or the end of muon the track,
 \item CVN cosmic score,
 \item min(CosmicForwardCell + CosmicBackwardCell, KalmanForwardCell + KalmanBackwardCell), this 
-variable helps to discriminate throughgoing cosmic muons which passed all previous cuts,
+variable helps to discriminate through going cosmic muons which passed all previous cuts,
 \item ratio of hit number in kalman track to hit number in slice, this ratio is a measure of hadronic
 energy fraction. Cosmic events have very little hadronic energy as compared to beam neutrino events. 
 \end{itemize}
@@ -107,22 +107,22 @@ four independent samples with different fraction of hadronic energy in selected 
 Hadronic energy fraction ($\frac{E_{had}}{E_\nu}$) distribution is made for every reconstructed neutrino energy
 bin and is split into four parts - lowest, second to lowest, second to highest and highest
 quantiles - so every quantile has equal number of events. A Plot of $\frac{E_{had}}{E_\nu}$ vs $E_\nu$ and 
-quantile bondaries are shown in figure \ref{fig:hadE_Quant}. Since the detector configuration was different for 
+quantile boundaries are shown in figure \ref{fig:hadE_Quant}. Since the detector configuration was different for 
 different run periods, the analysis uses different quantiles boundaries to account for that. 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/hadERecoE_QuantileLimits.png}
-\caption{Haronic energy fraction quantiles.}
+\caption{Hadronic energy fraction quantiles.}
 {Hadronic energy fraction vs reconstructed neutrino energy plot allows to determine for every bin of
-reconstructed energy hadronic energy fraction quantile. Events from every bin are splitted into 4 parts
-and separated by black horizontal lines. This plot is made for run period 2, plots for otherrun periods 
+reconstructed energy hadronic energy fraction quantile. Events from every bin are split into 4 parts
+and separated by black horizontal lines. This plot is made for run period 2, plots for other run periods 
 are similar.}
 \label{fig:hadE_Quant}
 \end{figure}
 
 \section{Escaping Sample} \label{esc_sec}
 The remainder of the chapter describes the new work done to select $\nu_\mu$ CC events where part of 
-a muon track was measured. The main goal is to select the sample with minimal cosmic backgound and maximal
+a muon track was measured. The main goal is to select the sample with minimal cosmic background and maximal
 beam neutrino signal.
 
 \subsection{Definition and Basic Selection} \label{base_cut}
@@ -171,7 +171,7 @@ confidently the direction of the track and other approaches are needed.
 \begin{subfigure}[t]{0.9\textwidth}
   \centering
   \includegraphics[width=1.0\linewidth]{figures/numu_and_cosmic_top_2.png}
-  \caption{Reconstracted Kalman tracks.}
+  \caption{Reconstructed Kalman tracks.}
   \label{fig:cosmic_top_2}
 \end{subfigure}
 \caption{Cosmic rays and beam neutrinos in the far detector.}
@@ -192,12 +192,12 @@ Figure \ref{fig:cosmic_top} shows topologies of cosmic rays and beam neutrinos w
 \ref{fig:cosmic_top_2} illustrates corresponding reconstructed Kalman tracks. The feature of the Kalman 
 tracker is that it all reconstructed tracks are assumed to point along the positive Z-axis, and this substantially 
 reduces cosmic ray contamination at the cost of a small reduction in the signal. All cosmic 
-rays effectively are devided into two populations, the one where track direction assumed correctly and the 
+rays effectively are divided into two populations, the one where track direction assumed correctly and the 
 one where it is not. These populations are clearly seen on the figure \ref{fig:stopdiry_1} where the distribution
 of reconstructed Kalman track Y-direction at its end (StopDirY) is shown for the cosmic rays and the primary 
 track of the signal events. The usage of this variable will be explained later. Now, one can see that it 
 is easy to remove one population by requiring backwards projected distance \ref{fig:bakdist} (KalBakCell) to 
-be greater than some treshold. The actual cut is perform for `number of backwards projected cells' variable, 
+be greater than some threshold. The actual cut is perform for `number of backwards projected cells' variable, 
 see figure \ref{fig:kalbakcell}.
 \begin{figure}[h]
 \centering
@@ -212,7 +212,7 @@ that its starting point is always to the right of its end point. }
 \centering
 \includegraphics[width=0.9\textwidth]{figures/reco_KalbakCell_Base.pdf}
 \caption{Number of Backwards Projected Cells.}
-{Three order of magnintude more cosmic events for lower end of number of backwards projected cells comes from cosmic 
+{Three order of magnitude more cosmic events for lower end of number of backwards projected cells comes from cosmic 
 rays which move along the positive Z-axis. See left example of cosmic ray in figure \ref{fig:cosmic_top_2}. }
 \label{fig:kalbakcell}
 \end{figure}
@@ -242,7 +242,7 @@ CC interaction also prefer upward direction. Track direction at its end is more 
 track's start since it has information about cosmic ray direction as ray enters the detector. 
 
 Figure \ref{fig:length_2} shows that escaping sample still has noticeable cosmic ray background and the next 
-section developes a few more optimized cuts to decrease further the rest of background.
+section develops a few more optimized cuts to decrease further the rest of background.
 
 \begin{figure}[!h]
 \centering
@@ -295,7 +295,7 @@ ReMId grater than 0.5 cuts. }
 \includegraphics[width=0.9\textwidth]{figures/reco_hadCalE_Presel_remid5.pdf}
 \caption{Hadronic Calorimetric Energy.}
 {Distribution of hadronic calorimetric energy for events which pass Base, Preselection and ReMId grater than 0,5 cuts. 
-Simple cut on this variable sagnificantly hurts sensitivity, thus different approach is taken.}
+Simple cut on this variable significantly hurts sensitivity, thus different approach is taken.}
 \label{fig:calHadE}
 \end{figure}
 \begin{figure}[!th]
